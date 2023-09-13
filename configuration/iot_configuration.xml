@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<iot_configuration>
+   <cobot>
+    <model_id>dtmi:com:AddQual:Factory:ScanBox:Cobot:Cobot;1</model_id>
+    <provisioning_host>global.azure-devices-provisioning.net</provisioning_host>
+    <id_scope>0ne00AF4286</id_scope>
+    <registration_id>CobotDevice</registration_id>
+    <symmetric_key>P716ain1hm09gyeq355KfdtDxILlcV9NrNiC8/7FEKlepvhZ+FGlKoJcIVrpF5svwQ8zchUy41JURTRFgz7azw==</symmetric_key>
+    <host>10.2.12.109</host>
+  </cobot>
+</iot_configuration>
