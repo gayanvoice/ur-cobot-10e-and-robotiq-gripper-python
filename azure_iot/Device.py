@@ -1,8 +1,3 @@
-__author__ = "100638182"
-__copyright__ = "AddQual"
-
-import json
-
 import numpy
 from azure.iot.device import Message, MethodResponse
 from azure.iot.device.aio import IoTHubDeviceClient

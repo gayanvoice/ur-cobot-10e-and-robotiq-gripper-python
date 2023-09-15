@@ -4,10 +4,12 @@ import math
 import xml.etree.ElementTree as ET
 import URBasic
 from azure_iot.Device import Device
+from model.gripper_command_model import GripperCommandModel
 from model.joint_position_model import JointPositionModel
 from model.move_j_command_model import MoveJCommandModel
 from model.response.close_popup_command_response_model import ClosePopupCommandResponseModel
 from model.response.close_safety_popup_command_response_model import CloseSafetyPopupCommandResponseModel
+from model.response.gripper_command_response_model import GripperCommandResponseModel
 from model.response.move_j_command_response_model import MoveJCommandResponseModel
 from model.response.open_popup_command_response_model import OpenPopupCommandResponseModel
 from model.response.pause_command_response_model import PauseCommandResponseModel
@@ -109,9 +111,14 @@ class CobotDevice:
                 request_handler=self.power_off_command_request_handler,
                 response_handler=self.command_response_handler,
             ),
+            self.device.execute_command_listener(
+                method_name="GripperCommand",
+                request_handler=self.gripper_command_request_handler,
+                response_handler=self.command_response_handler,
+            ),
         )
 
-        # send_telemetry_task = asyncio.ensure_future(self.send_telemetry_task())
+        send_telemetry_task = asyncio.ensure_future(self.send_telemetry_task())
 
         loop = asyncio.get_running_loop()
         user_finished = loop.run_in_executor(None, self.stdin_listener)
@@ -125,7 +132,7 @@ class CobotDevice:
         self.ur_script_ext.close()
         command_listeners.cancel()
 
-        # send_telemetry_task.cancel()
+        send_telemetry_task.cancel()
 
         await self.device.iot_hub_device_client.shutdown()
         await queue.put(None)
@@ -134,7 +141,7 @@ class CobotDevice:
         command_response_model = MoveJCommandResponseModel()
         try:
             move_j_command_model = MoveJCommandModel.get_move_j_command_model_using_request_payload(request_payload)
-            move_j_command_model.validate()
+            # move_j_command_model.validate()
             for joint_position_model in move_j_command_model.joint_position_model_array:
                 joint_position_array = JointPositionModel.get_position_array_from_joint_position_model(
                     joint_position_model=joint_position_model
@@ -171,7 +178,7 @@ class CobotDevice:
     async def close_safety_popup_command_request_handler(self, request_payload):
         command_response_model = CloseSafetyPopupCommandResponseModel()
         try:
-            self.ur_script_ext.play()
+            self.ur_script_ext.close_safety_popup()
             return command_response_model.get_successfully_executed()
         except Exception as ex:
             return command_response_model.get_exception(str(ex))
@@ -179,7 +186,7 @@ class CobotDevice:
     async def unlock_protective_stop_command_request_handler(self, request_payload):
         command_response_model = UnlockProtectiveStopCommandResponseModel()
         try:
-            self.ur_script_ext.play()
+            self.ur_script_ext.unlock_protective_stop()
             return command_response_model.get_successfully_executed()
         except Exception as ex:
             return command_response_model.get_exception(str(ex))
@@ -187,7 +194,7 @@ class CobotDevice:
     async def open_popup_command_request_handler(self, request_payload):
         command_response_model = OpenPopupCommandResponseModel()
         try:
-            self.ur_script_ext.play()
+            self.ur_script_ext.open_popup(popup_text=request_payload)
             return command_response_model.get_successfully_executed()
         except Exception as ex:
             return command_response_model.get_exception(str(ex))
@@ -195,7 +202,7 @@ class CobotDevice:
     async def close_popup_command_request_handler(self, request_payload):
         command_response_model = ClosePopupCommandResponseModel()
         try:
-            self.ur_script_ext.play()
+            self.ur_script_ext.close_popup()
             return command_response_model.get_successfully_executed()
         except Exception as ex:
             return command_response_model.get_exception(str(ex))
@@ -203,7 +210,7 @@ class CobotDevice:
     async def power_on_command_request_handler(self, request_payload):
         command_response_model = PowerOnCommandResponseModel()
         try:
-            self.ur_script_ext.play()
+            self.ur_script_ext.power_on()
             return command_response_model.get_successfully_executed()
         except Exception as ex:
             return command_response_model.get_exception(str(ex))
@@ -211,7 +218,16 @@ class CobotDevice:
     async def power_off_command_request_handler(self, request_payload):
         command_response_model = PowerOffCommandResponseModel()
         try:
-            self.ur_script_ext.play()
+            self.ur_script_ext.power_off()
+            return command_response_model.get_successfully_executed()
+        except Exception as ex:
+            return command_response_model.get_exception(str(ex))
+
+    async def gripper_command_request_handler(self, request_payload):
+        command_response_model = GripperCommandResponseModel()
+        try:
+            gripper_command_model = GripperCommandModel.get_gripper_command_model_using_request_payload(request_payload)
+            self.ur_script_ext.ur_gripper(method=gripper_command_model.method)
             return command_response_model.get_successfully_executed()
         except Exception as ex:
             return command_response_model.get_exception(str(ex))

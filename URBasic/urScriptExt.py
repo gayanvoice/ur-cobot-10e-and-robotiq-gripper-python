@@ -29,6 +29,7 @@ import URBasic
 import numpy as np
 import time
 
+
 class UrScriptExt(URBasic.urScript.UrScript):
     '''
     Interface to remote access UR script commands, and add some extended features as well.
@@ -56,11 +57,10 @@ class UrScriptExt(URBasic.urScript.UrScript):
     self.close_rtc()
     '''
 
-
     def __init__(self, host, robotModel, hasForceTorque=False):
-        if host is None: #Only for enable code completion
+        if host is None:  # Only for enable code completion
             return
-        super(UrScriptExt, self).__init__(host, robotModel, hasForceTorque)        
+        super(UrScriptExt, self).__init__(host, robotModel, hasForceTorque)
         logger = URBasic.dataLogging.DataLogging()
         name = logger.AddEventLogging(__name__)
         self.__logger = logger.__dict__[name]
@@ -85,27 +85,28 @@ class UrScriptExt(URBasic.urScript.UrScript):
         '''
 
         if not self.robotConnector.RobotModel.RobotStatus().PowerOn:
-            #self.robotConnector.DashboardClient.PowerOn()
+            # self.robotConnector.DashboardClient.PowerOn()
             self.robotConnector.DashboardClient.ur_power_on()
             self.robotConnector.DashboardClient.wait_dbs()
-            #self.robotConnector.DashboardClient.BrakeRelease()
+            # self.robotConnector.DashboardClient.BrakeRelease()
             self.robotConnector.DashboardClient.ur_brake_release()
             self.robotConnector.DashboardClient.wait_dbs()
             time.sleep(2)
-        if self.robotConnector.RobotModel.SafetyStatus().StoppedDueToSafety:         #self.get_safety_status()['StoppedDueToSafety']:
-            #self.robotConnector.DashboardClient.UnlockProtectiveStop()
+        if self.robotConnector.RobotModel.SafetyStatus().StoppedDueToSafety:  # self.get_safety_status()['StoppedDueToSafety']:
+            # self.robotConnector.DashboardClient.UnlockProtectiveStop()
             self.robotConnector.DashboardClient.ur_unlock_protective_stop()
             self.robotConnector.DashboardClient.wait_dbs()
-            #self.robotConnector.DashboardClient.CloseSafetyPopup()
+            # self.robotConnector.DashboardClient.CloseSafetyPopup()
             self.robotConnector.DashboardClient.ur_close_safety_popup()
             self.robotConnector.DashboardClient.wait_dbs()
-            #self.robotConnector.DashboardClient.BrakeRelease()
+            # self.robotConnector.DashboardClient.BrakeRelease()
             self.robotConnector.DashboardClient.ur_brake_release()
             self.robotConnector.DashboardClient.wait_dbs()
             time.sleep(2)
 
-        #return self.get_robot_status()['PowerOn'] & (not self.get_safety_status()['StoppedDueToSafety'])
-        return self.robotConnector.RobotModel.RobotStatus().PowerOn & (not self.robotConnector.RobotModel.SafetyStatus().StoppedDueToSafety)
+        # return self.get_robot_status()['PowerOn'] & (not self.get_safety_status()['StoppedDueToSafety'])
+        return self.robotConnector.RobotModel.RobotStatus().PowerOn & (
+            not self.robotConnector.RobotModel.SafetyStatus().StoppedDueToSafety)
 
     def get_in(self, port, wait=True):
         '''
@@ -146,14 +147,13 @@ class UrScriptExt(URBasic.urScript.UrScript):
         elif 'TDO' == port[:3]:
             pass
 
-            #if self.sendData():
+            # if self.sendData():
             #    return True
-            return True #Vi har sendt det .. vi checker ikke
+            return True  # Vi har sendt det .. vi checker ikke
         else:
             return False
 
-
-    def init_force_remote(self, task_frame=[0.0, 0.0, 0.0,  0.0, 0.0, 0.0], f_type=2):
+    def init_force_remote(self, task_frame=[0.0, 0.0, 0.0, 0.0, 0.0, 0.0], f_type=2):
         '''
         The Force Remote function enables changing the force settings dynamically,
         without sending new programs to the robot, and thereby exit and enter force mode again.
@@ -175,9 +175,9 @@ class UrScriptExt(URBasic.urScript.UrScript):
             self.__logger.error('RTDE need to be running to use force remote')
             return False
 
-        selection_vector=[0, 0, 0,  0, 0, 0]
-        wrench=[0.0, 0.0, 0.0,  0.0, 0.0, 0.0]
-        limits=[0.1, 0.1, 0.1,  0.1, 0.1, 0.1]
+        selection_vector = [0, 0, 0, 0, 0, 0]
+        wrench = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+        limits = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
 
         self.robotConnector.RTDE.setData('input_int_register_0', selection_vector[0])
         self.robotConnector.RTDE.setData('input_int_register_1', selection_vector[1])
@@ -210,7 +210,7 @@ class UrScriptExt(URBasic.urScript.UrScript):
         self.robotConnector.RTDE.setData('input_int_register_6', f_type)
         self.robotConnector.RTDE.sendData()
 
-        prog='''def force_remote():
+        prog = '''def force_remote():
     while (True):
 
         global task_frame =  p[read_input_float_register(12),
@@ -250,9 +250,10 @@ class UrScriptExt(URBasic.urScript.UrScript):
 end
 '''
         self.robotConnector.RealTimeClient.SendProgram(prog.format(**locals()))
-        self.robotConnector.RobotModel.forceRemoteActiveFlag=True
+        self.robotConnector.RobotModel.forceRemoteActiveFlag = True
 
-    def set_force_remote(self, task_frame=[0.0, 0.0, 0.0,  0.0, 0.0, 0.0], selection_vector=[0, 0, 0,  0, 0, 0], wrench=[0.0, 0.0, 0.0,  0.0, 0.0, 0.0], limits=[0.1, 0.1, 0.1,  0.1, 0.1, 0.1],f_type=2):
+    def set_force_remote(self, task_frame=[0.0, 0.0, 0.0, 0.0, 0.0, 0.0], selection_vector=[0, 0, 0, 0, 0, 0],
+                         wrench=[0.0, 0.0, 0.0, 0.0, 0.0, 0.0], limits=[0.1, 0.1, 0.1, 0.1, 0.1, 0.1], f_type=2):
         '''
         Update/set remote force, see "init_force_remote" for more details.
 
@@ -334,16 +335,15 @@ end
 
             return False
 
-
-    def move_force_2stop(self,  start_tolerance=0.01,
-                                stop_tolerance=0.01,
-                                wrench_gain=[1.0, 1.0, 1.0,  1.0, 1.0, 1.0],
-                                timeout=10,
-                                task_frame=[0.0, 0.0, 0.0,  0.0, 0.0, 0.0],
-                                selection_vector=[0, 0, 0,  0, 0, 0],
-                                wrench=[0.0, 0.0, 0.0,  0.0, 0.0, 0.0],
-                                limits=[0.1, 0.1, 0.1,  0.1, 0.1, 0.1],
-                                f_type=2):
+    def move_force_2stop(self, start_tolerance=0.01,
+                         stop_tolerance=0.01,
+                         wrench_gain=[1.0, 1.0, 1.0, 1.0, 1.0, 1.0],
+                         timeout=10,
+                         task_frame=[0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+                         selection_vector=[0, 0, 0, 0, 0, 0],
+                         wrench=[0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+                         limits=[0.1, 0.1, 0.1, 0.1, 0.1, 0.1],
+                         f_type=2):
         '''
         Move force will set the robot in force mode (see force_mode) and move the TCP until it meets an object making the TCP stand still.
 
@@ -390,54 +390,53 @@ end
 
         '''
 
-        timeoutcnt = 125*timeout
+        timeoutcnt = 125 * timeout
         wrench = np.array(wrench)
         wrench_gain = np.array(wrench_gain)
         self.set_force_remote(task_frame, selection_vector, wrench, limits, f_type)
 
-        dist = np.array(range(60),float)
+        dist = np.array(range(60), float)
         dist.fill(0.)
         cnt = 0
-        old_pose=self.get_actual_tcp_pose()*np.array(selection_vector)
-        while np.sum(dist)<start_tolerance and cnt<timeoutcnt:
-            new_pose = self.get_actual_tcp_pose()*np.array(selection_vector)
-            wrench = wrench*wrench_gain #Need a max wrencd check
+        old_pose = self.get_actual_tcp_pose() * np.array(selection_vector)
+        while np.sum(dist) < start_tolerance and cnt < timeoutcnt:
+            new_pose = self.get_actual_tcp_pose() * np.array(selection_vector)
+            wrench = wrench * wrench_gain  # Need a max wrencd check
             self.set_force_remote(task_frame, selection_vector, wrench, limits, f_type)
-            dist[np.mod(cnt,60)] = np.abs(np.sum(new_pose-old_pose))
-            old_pose=new_pose
-            cnt +=1
+            dist[np.mod(cnt, 60)] = np.abs(np.sum(new_pose - old_pose))
+            old_pose = new_pose
+            cnt += 1
 
-        #Check if robot started to move
-        if cnt<timeoutcnt:
+        # Check if robot started to move
+        if cnt < timeoutcnt:
             dist.fill(stop_tolerance)
             cnt = 0
-            while np.sum(dist)>stop_tolerance and cnt<timeoutcnt:
-                new_pose = self.get_actual_tcp_pose()*np.array(selection_vector)
-                dist[np.mod(cnt,60)] = np.abs(np.sum(new_pose-old_pose))
-                old_pose=new_pose
-                cnt +=1
+            while np.sum(dist) > stop_tolerance and cnt < timeoutcnt:
+                new_pose = self.get_actual_tcp_pose() * np.array(selection_vector)
+                dist[np.mod(cnt, 60)] = np.abs(np.sum(new_pose - old_pose))
+                old_pose = new_pose
+                cnt += 1
 
-        self.set_force_remote(task_frame, selection_vector, [0,0,0, 0,0,0], limits, f_type)
+        self.set_force_remote(task_frame, selection_vector, [0, 0, 0, 0, 0, 0], limits, f_type)
         self.end_force_mode()
-        if cnt>=timeoutcnt:
+        if cnt >= timeoutcnt:
             return False
         else:
             return True
 
-
     def move_force(self, pose=None,
-                         a=1.2,
-                         v=0.25,
-                         t=0,
-                         r=0.0,
-                         movetype='l',
-                         task_frame=[0.0, 0.0, 0.0,  0.0, 0.0, 0.0],
-                         selection_vector=[0, 0, 0,  0, 0, 0],
-                         wrench=[0.0, 0.0, 0.0,  0.0, 0.0, 0.0],
-                         limits=[0.1, 0.1, 0.1,  0.1, 0.1, 0.1],
-                         f_type=2,
-                         wait=True,
-                         q=None):
+                   a=1.2,
+                   v=0.25,
+                   t=0,
+                   r=0.0,
+                   movetype='l',
+                   task_frame=[0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+                   selection_vector=[0, 0, 0, 0, 0, 0],
+                   wrench=[0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+                   limits=[0.1, 0.1, 0.1, 0.1, 0.1, 0.1],
+                   f_type=2,
+                   wait=True,
+                   q=None):
 
         """
         Concatenate several move commands and applies a blending radius
@@ -496,15 +495,15 @@ end
 
         """
         task_frame = np.array(task_frame)
-        if np.size(task_frame.shape)==2:
-            prefix="p"
-            t_val=''
+        if np.size(task_frame.shape) == 2:
+            prefix = "p"
+            t_val = ''
             if pose is None:
-                prefix=""
-                pose=q
+                prefix = ""
+                pose = q
             pose = np.array(pose)
             if movetype == 'j' or movetype == 'l':
-                tval='t={t},'.format(**locals())
+                tval = 't={t},'.format(**locals())
 
             prg = 'def move_force():\n'
             for idx in range(np.size(pose, 0)):
@@ -512,16 +511,17 @@ end
                 posex = posex.tolist()
                 task_framex = np.round(task_frame[idx], 4)
                 task_framex = task_framex.tolist()
-                if (np.size(pose, 0)-1)==idx:
-                    r=0
-                prg +=  '    force_mode(p{task_framex}, {selection_vector}, {wrench}, {f_type}, {limits})\n'.format(**locals())
-                prg +=  '    move{movetype}({prefix}{posex}, a={a}, v={v}, {t_val} r={r})\n'.format(**locals())
+                if (np.size(pose, 0) - 1) == idx:
+                    r = 0
+                prg += '    force_mode(p{task_framex}, {selection_vector}, {wrench}, {f_type}, {limits})\n'.format(
+                    **locals())
+                prg += '    move{movetype}({prefix}{posex}, a={a}, v={v}, {t_val} r={r})\n'.format(**locals())
 
-            prg +=  '    stopl({a})\n'.format(**locals())
-            prg +=  '    end_force_mode()\nend\n'
+            prg += '    stopl({a})\n'.format(**locals())
+            prg += '    end_force_mode()\nend\n'
 
         else:
-            prg =  '''def move_force():
+            prg = '''def move_force():
     force_mode(p{task_frame}, {selection_vector}, {wrench}, {f_type}, {limits})
 {movestr}
     end_force_mode()
@@ -531,7 +531,7 @@ end
             movestr = self._move(movetype, pose, a, v, t, r, wait, q)
 
         self.robotConnector.RealTimeClient.SendProgram(prg.format(**locals()))
-        if(wait):
+        if (wait):
             self.waitRobotIdleOrStopFlag()
 
     def print_actual_tcp_pose(self):
@@ -553,7 +553,8 @@ end
         if q is None:
             print('Robot Pose: [{: 06.4f}, {: 06.4f}, {: 06.4f},   {: 06.4f}, {: 06.4f}, {: 06.4f}]'.format(*pose))
         else:
-            print('Robot joint positions: [{: 06.4f}, {: 06.4f}, {: 06.4f},   {: 06.4f}, {: 06.4f}, {: 06.4f}]'.format(*q))
+            print('Robot joint positions: [{: 06.4f}, {: 06.4f}, {: 06.4f},   {: 06.4f}, {: 06.4f}, {: 06.4f}]'.format(
+                *q))
 
     def print_actual_joint_positions(self):
         '''
@@ -584,3 +585,11 @@ end
 
     def power_off(self):
         self.robotConnector.DashboardClient.ur_power_off()
+
+    def ur_gripper(self, method=None):
+        if method == "OPEN":
+            self.robotConnector.DashboardClient.ur_load_program("open_gripper.urp")
+        elif method == "CLOSE":
+            self.robotConnector.DashboardClient.ur_load_program("close_gripper.urp")
+        else:
+            raise NotImplementedError

@@ -35,6 +35,7 @@ import time
 
 DEFAULT_TIMEOUT = 2.0
 
+
 class ConnectionState:
     ERROR = 0
     DISCONNECTED = 1
@@ -43,7 +44,7 @@ class ConnectionState:
     STARTED = 4
 
 
-class DashBoard(threading.Thread): 
+class DashBoard(threading.Thread):
     '''
     A Universal Robot can be controlled from remote by sending simple commands to the 
     GUI over a TCP/IP socket. This interface is called the "DashBoard server". 
@@ -68,14 +69,15 @@ class DashBoard(threading.Thread):
         '''
         Constructor see class description for more info.
         '''
-        if(False):
-            assert isinstance(robotModel, URBasic.robotModel.RobotModel)  ### This line is to get code completion for RobotModel
+        if (False):
+            assert isinstance(robotModel,
+                              URBasic.robotModel.RobotModel)  ### This line is to get code completion for RobotModel
         self.__robotModel = robotModel
 
         logger = URBasic.dataLogging.DataLogging()
-        name = logger.AddEventLogging(__name__)        
+        name = logger.AddEventLogging(__name__)
         self._logger = logger.__dict__[name]
-        self.__reconnectTimeout = 60 #Seconds (while in run)
+        self.__reconnectTimeout = 60  # Seconds (while in run)
         self.__conn_state = ConnectionState.DISCONNECTED
         self.last_respond = None
         self.__stop_event = True
@@ -86,7 +88,6 @@ class DashBoard(threading.Thread):
         self.start()
         self.wait_dbs()
         self._logger.info('Dashboard server constructor done')
-
 
     def ur_load(self, file):
         '''
@@ -105,7 +106,7 @@ class DashBoard(threading.Thread):
         "Starting program"
         '''
         self.__send('play\n')
-        
+
     def ur_stop(self):
         '''
         Stops running program and returns when stopping is completed.
@@ -114,7 +115,6 @@ class DashBoard(threading.Thread):
         "Stopped"
         '''
         self.__send('stop\n')
-
 
     def ur_pause(self):
         '''
@@ -125,7 +125,6 @@ class DashBoard(threading.Thread):
         '''
         self.__send('pause\n')
 
-
     def ur_shutdown(self):
         '''
         Shuts down and turns off robot and controller.
@@ -134,7 +133,7 @@ class DashBoard(threading.Thread):
         "Shutting down"
         '''
         self.__send('shutdown\n')
-        
+
     def ur_running(self):
         '''
         Execution state enquiry.
@@ -143,7 +142,7 @@ class DashBoard(threading.Thread):
         "Robot running: True" OR "Robot running: False"
         '''
         self.__send('running\n')
-        
+
     def ur_robotmode(self):
         '''
         Robot mode enquiry
@@ -171,7 +170,7 @@ class DashBoard(threading.Thread):
         '''
         self.__send('get loaded program\n')
 
-    def ur_popup(self,  popupText=''):
+    def ur_popup(self, popupText=''):
         '''
         The popup-text will be translated to the selected language, if the text exists in the language file.
         
@@ -250,7 +249,7 @@ class DashBoard(threading.Thread):
         Return value to Log file:
         "Setting user role: <role>" OR "Failed setting user role: <role>"
         '''
-        self.__send('setUserRole '+ role + ', where ' + role + ' is' + level +'\n')
+        self.__send('setUserRole ' + role + ', where ' + role + ' is' + level + '\n')
 
     def ur_power_on(self):
         '''
@@ -323,14 +322,10 @@ class DashBoard(threading.Thread):
         Return value to Log file:
         "Loading installation: <default.installation>" OR "File not found: <default.installation>"
         '''
-        self.__send('load installation '+ instal +'\n')
+        self.__send('load installation ' + instal + '\n')
 
-        
-    
-        
-        
-
-
+    def ur_load_program(self, program=None):
+        self.__send('load ' + program + '\n')
 
     def __connect(self):
         '''
@@ -338,15 +333,15 @@ class DashBoard(threading.Thread):
         
         Return value:
         success (boolean)
-        '''       
+        '''
         if self.__sock:
             return True
 
         t0 = time.time()
-        while (time.time()-t0<self.__reconnectTimeout) and self.__conn_state < ConnectionState.CONNECTED:
+        while (time.time() - t0 < self.__reconnectTimeout) and self.__conn_state < ConnectionState.CONNECTED:
             try:
-                self.__sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)            
-                self.__sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)         
+                self.__sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                self.__sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
                 self.__sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
                 self.__sock.settimeout(DEFAULT_TIMEOUT)
                 self.__sock.connect((self.__robotModel.ipAddress, 29999))
@@ -367,8 +362,8 @@ class DashBoard(threading.Thread):
         rob = URBasic.dashboard.DashBoard('192.168.56.101', rtde_conf_filename='rtde_configuration.xml', logger=logger)
         rob.close_dbs()
         '''
-#        if self.IsRtcConnected():
-#            self.close_rtc()
+        #        if self.IsRtcConnected():
+        #            self.close_rtc()
 
         if self.__stop_event is False:
             self.__stop_event = True
@@ -385,19 +380,18 @@ class DashBoard(threading.Thread):
         '''
         return self.__conn_state >= ConnectionState.STARTED
 
-    
     def run(self):
         self.__stop_event = False
         t0 = time.time()
-        while (time.time()-t0<self.__reconnectTimeout) and self.__conn_state < ConnectionState.CONNECTED:
+        while (time.time() - t0 < self.__reconnectTimeout) and self.__conn_state < ConnectionState.CONNECTED:
             if not self.__connect():
                 self._logger.warning("UR Dashboard connection failed!")
 
         if self.__conn_state < ConnectionState.CONNECTED:
             self._logger.error("UR Dashboard interface not able to connect and timed out!")
             return
-        
-        while (not self.__stop_event) and (time.time()-t0<self.__reconnectTimeout):
+
+        while (not self.__stop_event) and (time.time() - t0 < self.__reconnectTimeout):
             try:
                 msg = self.__receive()
                 if msg is not None:
@@ -435,7 +429,7 @@ class DashBoard(threading.Thread):
         '''Wait while the data receiving thread is receiving a new message.'''
         with self.__dataEvent:
             self.__dataEvent.wait()
-        
+
     def __send(self, cmd):
         '''
         Send command to Robot Controller. 
@@ -447,7 +441,7 @@ class DashBoard(threading.Thread):
         success (boolean)
         '''
         t0 = time.time()
-        while (time.time()-t0<self.__reconnectTimeout):
+        while (time.time() - t0 < self.__reconnectTimeout):
             try:
                 buf = bytes(cmd, 'utf-8')
                 (_, writable, _) = select.select([], [self.__sock], [], DEFAULT_TIMEOUT)
@@ -461,10 +455,6 @@ class DashBoard(threading.Thread):
         self._logger.error('Program re-sending timed out - Could not send program!')
         return False
 
-
-
-      
-
     def __receive(self):
         '''
         Receive the respond a send command from the Robot Controller. 
@@ -477,9 +467,7 @@ class DashBoard(threading.Thread):
             data = self.__sock.recv(1024)
             if len(data) == 0:
                 return None
-            
+
             fmt = ">" + str(len(data)) + "B"
-            out =  struct.unpack_from(fmt, data)        
-            return ''.join(map(chr,out[:-1]))
-            
-            
+            out = struct.unpack_from(fmt, data)
+            return ''.join(map(chr, out[:-1]))
