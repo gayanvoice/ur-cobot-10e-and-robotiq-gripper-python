@@ -1,7 +1,8 @@
 import asyncio
 
 import URBasic
-from azure_iot.CobotDevice import CobotDevice
+from azure_iot.ur_cobot import URCobot
+from azure_iot.ur_gripper import URGripper
 from model.joint_position_model import JointPositionModel
 
 host = '10.2.12.109'
@@ -90,8 +91,9 @@ host = '10.2.12.109'
 async def main():
     try:
         queue = asyncio.Queue()
-        cobot_device = CobotDevice()
-        await asyncio.gather(cobot_device.connect_azure_iot(queue))
+        ur_cobot = URCobot()
+        ur_gripper = URGripper()
+        await asyncio.gather(ur_cobot.connect_azure_iot(queue), ur_gripper.connect_azure_iot(queue))
     except asyncio.exceptions.CancelledError:
         print("main:The execution of the thread was manually stopped due to a KeyboardInterrupt signal.")
     except SystemExit:

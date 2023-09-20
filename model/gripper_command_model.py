@@ -17,11 +17,11 @@ class GripperCommandModel:
     def get_gripper_command_model_using_request_payload(request_payload):
         json_request_payload = json.loads(request_payload)
         gripper_command_model = GripperCommandModel()
-        gripper_command_model.acceleration = json_request_payload["_method"]
+        gripper_command_model.method = json_request_payload["_method"]
         return gripper_command_model
 
     @staticmethod
     def get_gripper_command_model_using_arguments(method):
         gripper_command_model = GripperCommandModel()
-        gripper_command_model.acceleration = method
+        gripper_command_model.method = method
         return gripper_command_model

@@ -4,12 +4,13 @@ import math
 import xml.etree.ElementTree as ET
 import URBasic
 from azure_iot.Device import Device
+from model.configuration.shared_iot_configuration_model import SharedIotConfigurationModel
+from model.configuration.ur_cobot_iot_configuration_model import URCobotIotConfigurationModel
 from model.gripper_command_model import GripperCommandModel
 from model.joint_position_model import JointPositionModel
 from model.move_j_command_model import MoveJCommandModel
 from model.response.close_popup_command_response_model import ClosePopupCommandResponseModel
 from model.response.close_safety_popup_command_response_model import CloseSafetyPopupCommandResponseModel
-from model.response.gripper_command_response_model import GripperCommandResponseModel
 from model.response.move_j_command_response_model import MoveJCommandResponseModel
 from model.response.open_popup_command_response_model import OpenPopupCommandResponseModel
 from model.response.pause_command_response_model import PauseCommandResponseModel
@@ -19,7 +20,7 @@ from model.response.power_on_command_response_model import PowerOnCommandRespons
 from model.response.unlock_protective_stop_command_response_model import UnlockProtectiveStopCommandResponseModel
 
 
-class CobotDevice:
+class URCobot:
 
     def __init__(self):
         self.device = None
@@ -32,38 +33,34 @@ class CobotDevice:
             if selection == "Q" or selection == "q":
                 break
 
-    @staticmethod
-    async def connect_ur_script_ext():
-        iot_configuration_element_tree = ET.parse("configuration/iot_configuration.xml")
-        host = iot_configuration_element_tree.find('.//host').text
-
+    async def connect_ur_cobot_physical_device(self, ur_cobot_iot_configuration_model):
         robot_model = URBasic.robotModel.RobotModel()
-        ur_script_ext = URBasic.urScriptExt.UrScriptExt(host=host, robotModel=robot_model)
-        ur_script_ext.reset_error()
-        return ur_script_ext
+        self.ur_script_ext = URBasic.urScriptExt.UrScriptExt(
+            host=ur_cobot_iot_configuration_model.host,
+            robotModel=robot_model)
+        self.ur_script_ext.reset_error()
 
-    @staticmethod
-    async def connect_cobot_iot_device():
-        iot_configuration_element_tree = ET.parse("configuration/iot_configuration.xml")
-
-        model_id = iot_configuration_element_tree.find('.//model_id').text
-        provisioning_host = iot_configuration_element_tree.find('.//provisioning_host').text
-        id_scope = iot_configuration_element_tree.find('.//id_scope').text
-        registration_id = iot_configuration_element_tree.find('.//registration_id').text
-        symmetric_key = iot_configuration_element_tree.find('.//symmetric_key').text
-
-        device = Device(model_id=model_id,
-                        provisioning_host=provisioning_host,
-                        id_scope=id_scope,
-                        registration_id=registration_id,
-                        symmetric_key=symmetric_key)
-        await device.create_iot_hub_device_client()
-        await device.iot_hub_device_client.connect()
-        return device
+    async def connect_ur_cobot_iot_device(self, ur_cobot_iot_configuration_model):
+        self.device = Device(model_id=ur_cobot_iot_configuration_model.model_id,
+                             provisioning_host=ur_cobot_iot_configuration_model.provisioning_host,
+                             id_scope=ur_cobot_iot_configuration_model.id_scope,
+                             registration_id=ur_cobot_iot_configuration_model.registration_id,
+                             symmetric_key=ur_cobot_iot_configuration_model.symmetric_key)
+        await self.device.create_iot_hub_device_client()
+        await self.device.iot_hub_device_client.connect()
 
     async def connect_azure_iot(self, queue):
-        self.device = await self.connect_cobot_iot_device()
-        self.ur_script_ext = await self.connect_ur_script_ext()
+        iot_configuration_xml_file_path = "configuration/iot_configuration.xml"
+
+        shared_iot_configuration_model = SharedIotConfigurationModel().get(
+            iot_configuration_xml_file_path=iot_configuration_xml_file_path)
+        ur_cobot_iot_configuration_model = URCobotIotConfigurationModel().get(
+            iot_configuration_xml_file_path=iot_configuration_xml_file_path)
+
+        await self.connect_ur_cobot_iot_device(
+            ur_cobot_iot_configuration_model=ur_cobot_iot_configuration_model)
+        await self.connect_ur_cobot_physical_device(
+            ur_cobot_iot_configuration_model=ur_cobot_iot_configuration_model)
 
         command_listeners = asyncio.gather(
             self.device.execute_command_listener(
@@ -111,14 +108,10 @@ class CobotDevice:
                 request_handler=self.power_off_command_request_handler,
                 response_handler=self.command_response_handler,
             ),
-            self.device.execute_command_listener(
-                method_name="GripperCommand",
-                request_handler=self.gripper_command_request_handler,
-                response_handler=self.command_response_handler,
-            ),
         )
 
-        send_telemetry_task = asyncio.ensure_future(self.send_telemetry_task())
+        send_telemetry_task = asyncio.ensure_future(self.send_telemetry_task(
+            shared_iot_configuration_model=shared_iot_configuration_model))
 
         loop = asyncio.get_running_loop()
         user_finished = loop.run_in_executor(None, self.stdin_listener)
@@ -223,16 +216,7 @@ class CobotDevice:
         except Exception as ex:
             return command_response_model.get_exception(str(ex))
 
-    async def gripper_command_request_handler(self, request_payload):
-        command_response_model = GripperCommandResponseModel()
-        try:
-            gripper_command_model = GripperCommandModel.get_gripper_command_model_using_request_payload(request_payload)
-            self.ur_script_ext.ur_gripper(method=gripper_command_model.method)
-            return command_response_model.get_successfully_executed()
-        except Exception as ex:
-            return command_response_model.get_exception(str(ex))
-
-    async def send_telemetry_task(self):
+    async def send_telemetry_task(self, shared_iot_configuration_model):
         while True:
             try:
                 telemetry = {
@@ -268,4 +252,4 @@ class CobotDevice:
                 await self.device.send_telemetry(telemetry=telemetry)
             except Exception as ex:
                 print(ex)
-            await asyncio.sleep(5)
+            await asyncio.sleep(shared_iot_configuration_model.telemetry_delay)

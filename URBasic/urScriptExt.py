@@ -588,8 +588,6 @@ end
 
     def ur_gripper(self, method=None):
         if method == "OPEN":
-            self.robotConnector.DashboardClient.ur_load_program("open_gripper.urp")
+            self.robotConnector.DashboardClient.ur_load_program("iot_gripper_open.urp")
         elif method == "CLOSE":
-            self.robotConnector.DashboardClient.ur_load_program("close_gripper.urp")
-        else:
-            raise NotImplementedError
+            self.robotConnector.DashboardClient.ur_load_program("iot_gripper_close.urp")

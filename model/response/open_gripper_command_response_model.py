@@ -1,7 +1,7 @@
 from model.response.response_model import ResponseModel
 
 
-class GripperCommandResponseModel(ResponseModel):
+class OpenGripperCommandResponseModel(ResponseModel):
     def __init__(self):
         super().__init__()
         self._status = None
@@ -14,7 +14,7 @@ class GripperCommandResponseModel(ResponseModel):
 
     def get_successfully_executed(self):
         self.get_gripper_command_response_model(status=True)
-        self._message = "gripper command executed successfully"
+        self._message = "open gripper command executed successfully"
         return self
 
     def get_exception(self, exception):

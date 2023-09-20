@@ -1,11 +1,29 @@
 <?xml version="1.0"?>
 <iot_configuration>
-   <cobot>
-    <model_id>dtmi:com:AddQual:Factory:ScanBox:Cobot:Cobot;1</model_id>
-    <provisioning_host>global.azure-devices-provisioning.net</provisioning_host>
-    <id_scope>0ne00AF4286</id_scope>
-    <registration_id>CobotDevice</registration_id>
-    <symmetric_key>P716ain1hm09gyeq355KfdtDxILlcV9NrNiC8/7FEKlepvhZ+FGlKoJcIVrpF5svwQ8zchUy41JURTRFgz7azw==</symmetric_key>
-    <host>10.2.12.109</host>
-  </cobot>
+    <shared>
+        <telemetry_delay>20</telemetry_delay>
+    </shared>
+    <ur_cobot>
+        <model_id>dtmi:com:AddQual:Factory:ScanBox:Cobot:URCobot;1</model_id>
+        <provisioning_host>global.azure-devices-provisioning.net</provisioning_host>
+        <id_scope>0ne00AF4286</id_scope>
+        <registration_id>URCobot</registration_id>
+        <symmetric_key>MHzgrfqgoEB5yNTAHWe/BGVmVlw3ayYCBUNE57THVQ8iN9iQRB/E5pbJvJDojsZpmmV78cqKh/JKrn6zTdN2eg==</symmetric_key>
+        <host>127.0.0.1</host>
+        <dashboard_server_port>29999</dashboard_server_port>
+        <primary_port>30001</primary_port>
+        <secondary_port>30002</secondary_port>
+        <real_time_port>30003</real_time_port>
+        <rtde_port>30004</rtde_port>
+    </ur_cobot>
+    <ur_gripper>
+        <model_id>dtmi:com:AddQual:Factory:ScanBox:Cobot:URGripper;1</model_id>
+        <provisioning_host>global.azure-devices-provisioning.net</provisioning_host>
+        <id_scope>0ne00AF4286</id_scope>
+        <registration_id>URGripper</registration_id>
+        <symmetric_key>Rj/9JcrAsnH6e8R5Px3YdzdW+QtAt9fKAdsN0YcLh6KgIJrIm6zHPlwBgarETVy1HclBVK72VK1PKxAeK/tzeg==</symmetric_key>
+        <host>10.2.12.109</host>
+        <port>63352</port>
+        <socket_timeout>2.0</socket_timeout>
+    </ur_gripper>
 </iot_configuration>
