@@ -108,7 +108,7 @@ class URGripper:
     def command_response_handler(command_response_model):
         return json.dumps(command_response_model, default=lambda o: o.__dict__, indent=1)
 
-    async def activate_gripper_command_request_handler(self, payload):
+    async def activate_gripper_command_request_handler(self):
         activate_gripper_command_response_model = ActivateGripperCommandResponseModel()
         try:
             self.ur_gripper_controller.activate()
@@ -116,7 +116,7 @@ class URGripper:
         except Exception as ex:
             return activate_gripper_command_response_model.get_exception(str(ex))
 
-    async def open_gripper_command_request_handler(self, payload):
+    async def open_gripper_command_request_handler(self):
         open_gripper_command_response_model = OpenGripperCommandResponseModel()
         try:
             self.ur_gripper_controller.open_gripper()
@@ -124,7 +124,7 @@ class URGripper:
         except Exception as ex:
             return open_gripper_command_response_model.get_exception(str(ex))
 
-    async def close_gripper_command_request_handler(self, payload):
+    async def close_gripper_command_request_handler(self):
         close_gripper_command_response_model = CloseGripperCommandResponseModel()
         try:
             self.ur_gripper_controller.close_gripper()

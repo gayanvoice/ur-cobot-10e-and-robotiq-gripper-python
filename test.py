@@ -58,7 +58,7 @@ class LoadingHandler:
 
 
 def open_gripper():
-    device_method = CloudToDeviceMethod(method_name="OpenGripperCommand", payload="value")
+    device_method = CloudToDeviceMethod(method_name="OpenGripperCommand")
     registry_manager = IoTHubRegistryManager(connection_string)
     response = registry_manager.invoke_device_method(ur_gripper, device_method)
     json_response = json.loads(response.payload, object_hook=lambda d: PayloadResponseModel(**d))
@@ -67,7 +67,7 @@ def open_gripper():
 
 
 def close_gripper():
-    device_method = CloudToDeviceMethod(method_name="CloseGripperCommand", payload="value")
+    device_method = CloudToDeviceMethod(method_name="CloseGripperCommand")
     registry_manager = IoTHubRegistryManager(connection_string)
     response = registry_manager.invoke_device_method(ur_gripper, device_method)
     json_response = json.loads(response.payload, object_hook=lambda d: PayloadResponseModel(**d))
@@ -76,7 +76,7 @@ def close_gripper():
 
 
 def activate_gripper():
-    device_method = CloudToDeviceMethod(method_name="ActivateGripperCommand", payload="value")
+    device_method = CloudToDeviceMethod(method_name="ActivateGripperCommand")
     registry_manager = IoTHubRegistryManager(connection_string)
     response = registry_manager.invoke_device_method(ur_gripper, device_method)
     json_response = json.loads(response.payload, object_hook=lambda d: PayloadResponseModel(**d))
@@ -206,7 +206,7 @@ def activate_gripper():
 
 
 if __name__ == '__main__':
-    activate_gripper()
+    close_gripper()
     # ur_gripper = URGripper("127.0.0.1")
     # ur_gripper.open_gripper()
     # ur_gripper.close_gripper()

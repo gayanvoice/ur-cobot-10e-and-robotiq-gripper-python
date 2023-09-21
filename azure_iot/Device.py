@@ -47,22 +47,27 @@ class Device:
                 command_name = None
 
             command_request = await self.iot_hub_device_client.receive_method_request(command_name)
-            request_payload = {}
             if command_request.payload:
                 request_payload = command_request.payload
-
-            response_model = await request_handler(request_payload)
-
-            response_status = 200
-            response_payload = response_handler(response_model)
-
-            command_response = MethodResponse.create_from_method_request(command_request, response_status,
-                                                                         response_payload)
-
-            try:
-                await self.iot_hub_device_client.send_method_response(command_response)
-            except Exception as ex:
-                print(ex)
+                response_model = await request_handler(request_payload)
+                response_status = 200
+                response_payload = response_handler(response_model)
+                command_response = MethodResponse.create_from_method_request(
+                    command_request, response_status, response_payload)
+                try:
+                    await self.iot_hub_device_client.send_method_response(command_response)
+                except Exception as ex:
+                    print(ex)
+            else:
+                response_model = await request_handler()
+                response_status = 200
+                response_payload = response_handler(response_model)
+                command_response = MethodResponse.create_from_method_request(
+                    command_request, response_status, response_payload)
+                try:
+                    await self.iot_hub_device_client.send_method_response(command_response)
+                except Exception as ex:
+                    print(ex)
 
     async def send_telemetry(self, telemetry):
         telemetry_json = json.dumps(telemetry, cls=NumpyArrayEncoder)

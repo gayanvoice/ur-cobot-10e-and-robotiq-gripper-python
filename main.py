@@ -91,9 +91,9 @@ host = '10.2.12.109'
 async def main():
     try:
         queue = asyncio.Queue()
-        # ur_cobot = URCobot()
+        ur_cobot = URCobot()
         ur_gripper = URGripper()
-        await asyncio.gather(ur_gripper.connect_azure_iot(queue))
+        await asyncio.gather(ur_cobot.connect_azure_iot(queue), ur_gripper.connect_azure_iot(queue))
     except asyncio.exceptions.CancelledError:
         print("main:The execution of the thread was manually stopped due to a KeyboardInterrupt signal.")
     except SystemExit:
