@@ -6,8 +6,8 @@ from azure.iot.hub.models import CloudToDeviceMethod
 import urx
 from urx.robotiq_two_finger_gripper import Robotiq_Two_Finger_Gripper
 
-from URGripper.ur_gripper import UrGripper
-from azure_iot.URGripper import URGripper
+# from URGripper.ur_gripper import UrGripper
+# from azure_iot.URGripper import URGripper
 # from URGripper.cmodel_urcap import RobotiqCModelURCap
 from model.joint_position_model import JointPositionModel
 from model.move_j_command_model import MoveJCommandModel
@@ -31,7 +31,7 @@ target_bottom_position_model = JointPositionModel.get_joint_position_model_using
 connection_string = ("HostName=AddQualIotHub.azure-devices.net;SharedAccessKeyName=service;"
                      "SharedAccessKey=X2vIeJ5i5kBJXNUaRLE0O7Btl0WZkaBFkAIoTGfyk7Y=")
 
-ur_cobot = "URCobot"
+# ur_cobot = "URCobot"
 ur_gripper = "URGripper"
 
 
@@ -44,21 +44,21 @@ class LoadingHandler:
             self.successor.handle()
 
 
-def move_j(joint_position_model_array):
-    move_j_command_model = MoveJCommandModel.get_move_j_command_model_using_arguments(
-        acceleration=0.3, velocity=0.3, time_s=0, blend_radius=0,
-        joint_position_model_array=joint_position_model_array)
-    method_payload = json.dumps(move_j_command_model, default=lambda o: o.__dict__, indent=1)
-    device_method = CloudToDeviceMethod(method_name="MoveJCommand", payload=method_payload)
-    registry_manager = IoTHubRegistryManager(connection_string)
-    response = registry_manager.invoke_device_method(ur_cobot, device_method)
-    json_response = json.loads(response.payload, object_hook=lambda d: PayloadResponseModel(**d))
-    print(json_response)
-    return json_response
+# def move_j(joint_position_model_array):
+#     move_j_command_model = MoveJCommandModel.get_move_j_command_model_using_arguments(
+#         acceleration=0.3, velocity=0.3, time_s=0, blend_radius=0,
+#         joint_position_model_array=joint_position_model_array)
+#     method_payload = json.dumps(move_j_command_model, default=lambda o: o.__dict__, indent=1)
+#     device_method = CloudToDeviceMethod(method_name="MoveJCommand", payload=method_payload)
+#     registry_manager = IoTHubRegistryManager(connection_string)
+#     response = registry_manager.invoke_device_method(ur_cobot, device_method)
+#     json_response = json.loads(response.payload, object_hook=lambda d: PayloadResponseModel(**d))
+#     print(json_response)
+#     return json_response
 
 
 def open_gripper():
-    device_method = CloudToDeviceMethod(method_name="OpenGripperCommand")
+    device_method = CloudToDeviceMethod(method_name="OpenGripperCommand", payload="value")
     registry_manager = IoTHubRegistryManager(connection_string)
     response = registry_manager.invoke_device_method(ur_gripper, device_method)
     json_response = json.loads(response.payload, object_hook=lambda d: PayloadResponseModel(**d))
@@ -67,7 +67,7 @@ def open_gripper():
 
 
 def close_gripper():
-    device_method = CloudToDeviceMethod(method_name="CloseGripperCommand")
+    device_method = CloudToDeviceMethod(method_name="CloseGripperCommand", payload="value")
     registry_manager = IoTHubRegistryManager(connection_string)
     response = registry_manager.invoke_device_method(ur_gripper, device_method)
     json_response = json.loads(response.payload, object_hook=lambda d: PayloadResponseModel(**d))
@@ -75,127 +75,138 @@ def close_gripper():
     return json_response
 
 
-class MoveHomeToRetractUnloadingPositionHandler(LoadingHandler):
-    def handle(self):
-        try:
-            joint_position_model_array = [home_joint_position_model, retract_ct_01_joint_position_model]
-            move_j(joint_position_model_array=joint_position_model_array)
-            super().handle()
-        except Exception:
-            raise Exception
+def activate_gripper():
+    device_method = CloudToDeviceMethod(method_name="ActivateGripperCommand", payload="value")
+    registry_manager = IoTHubRegistryManager(connection_string)
+    response = registry_manager.invoke_device_method(ur_gripper, device_method)
+    json_response = json.loads(response.payload, object_hook=lambda d: PayloadResponseModel(**d))
+    print(json_response)
+    return json_response
 
 
-class MoveRetractUnloadingToTargetUnloadingPositionHandler(LoadingHandler):
-    def handle(self):
-        try:
-            joint_position_model_array = [retract_ct_01_joint_position_model, target_ct_01_joint_position_model]
-            move_j(joint_position_model_array=joint_position_model_array)
-            super().handle()
-        except Exception:
-            raise Exception
+#
 
-
-class MoveTargetUnloadingToRetractUnloadingPositionHandler(LoadingHandler):
-    def handle(self):
-        try:
-            joint_position_model_array = [target_ct_01_joint_position_model, retract_ct_01_joint_position_model]
-            move_j(joint_position_model_array=joint_position_model_array)
-            super().handle()
-        except Exception:
-            raise Exception
-
-
-class MoveRetractUnloadingToCgPositionHandler(LoadingHandler):
-    def handle(self):
-        try:
-            joint_position_model_array = [retract_ct_01_joint_position_model, cg_joint_position_model]
-            move_j(joint_position_model_array=joint_position_model_array)
-            super().handle()
-        except Exception:
-            raise Exception
-
-
-class MoveCgToRetractLoadingPositionHandler(LoadingHandler):
-    def handle(self):
-        try:
-            joint_position_model_array = [cg_joint_position_model, retract_bottom_position_model]
-            move_j(joint_position_model_array=joint_position_model_array)
-            super().handle()
-        except Exception:
-            raise Exception
-
-
-class MoveRetractLoadingToTargetLoadingPositionHandler(LoadingHandler):
-    def handle(self):
-        try:
-            joint_position_model_array = [retract_bottom_position_model, target_bottom_position_model]
-            move_j(joint_position_model_array=joint_position_model_array)
-            super().handle()
-        except Exception:
-            raise Exception
-
-
-class MoveTargetLoadingToRetractLoadingPositionHandler(LoadingHandler):
-    def handle(self):
-        try:
-            joint_position_model_array = [target_bottom_position_model, retract_bottom_position_model]
-            move_j(joint_position_model_array=joint_position_model_array)
-            super().handle()
-        except Exception:
-            raise Exception
-
-
-class MoveRetractLoadingToCgPositionHandler(LoadingHandler):
-    def handle(self):
-        try:
-            joint_position_model_array = [retract_bottom_position_model, cg_joint_position_model]
-            move_j(joint_position_model_array=joint_position_model_array)
-            super().handle()
-        except Exception:
-            raise Exception
-
-
-class MoveCgToHomePositionHandler(LoadingHandler):
-    def handle(self):
-        try:
-            joint_position_model_array = [cg_joint_position_model, home_joint_position_model]
-            move_j(joint_position_model_array=joint_position_model_array)
-        except Exception:
-            raise Exception
-
-
-class ActivateGripperHandler(LoadingHandler):
-    def handle(self):
-        try:
-            ur_gripper = UrGripper("10.2.12.109")
-            ur_gripper.activate()
-            super().handle()
-        except Exception:
-            raise Exception
-
-
-class OpenGripperHandler(LoadingHandler):
-    def handle(self):
-        try:
-            ur_gripper = UrGripper("127.0.0.1")
-            ur_gripper.open_gripper()
-            super().handle()
-        except Exception:
-            raise Exception
-
-
-class CloseGripperHandler(LoadingHandler):
-    def handle(self):
-        try:
-            ur_gripper = UrGripper("127.0.0.1")
-            ur_gripper.close_gripper()
-            super().handle()
-        except Exception:
-            raise Exception
+# class MoveHomeToRetractUnloadingPositionHandler(LoadingHandler):
+#     def handle(self):
+#         try:
+#             joint_position_model_array = [home_joint_position_model, retract_ct_01_joint_position_model]
+#             move_j(joint_position_model_array=joint_position_model_array)
+#             super().handle()
+#         except Exception:
+#             raise Exception
+#
+#
+# class MoveRetractUnloadingToTargetUnloadingPositionHandler(LoadingHandler):
+#     def handle(self):
+#         try:
+#             joint_position_model_array = [retract_ct_01_joint_position_model, target_ct_01_joint_position_model]
+#             move_j(joint_position_model_array=joint_position_model_array)
+#             super().handle()
+#         except Exception:
+#             raise Exception
+#
+#
+# class MoveTargetUnloadingToRetractUnloadingPositionHandler(LoadingHandler):
+#     def handle(self):
+#         try:
+#             joint_position_model_array = [target_ct_01_joint_position_model, retract_ct_01_joint_position_model]
+#             move_j(joint_position_model_array=joint_position_model_array)
+#             super().handle()
+#         except Exception:
+#             raise Exception
+#
+#
+# class MoveRetractUnloadingToCgPositionHandler(LoadingHandler):
+#     def handle(self):
+#         try:
+#             joint_position_model_array = [retract_ct_01_joint_position_model, cg_joint_position_model]
+#             move_j(joint_position_model_array=joint_position_model_array)
+#             super().handle()
+#         except Exception:
+#             raise Exception
+#
+#
+# class MoveCgToRetractLoadingPositionHandler(LoadingHandler):
+#     def handle(self):
+#         try:
+#             joint_position_model_array = [cg_joint_position_model, retract_bottom_position_model]
+#             move_j(joint_position_model_array=joint_position_model_array)
+#             super().handle()
+#         except Exception:
+#             raise Exception
+#
+#
+# class MoveRetractLoadingToTargetLoadingPositionHandler(LoadingHandler):
+#     def handle(self):
+#         try:
+#             joint_position_model_array = [retract_bottom_position_model, target_bottom_position_model]
+#             move_j(joint_position_model_array=joint_position_model_array)
+#             super().handle()
+#         except Exception:
+#             raise Exception
+#
+#
+# class MoveTargetLoadingToRetractLoadingPositionHandler(LoadingHandler):
+#     def handle(self):
+#         try:
+#             joint_position_model_array = [target_bottom_position_model, retract_bottom_position_model]
+#             move_j(joint_position_model_array=joint_position_model_array)
+#             super().handle()
+#         except Exception:
+#             raise Exception
+#
+#
+# class MoveRetractLoadingToCgPositionHandler(LoadingHandler):
+#     def handle(self):
+#         try:
+#             joint_position_model_array = [retract_bottom_position_model, cg_joint_position_model]
+#             move_j(joint_position_model_array=joint_position_model_array)
+#             super().handle()
+#         except Exception:
+#             raise Exception
+#
+#
+# class MoveCgToHomePositionHandler(LoadingHandler):
+#     def handle(self):
+#         try:
+#             joint_position_model_array = [cg_joint_position_model, home_joint_position_model]
+#             move_j(joint_position_model_array=joint_position_model_array)
+#         except Exception:
+#             raise Exception
+#
+#
+# class ActivateGripperHandler(LoadingHandler):
+#     def handle(self):
+#         try:
+#             ur_gripper = UrGripper("10.2.12.109")
+#             ur_gripper.activate()
+#             super().handle()
+#         except Exception:
+#             raise Exception
+#
+#
+# class OpenGripperHandler(LoadingHandler):
+#     def handle(self):
+#         try:
+#             ur_gripper = UrGripper("127.0.0.1")
+#             ur_gripper.open_gripper()
+#             super().handle()
+#         except Exception:
+#             raise Exception
+#
+#
+# class CloseGripperHandler(LoadingHandler):
+#     def handle(self):
+#         try:
+#             ur_gripper = UrGripper("127.0.0.1")
+#             ur_gripper.close_gripper()
+#             super().handle()
+#         except Exception:
+#             raise Exception
 
 
 if __name__ == '__main__':
-    open_gripper()
+    activate_gripper()
     # ur_gripper = URGripper("127.0.0.1")
     # ur_gripper.open_gripper()
     # ur_gripper.close_gripper()
