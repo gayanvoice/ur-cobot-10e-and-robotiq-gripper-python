@@ -1,16 +1,18 @@
 import asyncio
 import json
 import math
-import xml.etree.ElementTree as ET
 import URBasic
 from azure_iot.Device import Device
 from model.configuration.shared_iot_configuration_model import SharedIotConfigurationModel
 from model.configuration.ur_cobot_iot_configuration_model import URCobotIotConfigurationModel
-from model.gripper_command_model import GripperCommandModel
 from model.joint_position_model import JointPositionModel
 from model.move_j_command_model import MoveJCommandModel
 from model.response.close_popup_command_response_model import ClosePopupCommandResponseModel
 from model.response.close_safety_popup_command_response_model import CloseSafetyPopupCommandResponseModel
+from model.response.disable_free_drive_mode_command_response_model import DisableFreeDriveModeCommandResponseModel
+from model.response.disable_teach_mode_command_response_model import DisableTeachModeCommandResponseModel
+from model.response.enable_free_drive_mode_command_response_model import EnableFreeDriveModeCommandResponseModel
+from model.response.enable_teach_mode_command_response_model import EnableTeachModeCommandResponseModel
 from model.response.move_j_command_response_model import MoveJCommandResponseModel
 from model.response.open_popup_command_response_model import OpenPopupCommandResponseModel
 from model.response.pause_command_response_model import PauseCommandResponseModel
@@ -104,8 +106,28 @@ class URCobot:
                 response_handler=self.command_response_handler,
             ),
             self.device.execute_command_listener(
-                method_name="PowerOffPopupCommand",
+                method_name="PowerOffCommand",
                 request_handler=self.power_off_command_request_handler,
+                response_handler=self.command_response_handler,
+            ),
+            self.device.execute_command_listener(
+                method_name="EnableFreeDriveModeCommand",
+                request_handler=self.enable_free_drive_mode_command_request_handler(),
+                response_handler=self.command_response_handler,
+            ),
+            self.device.execute_command_listener(
+                method_name="DisableFreeDriveModeCommand",
+                request_handler=self.disable_free_drive_mode_command_request_handler(),
+                response_handler=self.command_response_handler,
+            ),
+            self.device.execute_command_listener(
+                method_name="EnableTeachModeCommand",
+                request_handler=self.enable_teach_mode_command_request_handler(),
+                response_handler=self.command_response_handler,
+            ),
+            self.device.execute_command_listener(
+                method_name="DisableTeachModeCommand",
+                request_handler=self.disable_teach_mode_command_request_handler(),
                 response_handler=self.command_response_handler,
             ),
         )
@@ -120,7 +142,7 @@ class URCobot:
 
         if not command_listeners.done():
             result = {'Status': 'Done'}
-            command_listeners.set_result(result)
+            command_listeners.set_result(list(result.values()))
 
         self.ur_script_ext.close()
         command_listeners.cancel()
@@ -152,7 +174,7 @@ class URCobot:
     def command_response_handler(command_response_model):
         return json.dumps(command_response_model, default=lambda o: o.__dict__, indent=1)
 
-    async def pause_command_request_handler(self, request_payload):
+    async def pause_command_request_handler(self):
         command_response_model = PauseCommandResponseModel()
         try:
             self.ur_script_ext.pause()
@@ -160,7 +182,7 @@ class URCobot:
         except Exception as ex:
             return command_response_model.get_exception(str(ex))
 
-    async def play_command_request_handler(self, request_payload):
+    async def play_command_request_handler(self):
         command_response_model = PlayCommandResponseModel()
         try:
             self.ur_script_ext.play()
@@ -168,7 +190,7 @@ class URCobot:
         except Exception as ex:
             return command_response_model.get_exception(str(ex))
 
-    async def close_safety_popup_command_request_handler(self, request_payload):
+    async def close_safety_popup_command_request_handler(self):
         command_response_model = CloseSafetyPopupCommandResponseModel()
         try:
             self.ur_script_ext.close_safety_popup()
@@ -176,7 +198,7 @@ class URCobot:
         except Exception as ex:
             return command_response_model.get_exception(str(ex))
 
-    async def unlock_protective_stop_command_request_handler(self, request_payload):
+    async def unlock_protective_stop_command_request_handler(self):
         command_response_model = UnlockProtectiveStopCommandResponseModel()
         try:
             self.ur_script_ext.unlock_protective_stop()
@@ -192,7 +214,7 @@ class URCobot:
         except Exception as ex:
             return command_response_model.get_exception(str(ex))
 
-    async def close_popup_command_request_handler(self, request_payload):
+    async def close_popup_command_request_handler(self):
         command_response_model = ClosePopupCommandResponseModel()
         try:
             self.ur_script_ext.close_popup()
@@ -200,7 +222,7 @@ class URCobot:
         except Exception as ex:
             return command_response_model.get_exception(str(ex))
 
-    async def power_on_command_request_handler(self, request_payload):
+    async def power_on_command_request_handler(self):
         command_response_model = PowerOnCommandResponseModel()
         try:
             self.ur_script_ext.power_on()
@@ -208,10 +230,42 @@ class URCobot:
         except Exception as ex:
             return command_response_model.get_exception(str(ex))
 
-    async def power_off_command_request_handler(self, request_payload):
+    async def power_off_command_request_handler(self):
         command_response_model = PowerOffCommandResponseModel()
         try:
             self.ur_script_ext.power_off()
+            return command_response_model.get_successfully_executed()
+        except Exception as ex:
+            return command_response_model.get_exception(str(ex))
+
+    async def enable_free_drive_mode_command_request_handler(self):
+        command_response_model = EnableFreeDriveModeCommandResponseModel()
+        try:
+            self.ur_script_ext.enable_free_drive_mode()
+            return command_response_model.get_successfully_executed()
+        except Exception as ex:
+            return command_response_model.get_exception(str(ex))
+
+    async def disable_free_drive_mode_command_request_handler(self):
+        command_response_model = DisableFreeDriveModeCommandResponseModel()
+        try:
+            self.ur_script_ext.disable_free_drive_mode()
+            return command_response_model.get_successfully_executed()
+        except Exception as ex:
+            return command_response_model.get_exception(str(ex))
+
+    async def enable_teach_mode_command_request_handler(self):
+        command_response_model = EnableTeachModeCommandResponseModel()
+        try:
+            self.ur_script_ext.enable_teach_mode()
+            return command_response_model.get_successfully_executed()
+        except Exception as ex:
+            return command_response_model.get_exception(str(ex))
+
+    async def disable_teach_mode_command_request_handler(self):
+        command_response_model = DisableTeachModeCommandResponseModel()
+        try:
+            self.ur_script_ext.disable_teach_mode()
             return command_response_model.get_successfully_executed()
         except Exception as ex:
             return command_response_model.get_exception(str(ex))

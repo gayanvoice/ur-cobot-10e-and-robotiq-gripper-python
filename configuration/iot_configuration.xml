@@ -9,7 +9,7 @@
         <id_scope>0ne00AF4286</id_scope>
         <registration_id>URCobot</registration_id>
         <symmetric_key>MHzgrfqgoEB5yNTAHWe/BGVmVlw3ayYCBUNE57THVQ8iN9iQRB/E5pbJvJDojsZpmmV78cqKh/JKrn6zTdN2eg==</symmetric_key>
-        <host>127.0.0.1</host>
+        <host>10.2.12.109</host>
         <dashboard_server_port>29999</dashboard_server_port>
         <primary_port>30001</primary_port>
         <secondary_port>30002</secondary_port>

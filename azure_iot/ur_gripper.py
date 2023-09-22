@@ -1,27 +1,12 @@
 import asyncio
 import json
-import math
-import xml.etree.ElementTree as ET
-import URBasic
 from azure_iot.Device import Device
 from model.configuration.shared_iot_configuration_model import SharedIotConfigurationModel
 from model.configuration.ur_gripper_iot_configuration_model import URGripperIotConfigurationModel
 from URGripper.ur_gripper_controller import URGripperController
-from model.gripper_command_model import GripperCommandModel
-from model.joint_position_model import JointPositionModel
-from model.move_j_command_model import MoveJCommandModel
 from model.response.activate_gripper_command_response_model import ActivateGripperCommandResponseModel
 from model.response.close_gripper_command_response_model import CloseGripperCommandResponseModel
-from model.response.close_popup_command_response_model import ClosePopupCommandResponseModel
-from model.response.close_safety_popup_command_response_model import CloseSafetyPopupCommandResponseModel
-from model.response.move_j_command_response_model import MoveJCommandResponseModel
 from model.response.open_gripper_command_response_model import OpenGripperCommandResponseModel
-from model.response.open_popup_command_response_model import OpenPopupCommandResponseModel
-from model.response.pause_command_response_model import PauseCommandResponseModel
-from model.response.play_command_response_model import PlayCommandResponseModel
-from model.response.power_off_command_response_model import PowerOffCommandResponseModel
-from model.response.power_on_command_response_model import PowerOnCommandResponseModel
-from model.response.unlock_protective_stop_command_response_model import UnlockProtectiveStopCommandResponseModel
 
 
 class URGripper:
@@ -94,7 +79,7 @@ class URGripper:
 
         if not command_listeners.done():
             result = {'Status': 'Done'}
-            command_listeners.set_result(result)
+            command_listeners.set_result(list(result.values()))
 
         self.ur_gripper_controller.disconnect()
         command_listeners.cancel()

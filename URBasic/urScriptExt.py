@@ -586,6 +586,18 @@ end
     def power_off(self):
         self.robotConnector.DashboardClient.ur_power_off()
 
+    def enable_free_drive_mode(self):
+        self.freedrive_mode()
+
+    def disable_free_drive_mode(self):
+        self.end_freedrive_mode()
+
+    def enable_teach_mode(self):
+        self.teach_mode()
+
+    def disable_teach_mode(self):
+        self.end_teach_mode()
+
     def ur_gripper(self, method=None):
         if method == "OPEN":
             self.robotConnector.DashboardClient.ur_load_program("iot_gripper_open.urp")
