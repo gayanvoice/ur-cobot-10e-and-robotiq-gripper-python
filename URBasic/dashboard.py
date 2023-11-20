@@ -32,6 +32,7 @@ import socket
 import struct
 import select
 import time
+import logging
 
 DEFAULT_TIMEOUT = 2.0
 
@@ -74,9 +75,9 @@ class DashBoard(threading.Thread):
                               URBasic.robotModel.RobotModel)  ### This line is to get code completion for RobotModel
         self.__robotModel = robotModel
 
-        logger = URBasic.dataLogging.DataLogging()
-        name = logger.AddEventLogging(__name__)
-        self._logger = logger.__dict__[name]
+        # logger = URBasic.dataLogging.DataLogging()
+        # name = logger.AddEventLogging(__name__)
+        # self._logger = logger.__dict__[name]
         self.__reconnectTimeout = 60  # Seconds (while in run)
         self.__conn_state = ConnectionState.DISCONNECTED
         self.last_respond = None
@@ -87,7 +88,7 @@ class DashBoard(threading.Thread):
         self.__sock = None
         self.start()
         self.wait_dbs()
-        self._logger.info('Dashboard server constructor done')
+        logging.info('Dashboard server constructor done')
 
     def ur_load(self, file):
         '''
@@ -347,11 +348,11 @@ class DashBoard(threading.Thread):
                 self.__sock.connect((self.__robotModel.ipAddress, 29999))
                 self.__conn_state = ConnectionState.CONNECTED
                 time.sleep(0.5)
-                self._logger.info('Connected')
+                logging.info('Connected')
                 return True
             except (socket.timeout, socket.error):
                 self.__sock = None
-                self._logger.error('Dashboard connecting')
+                logging.error('Dashboard connecting')
 
         return False
 
@@ -385,17 +386,17 @@ class DashBoard(threading.Thread):
         t0 = time.time()
         while (time.time() - t0 < self.__reconnectTimeout) and self.__conn_state < ConnectionState.CONNECTED:
             if not self.__connect():
-                self._logger.warning("UR Dashboard connection failed!")
+                logging.warning("UR Dashboard connection failed!")
 
         if self.__conn_state < ConnectionState.CONNECTED:
-            self._logger.error("UR Dashboard interface not able to connect and timed out!")
+            logging.error("UR Dashboard interface not able to connect and timed out!")
             return
 
         while (not self.__stop_event) and (time.time() - t0 < self.__reconnectTimeout):
             try:
                 msg = self.__receive()
                 if msg is not None:
-                    self._logger.info('UR Dashboard respond ' + msg)
+                    logging.info('UR Dashboard respond ' + msg)
                     self.last_respond = msg
 
                 with self.__dataEvent:
@@ -406,7 +407,7 @@ class DashBoard(threading.Thread):
             except Exception:
                 if self.__conn_state >= ConnectionState.CONNECTED:
                     self.__conn_state = ConnectionState.ERROR
-                    self._logger.error("Dashboard server interface stopped running")
+                    logging.error("Dashboard server interface stopped running")
 
                     try:
                         self.__sock.close()
@@ -416,14 +417,14 @@ class DashBoard(threading.Thread):
                     self.__connect()
 
                 if self.__conn_state >= ConnectionState.CONNECTED:
-                    self._logger.info("Dashboard server interface reconnected")
+                    logging.info("Dashboard server interface reconnected")
                 else:
-                    self._logger.warning("Dashboard server reconnection failed!")
+                    logging.warning("Dashboard server reconnection failed!")
 
         self.__conn_state = ConnectionState.PAUSED
         with self.__dataEvent:
             self.__dataEvent.notifyAll()
-        self._logger.info("Dashboard server interface is stopped")
+        logging.info("Dashboard server interface is stopped")
 
     def wait_dbs(self):
         '''Wait while the data receiving thread is receiving a new message.'''
@@ -450,9 +451,9 @@ class DashBoard(threading.Thread):
                     self.wait_dbs()
                     return True
             except:
-                self._logger.error('Could not send program!')
+                logging.error('Could not send program!')
 
-        self._logger.error('Program re-sending timed out - Could not send program!')
+        logging.error('Program re-sending timed out - Could not send program!')
         return False
 
     def __receive(self):

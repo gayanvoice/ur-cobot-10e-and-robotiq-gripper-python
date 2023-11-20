@@ -30,6 +30,7 @@ import URBasic
 import numpy as np
 import time
 import xml.etree.ElementTree as ET
+import logging
 
 
 class DataLog(threading.Thread):
@@ -57,7 +58,7 @@ class DataLog(threading.Thread):
 
         self.__robotModelDataDirCopy = None
         self.start()
-        self.__logger.info('DataLog constructor done')
+        logging.info('DataLog constructor done')
 
     def __readConfig(self, configFileName, config):
         tree = ET.parse(configFileName)
@@ -87,13 +88,13 @@ class DataLog(threading.Thread):
                                 roundedValuesCopy = np.round(self.__robotModelDataDirCopy[tagname], roundingDecimals)
                             if not (roundedValues == roundedValuesCopy).all():
                                 if 6 == len(robotModelDataDir[tagname]):
-                                    self.__dataLogger.info((tagname + ';%s;%s;%s;%s;%s;%s;%s'),
+                                    logging.info((tagname + ';%s;%s;%s;%s;%s;%s;%s'),
                                                            robotModelDataDir['timestamp'], *roundedValues)
                                 elif 3 == len(robotModelDataDir[tagname]):
-                                    self.__dataLogger.info((tagname + ';%s;%s;%s;%s'), robotModelDataDir['timestamp'],
+                                    logging.info((tagname + ';%s;%s;%s;%s'), robotModelDataDir['timestamp'],
                                                            *roundedValues)
                                 else:
-                                    self.__logger.warning(
+                                    logging.warning(
                                         'Logger data unexpected type in rtde.py - class URRTDElogger - def logdata Type: ' + str(
                                             tp) + ' - Len: ' + str(len(robotModelDataDir[tagname])))
                         elif tp is float:
@@ -105,14 +106,14 @@ class DataLog(threading.Thread):
                             else:
                                 roundedValuesCopy = round(self.__robotModelDataDirCopy[tagname], roundingDecimals)
                             if roundedValues != roundedValuesCopy:
-                                self.__dataLogger.info((tagname + ';%s;%s'), robotModelDataDir['timestamp'],
+                                logging.info((tagname + ';%s;%s'), robotModelDataDir['timestamp'],
                                                        roundedValues)
                         elif tp is bool or tp is int or tp is np.float64:
                             if robotModelDataDir[tagname] != self.__robotModelDataDirCopy[tagname]:
-                                self.__dataLogger.info((tagname + ';%s;%s'), robotModelDataDir['timestamp'],
+                                logging.info((tagname + ';%s;%s'), robotModelDataDir['timestamp'],
                                                        robotModelDataDir[tagname])
                         else:
-                            self.__logger.warning(
+                            logging.warning(
                                 'Logger data unexpected type in rtde.py - class URRTDElogger - def logdata Type: ' + str(
                                     tp))
         self.__robotModelDataDirCopy = robotModelDataDir
@@ -131,8 +132,8 @@ class DataLog(threading.Thread):
                 time.sleep(0.005)
             except:
                 self.__robotModelDataDirCopy = dataDirCopy
-                self.__logger.warning("DataLog error while running, but will retry")
-        self.__logger.info("DataLog is stopped")
+                logging.warning("DataLog error while running, but will retry")
+        logging.info("DataLog is stopped")
 
 
 class Config(object):

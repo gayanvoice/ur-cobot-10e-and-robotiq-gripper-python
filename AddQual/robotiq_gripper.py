@@ -1,5 +1,9 @@
 import asyncio
 import json
+import logging
+import random
+
+from AddQual import addqual_global
 from AddQual.Device import Device
 from model.configuration.shared_iot_configuration_model import SharedIotConfigurationModel
 from model.configuration.robotiq_gripper_iot_configuration import RobotiqGripperIotConfigurationModel
@@ -18,8 +22,7 @@ class RobotiqGripper:
     @staticmethod
     def stdin_listener():
         while True:
-            selection = input("Press Q to quit Robotiq Gripper IoT Application\n")
-            if selection == "Q" or selection == "q":
+            if addqual_global.is_queue_running is False:
                 break
 
     async def connect_ur_gripper_physical_device(self, robotiq_gripper_iot_configuration_model):
@@ -49,41 +52,46 @@ class RobotiqGripper:
 
         await self.connect_ur_gripper_iot_device(
             robotiq_gripper_iot_configuration_model=robotiq_gripper_iot_configuration_model)
-        await self.connect_ur_gripper_physical_device(
-            robotiq_gripper_iot_configuration_model=robotiq_gripper_iot_configuration_model)
+        if addqual_global.is_dev_mode:
+            send_telemetry_task = asyncio.ensure_future(self.send_telemetry_development_task(
+                shared_iot_configuration_model=shared_iot_configuration_model))
+        else:
+            await self.connect_ur_gripper_physical_device(
+                robotiq_gripper_iot_configuration_model=robotiq_gripper_iot_configuration_model)
 
-        command_listeners = asyncio.gather(
-            self.device.execute_command_listener(
-                method_name="OpenGripperCommand",
-                request_handler=self.open_gripper_command_request_handler,
-                response_handler=self.command_response_handler,
-            ),
-            self.device.execute_command_listener(
-                method_name="CloseGripperCommand",
-                request_handler=self.close_gripper_command_request_handler,
-                response_handler=self.command_response_handler,
-            ),
-            self.device.execute_command_listener(
-                method_name="ActivateGripperCommand",
-                request_handler=self.activate_gripper_command_request_handler,
-                response_handler=self.command_response_handler,
-            ),
-        )
+            command_listeners = asyncio.gather(
+                self.device.execute_command_listener(
+                    method_name="OpenGripperCommand",
+                    request_handler=self.open_gripper_command_request_handler,
+                    response_handler=self.command_response_handler,
+                ),
+                self.device.execute_command_listener(
+                    method_name="CloseGripperCommand",
+                    request_handler=self.close_gripper_command_request_handler,
+                    response_handler=self.command_response_handler,
+                ),
+                self.device.execute_command_listener(
+                    method_name="ActivateGripperCommand",
+                    request_handler=self.activate_gripper_command_request_handler,
+                    response_handler=self.command_response_handler,
+                ),
+            )
 
-        send_telemetry_task = asyncio.ensure_future(self.send_telemetry_task(
-            shared_iot_configuration_model=shared_iot_configuration_model))
+            send_telemetry_task = asyncio.ensure_future(self.send_telemetry_production_task(
+                shared_iot_configuration_model=shared_iot_configuration_model))
 
         loop = asyncio.get_running_loop()
         user_finished = loop.run_in_executor(None, self.stdin_listener)
 
         await user_finished
 
-        if not command_listeners.done():
-            result = {'Status': 'Done'}
-            command_listeners.set_result(list(result.values()))
+        if addqual_global.is_dev_mode is False:
+            if not command_listeners.done():
+                result = {'Status': 'Done'}
+                command_listeners.set_result(list(result.values()))
 
-        self.robotiq_gripper_controller.disconnect()
-        command_listeners.cancel()
+            self.robotiq_gripper_controller.disconnect()
+            command_listeners.cancel()
 
         send_telemetry_task.cancel()
 
@@ -118,7 +126,7 @@ class RobotiqGripper:
         except Exception as ex:
             return close_gripper_command_response_model.get_exception(str(ex))
 
-    async def send_telemetry_task(self, shared_iot_configuration_model):
+    async def send_telemetry_production_task(self, shared_iot_configuration_model):
         while True:
             try:
                 telemetry = {
@@ -132,8 +140,37 @@ class RobotiqGripper:
                     "obj": self.robotiq_gripper_controller.get_object_detection(),
                     "flt": self.robotiq_gripper_controller.get_fault(),
                 }
-                print(json.dumps(telemetry, default=lambda o: o.__dict__, indent=1))
+                logging.info(json.dumps(telemetry, default=lambda o: o.__dict__, indent=1))
                 await self.device.send_telemetry(telemetry=telemetry)
             except Exception as ex:
-                print(ex)
+                logging.error(ex)
+            await asyncio.sleep(shared_iot_configuration_model.telemetry_delay)
+
+    async def send_telemetry_development_task(self, shared_iot_configuration_model):
+        while True:
+            try:
+                act = random.randint(0, 1)
+                gto = random.randint(0, 1)
+                force = random.randint(10, 100)
+                spe = random.randint(10, 100)
+                pos = random.randint(3, 227)
+                sta = random.randint(0, 3)
+                pre = random.randint(3, 227)
+                obj = random.randint(0, 3)
+                flt = random.randint(0, 15)
+                telemetry = {
+                    "act": act,
+                    "gto": gto,
+                    "for": force,
+                    "spe": spe,
+                    "pos": pos,
+                    "sta": sta,
+                    "pre": pre,
+                    "obj": obj,
+                    "flt": flt,
+                }
+                logging.info(json.dumps(telemetry, default=lambda o: o.__dict__, indent=1))
+                await self.device.send_telemetry(telemetry=telemetry)
+            except Exception as ex:
+                logging.error(ex)
             await asyncio.sleep(shared_iot_configuration_model.telemetry_delay)

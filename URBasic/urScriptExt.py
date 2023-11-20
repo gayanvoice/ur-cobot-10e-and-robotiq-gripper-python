@@ -28,6 +28,7 @@ __license__ = "MIT License"
 import URBasic
 import numpy as np
 import time
+import logging
 
 
 class UrScriptExt(URBasic.urScript.UrScript):
@@ -66,7 +67,7 @@ class UrScriptExt(URBasic.urScript.UrScript):
         self.__logger = logger.__dict__[name]
         self.print_actual_tcp_pose()
         self.print_actual_joint_positions()
-        self.__logger.info('Init done')
+        logging.info('Init done')
 
     def close(self):
         self.print_actual_tcp_pose()
@@ -172,7 +173,7 @@ class UrScriptExt(URBasic.urScript.UrScript):
         '''
 
         if not self.robotConnector.RTDE.isRunning():
-            self.__logger.error('RTDE need to be running to use force remote')
+            logging.info('RTDE need to be running to use force remote')
             return False
 
         selection_vector = [0, 0, 0, 0, 0, 0]
@@ -329,10 +330,9 @@ end
 
         else:
             if not self.robotConnector.RobotModel.forceRemoteActiveFlag:
-                self.__logger.warning('Force Remote not initialized')
+                logging.info('Force Remote not initialized')
             else:
-                self.__logger.warning('RTDE is not running')
-
+                logging.info('RTDE is not running')
             return False
 
     def move_force_2stop(self, start_tolerance=0.01,
@@ -551,10 +551,10 @@ end
         print a pose
         '''
         if q is None:
-            print('Robot Pose: [{: 06.4f}, {: 06.4f}, {: 06.4f},   {: 06.4f}, {: 06.4f}, {: 06.4f}]'.format(*pose))
+            logging.info('Robot Pose: [{: 06.4f}, {: 06.4f}, {: 06.4f},   {: 06.4f}, {: 06.4f}, {: 06.4f}]'.format(*pose))
         else:
-            print('Robot joint positions: [{: 06.4f}, {: 06.4f}, {: 06.4f},   {: 06.4f}, {: 06.4f}, {: 06.4f}]'.format(
-                *q))
+            logging.info('Robot joint positions: [{: 06.4f}, {: 06.4f}, {: 06.4f},'
+                        '   {: 06.4f}, {: 06.4f}, {: 06.4f}]'.format(*q))
 
     def print_actual_joint_positions(self):
         '''

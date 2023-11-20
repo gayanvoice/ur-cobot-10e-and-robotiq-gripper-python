@@ -26,6 +26,7 @@ __copyright__ = "Copyright 2017, Rope Robotics ApS, Denmark"
 __license__ = "MIT License"
 
 import URBasic
+import logging
 
 
 # import URplus #import if any UPplus modules is needed
@@ -56,10 +57,10 @@ class RobotConnector(object):
         if hasForceTorque:
             self.ForceTourqe = URplus.forceTorqueSensor.ForceTorqueSensor(robotModel)
 
-        self.logger = URBasic.dataLogging.DataLogging()
-        name = self.logger.AddEventLogging(__name__)
-        self.__logger = self.logger.__dict__[name]
-        self.__logger.info('Init done')
+        # self.logger = URBasic.dataLogging.DataLogging()
+        # name = self.logger.AddEventLogging(__name__)
+        # self.__logger = self.logger.__dict__[name]
+        logging.info('Init done')
 
     def close(self):
         self.DataLog.close()

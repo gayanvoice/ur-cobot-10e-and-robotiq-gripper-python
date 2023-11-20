@@ -26,6 +26,7 @@ __copyright__ = "Copyright 2017, Rope Robotics ApS, Denmark"
 __license__ = "MIT License"
 
 import URBasic
+import logging
 
 
 class RobotModel(object):
@@ -40,10 +41,10 @@ class RobotModel(object):
         '''
         Constructor see class description for more info.
         '''
-        logger = URBasic.dataLogging.DataLogging()
-        name = logger.AddEventLogging(__name__)
-        self.__logger = logger.__dict__[name]
-        self.__logger.info('Init done')
+        # logger = URBasic.dataLogging.DataLogging()
+        # name = logger.AddEventLogging(__name__)
+        # self.__logger = logger.__dict__[name]
+        logging.info('Init done')
 
         # Universal Robot model content
         self.password = None

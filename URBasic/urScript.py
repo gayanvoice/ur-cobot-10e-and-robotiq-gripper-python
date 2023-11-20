@@ -30,6 +30,7 @@ __license__ = "MIT License"
 import URBasic
 import numpy as np
 import time
+import logging
 
 
 class UrScript(object):
@@ -66,9 +67,9 @@ class UrScript(object):
         self.robotConnector = URBasic.robotConnector.RobotConnector(robotModel, host, hasForceTorque)
         # time.sleep(200)
         while (self.robotConnector.RobotModel.ActualTCPPose() is None):  ## check paa om vi er startet
-            print("waiting for everything to be ready")
+            logging.info("waiting for everything to be ready")
             time.sleep(1)
-        self.__logger.info('Init done')
+        logging.info('Init done')
 
     #############   Module motion   ###############
 
