@@ -71,7 +71,8 @@ class MoveJCommandModel:
 
     @staticmethod
     def get_move_j_command_model_using_request_payload(request_payload):
-        json_request_payload = json.loads(request_payload)
+        json_str = json.dumps(request_payload)
+        json_request_payload = json.loads(json_str)
         move_j_command_model = MoveJCommandModel()
         move_j_command_model.acceleration = json_request_payload["_acceleration"]
         move_j_command_model.velocity = json_request_payload["_velocity"]

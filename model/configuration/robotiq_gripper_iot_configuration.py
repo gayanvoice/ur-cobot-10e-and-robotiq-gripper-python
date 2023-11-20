@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 
 
-class URGripperIotConfigurationModel:
+class RobotiqGripperIotConfigurationModel:
     def __init__(self):
         self._model_id = None
         self._provisioning_host = None
@@ -78,12 +78,12 @@ class URGripperIotConfigurationModel:
 
     def get(self, iot_configuration_xml_file_path):
         iot_configuration_element_tree = ET.parse(iot_configuration_xml_file_path)
-        self.model_id = iot_configuration_element_tree.find('./ur_gripper/model_id').text
-        self.provisioning_host = iot_configuration_element_tree.find('./ur_gripper/provisioning_host').text
-        self.id_scope = iot_configuration_element_tree.find('./ur_gripper/id_scope').text
-        self.registration_id = iot_configuration_element_tree.find('./ur_gripper/registration_id').text
-        self.symmetric_key = iot_configuration_element_tree.find('./ur_gripper/symmetric_key').text
-        self.host = iot_configuration_element_tree.find('./ur_gripper/host').text
-        self.port = iot_configuration_element_tree.find('./ur_gripper/port').text
-        self.socket_timeout = iot_configuration_element_tree.find('./ur_gripper/socket_timeout').text
+        self.model_id = iot_configuration_element_tree.find('./robotiq_cobot/model_id').text
+        self.provisioning_host = iot_configuration_element_tree.find('./robotiq_cobot/provisioning_host').text
+        self.id_scope = iot_configuration_element_tree.find('./robotiq_cobot/id_scope').text
+        self.registration_id = iot_configuration_element_tree.find('./robotiq_cobot/registration_id').text
+        self.symmetric_key = iot_configuration_element_tree.find('./robotiq_cobot/symmetric_key').text
+        self.host = iot_configuration_element_tree.find('./robotiq_cobot/host').text
+        self.port = iot_configuration_element_tree.find('./robotiq_cobot/port').text
+        self.socket_timeout = iot_configuration_element_tree.find('./robotiq_cobot/socket_timeout').text
         return self

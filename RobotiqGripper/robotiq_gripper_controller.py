@@ -3,7 +3,7 @@ import socket
 from time import sleep
 
 
-class URGripperController:
+class RobotiqGripperController:
     # WRITE VARIABLES
     ACT = 'ACT'  # act : activate (1 while activated, can be reset to clear fault status)
     GTO = 'GTO'  # gto : go to (will perform go to with the actions set in pos, for, spe)
@@ -136,7 +136,7 @@ class URGripperController:
         self.socket.sendall(command)
         return self.socket.recv(2 ** 10)
 
-    def move_gripper(self, position, speed=50, force=50):
+    def move_gripper(self, position, speed=10, force=10):
         set_gripper_stop = self.set_command(self.GTO, self.GTO_GRIPPER_STOP)
         set_speed = self.set_command(self.SPE, speed)
         set_force = self.set_command(self.FOR, force)

@@ -1,41 +1,41 @@
 import asyncio
 import json
-from azure_iot.Device import Device
+from AddQual.Device import Device
 from model.configuration.shared_iot_configuration_model import SharedIotConfigurationModel
-from model.configuration.ur_gripper_iot_configuration_model import URGripperIotConfigurationModel
-from URGripper.ur_gripper_controller import URGripperController
+from model.configuration.robotiq_gripper_iot_configuration import RobotiqGripperIotConfigurationModel
+from RobotiqGripper.robotiq_gripper_controller import RobotiqGripperController
 from model.response.activate_gripper_command_response_model import ActivateGripperCommandResponseModel
 from model.response.close_gripper_command_response_model import CloseGripperCommandResponseModel
 from model.response.open_gripper_command_response_model import OpenGripperCommandResponseModel
 
 
-class URGripper:
+class RobotiqGripper:
 
     def __init__(self):
         self.device = None
-        self.ur_gripper_controller = None
+        self.robotiq_gripper_controller = None
 
     @staticmethod
     def stdin_listener():
         while True:
-            selection = input("Press Q to quit Ur Gripper IoT Application\n")
+            selection = input("Press Q to quit Robotiq Gripper IoT Application\n")
             if selection == "Q" or selection == "q":
                 break
 
-    async def connect_ur_gripper_physical_device(self, ur_gripper_iot_configuration_model):
-        self.ur_gripper_controller = URGripperController()
-        self.ur_gripper_controller.connect(
-            hostname=ur_gripper_iot_configuration_model.host,
-            port=ur_gripper_iot_configuration_model.port,
-            socket_timeout=ur_gripper_iot_configuration_model.socket_timeout)
-        self.ur_gripper_controller.activate()
+    async def connect_ur_gripper_physical_device(self, robotiq_gripper_iot_configuration_model):
+        self.robotiq_gripper_controller = RobotiqGripperController()
+        self.robotiq_gripper_controller.connect(
+            hostname=robotiq_gripper_iot_configuration_model.host,
+            port=robotiq_gripper_iot_configuration_model.port,
+            socket_timeout=robotiq_gripper_iot_configuration_model.socket_timeout)
+        self.robotiq_gripper_controller.activate()
 
-    async def connect_ur_gripper_iot_device(self, ur_gripper_iot_configuration_model):
-        self.device = Device(model_id=ur_gripper_iot_configuration_model.model_id,
-                             provisioning_host=ur_gripper_iot_configuration_model.provisioning_host,
-                             id_scope=ur_gripper_iot_configuration_model.id_scope,
-                             registration_id=ur_gripper_iot_configuration_model.registration_id,
-                             symmetric_key=ur_gripper_iot_configuration_model.symmetric_key)
+    async def connect_ur_gripper_iot_device(self, robotiq_gripper_iot_configuration_model):
+        self.device = Device(model_id=robotiq_gripper_iot_configuration_model.model_id,
+                             provisioning_host=robotiq_gripper_iot_configuration_model.provisioning_host,
+                             id_scope=robotiq_gripper_iot_configuration_model.id_scope,
+                             registration_id=robotiq_gripper_iot_configuration_model.registration_id,
+                             symmetric_key=robotiq_gripper_iot_configuration_model.symmetric_key)
         await self.device.create_iot_hub_device_client()
         await self.device.iot_hub_device_client.connect()
 
@@ -44,12 +44,13 @@ class URGripper:
 
         shared_iot_configuration_model = SharedIotConfigurationModel().get(
             iot_configuration_xml_file_path=iot_configuration_xml_file_path)
-        ur_gripper_iot_configuration_model = URGripperIotConfigurationModel().get(
+        robotiq_gripper_iot_configuration_model = RobotiqGripperIotConfigurationModel().get(
             iot_configuration_xml_file_path=iot_configuration_xml_file_path)
 
-        await self.connect_ur_gripper_iot_device(ur_gripper_iot_configuration_model=ur_gripper_iot_configuration_model)
+        await self.connect_ur_gripper_iot_device(
+            robotiq_gripper_iot_configuration_model=robotiq_gripper_iot_configuration_model)
         await self.connect_ur_gripper_physical_device(
-            ur_gripper_iot_configuration_model=ur_gripper_iot_configuration_model)
+            robotiq_gripper_iot_configuration_model=robotiq_gripper_iot_configuration_model)
 
         command_listeners = asyncio.gather(
             self.device.execute_command_listener(
@@ -81,7 +82,7 @@ class URGripper:
             result = {'Status': 'Done'}
             command_listeners.set_result(list(result.values()))
 
-        self.ur_gripper_controller.disconnect()
+        self.robotiq_gripper_controller.disconnect()
         command_listeners.cancel()
 
         send_telemetry_task.cancel()
@@ -96,7 +97,7 @@ class URGripper:
     async def activate_gripper_command_request_handler(self):
         activate_gripper_command_response_model = ActivateGripperCommandResponseModel()
         try:
-            self.ur_gripper_controller.activate()
+            self.robotiq_gripper_controller.activate()
             return activate_gripper_command_response_model.get_successfully_executed()
         except Exception as ex:
             return activate_gripper_command_response_model.get_exception(str(ex))
@@ -104,7 +105,7 @@ class URGripper:
     async def open_gripper_command_request_handler(self):
         open_gripper_command_response_model = OpenGripperCommandResponseModel()
         try:
-            self.ur_gripper_controller.open_gripper()
+            self.robotiq_gripper_controller.open_gripper()
             return open_gripper_command_response_model.get_successfully_executed()
         except Exception as ex:
             return open_gripper_command_response_model.get_exception(str(ex))
@@ -112,7 +113,7 @@ class URGripper:
     async def close_gripper_command_request_handler(self):
         close_gripper_command_response_model = CloseGripperCommandResponseModel()
         try:
-            self.ur_gripper_controller.close_gripper()
+            self.robotiq_gripper_controller.close_gripper()
             return close_gripper_command_response_model.get_successfully_executed()
         except Exception as ex:
             return close_gripper_command_response_model.get_exception(str(ex))
@@ -121,15 +122,15 @@ class URGripper:
         while True:
             try:
                 telemetry = {
-                    "act": self.ur_gripper_controller.get_activate(),
-                    "gto": self.ur_gripper_controller.get_goto(),
-                    "for": self.ur_gripper_controller.get_force(),
-                    "spe": self.ur_gripper_controller.get_speed(),
-                    "pos": self.ur_gripper_controller.get_position(),
-                    "sta": self.ur_gripper_controller.get_status(),
-                    "pre": self.ur_gripper_controller.get_position_request(),
-                    "obj": self.ur_gripper_controller.get_object_detection(),
-                    "flt": self.ur_gripper_controller.get_fault(),
+                    "act": self.robotiq_gripper_controller.get_activate(),
+                    "gto": self.robotiq_gripper_controller.get_goto(),
+                    "for": self.robotiq_gripper_controller.get_force(),
+                    "spe": self.robotiq_gripper_controller.get_speed(),
+                    "pos": self.robotiq_gripper_controller.get_position(),
+                    "sta": self.robotiq_gripper_controller.get_status(),
+                    "pre": self.robotiq_gripper_controller.get_position_request(),
+                    "obj": self.robotiq_gripper_controller.get_object_detection(),
+                    "flt": self.robotiq_gripper_controller.get_fault(),
                 }
                 print(json.dumps(telemetry, default=lambda o: o.__dict__, indent=1))
                 await self.device.send_telemetry(telemetry=telemetry)
