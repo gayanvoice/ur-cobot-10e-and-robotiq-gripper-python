@@ -1,0 +1,1689 @@
+2023-11-21 10:14:36,663 - asyncio - DEBUG - Using proactor: IocpProactor
+2023-11-21 10:14:36,676 - root - INFO - 
+    _       _     _  ___              _    ____      _           _     ___ ___ _____      _                
+   / \   __| | __| |/ _ \ _   _  __ _| |  / ___|___ | |__   ___ | |_  |_ _/ _ \_   _|    / \   _ __  _ __  
+  / _ \ / _` |/ _` | | | | | | |/ _` | | | |   / _ \| '_ \ / _ \| __|  | | | | || |     / _ \ | '_ \| '_ \ 
+ / ___ \ (_| | (_| | |_| | |_| | (_| | | | |__| (_) | |_) | (_) | |_   | | |_| || |    / ___ \| |_) | |_) |
+/_/   \_\__,_|\__,_|\__\_\\__,_|\__,_|_|  \____\___/|_.__/ \___/ \__| |___\___/ |_|   /_/   \_\ .__/| .__/ 
+                                                                                              |_|   |_|    
+
+ ____                 _                                  _     __  __           _      
+|  _ \  _____   _____| | ___  _ __  _ __ ___   ___ _ __ | |_  |  \/  | ___   __| | ___ 
+| | | |/ _ \ \ / / _ \ |/ _ \| '_ \| '_ ` _ \ / _ \ '_ \| __| | |\/| |/ _ \ / _` |/ _ \
+| |_| |  __/\ V /  __/ | (_) | |_) | | | | | |  __/ | | | |_  | |  | | (_) | (_| |  __/
+|____/ \___| \_/ \___|_|\___/| .__/|_| |_| |_|\___|_| |_|\__| |_|  |_|\___/ \__,_|\___|
+                             |_|                                                       
+
+2023-11-21 10:14:36,679 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:14:36,679 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Creating pipeline executor
+2023-11-21 10:14:36,679 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - SasTokenStage: Scheduling automatic SAS Token renewal at epoch time: 1700565156
+2023-11-21 10:14:36,680 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - Gateway Hostname not present. Setting Hostname to: global.azure-devices-provisioning.net
+2023-11-21 10:14:36,680 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(InitializePipelineOperation): got connection args
+2023-11-21 10:14:36,680 - azure.iot.device.common.mqtt_transport - DEBUG - creating mqtt client
+2023-11-21 10:14:36,680 - azure.iot.device.common.mqtt_transport - INFO - Creating client for connecting using MQTT over TCP
+2023-11-21 10:14:36,680 - azure.iot.device.common.mqtt_transport - DEBUG - creating a SSL context
+2023-11-21 10:14:36,682 - azure.iot.device.common.mqtt_transport - DEBUG - configuring SSL context with default certs
+2023-11-21 10:14:36,697 - azure.iot.device.common.mqtt_transport - DEBUG - Created MQTT protocol client, assigned callbacks
+2023-11-21 10:14:36,697 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - InitializePipelineOperation: completing without error
+2023-11-21 10:14:36,697 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting <azure.iot.device.common.evented_callback.EventedCallback object at 0x00000213432179D0> in callback thread
+2023-11-21 10:14:36,697 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Creating callback executor
+2023-11-21 10:14:36,698 - azure.iot.device.common.evented_callback - DEBUG - Callback completed with result None
+2023-11-21 10:14:36,698 - azure.iot.device.provisioning.aio.async_provisioning_device_client - INFO - Registering with Provisioning Service...
+2023-11-21 10:14:36,698 - azure.iot.device.provisioning.aio.async_provisioning_device_client - INFO - Enabling reception of response from Device Provisioning Service...
+2023-11-21 10:14:36,698 - azure.iot.device.provisioning.pipeline.mqtt_pipeline - DEBUG - enable_responses called
+2023-11-21 10:14:36,698 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:14:36,699 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: creating worker op of type MQTTSubscribeOperation
+2023-11-21 10:14:36,699 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - AutoConnectStage(MQTTSubscribeOperation): Op needs connection.  Queueing this op and starting a ConnectionOperation
+2023-11-21 10:14:36,699 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - AutoConnectStage(MQTTSubscribeOperation): calling down with Connect operation
+2023-11-21 10:14:36,699 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - ConnectionStateStage(ConnectOperation): State changes DISCONNECTED -> CONNECTING. Sending op down
+2023-11-21 10:14:36,699 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(ConnectOperation): connecting
+2023-11-21 10:14:36,699 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(ConnectOperation): Starting watchdog
+2023-11-21 10:14:36,700 - azure.iot.device.common.mqtt_transport - DEBUG - connecting to mqtt broker
+2023-11-21 10:14:36,700 - azure.iot.device.common.mqtt_transport - INFO - Connect using port 8883 (TCP)
+2023-11-21 10:14:36,701 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:14:36,826 - paho - DEBUG - Sending CONNECT (u1, p1, wr0, wq0, wf0, c0, k60) client_id=b'URCobot'
+2023-11-21 10:14:36,826 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.connect returned rc=0
+2023-11-21 10:14:36,828 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - SasTokenStage: Scheduling automatic SAS Token renewal at epoch time: 1700565156
+2023-11-21 10:14:36,828 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - Gateway Hostname not present. Setting Hostname to: global.azure-devices-provisioning.net
+2023-11-21 10:14:36,828 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(InitializePipelineOperation): got connection args
+2023-11-21 10:14:36,829 - azure.iot.device.common.mqtt_transport - DEBUG - creating mqtt client
+2023-11-21 10:14:36,829 - azure.iot.device.common.mqtt_transport - INFO - Creating client for connecting using MQTT over TCP
+2023-11-21 10:14:36,829 - azure.iot.device.common.mqtt_transport - DEBUG - creating a SSL context
+2023-11-21 10:14:36,829 - azure.iot.device.common.mqtt_transport - DEBUG - configuring SSL context with default certs
+2023-11-21 10:14:36,845 - azure.iot.device.common.mqtt_transport - DEBUG - Created MQTT protocol client, assigned callbacks
+2023-11-21 10:14:36,845 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - InitializePipelineOperation: completing without error
+2023-11-21 10:14:36,845 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting <azure.iot.device.common.evented_callback.EventedCallback object at 0x0000021343CBF4D0> in callback thread
+2023-11-21 10:14:36,846 - azure.iot.device.common.evented_callback - DEBUG - Callback completed with result None
+2023-11-21 10:14:36,846 - azure.iot.device.provisioning.aio.async_provisioning_device_client - INFO - Registering with Provisioning Service...
+2023-11-21 10:14:36,847 - azure.iot.device.provisioning.aio.async_provisioning_device_client - INFO - Enabling reception of response from Device Provisioning Service...
+2023-11-21 10:14:36,847 - azure.iot.device.provisioning.pipeline.mqtt_pipeline - DEBUG - enable_responses called
+2023-11-21 10:14:36,848 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:14:36,848 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: creating worker op of type MQTTSubscribeOperation
+2023-11-21 10:14:36,848 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - AutoConnectStage(MQTTSubscribeOperation): Op needs connection.  Queueing this op and starting a ConnectionOperation
+2023-11-21 10:14:36,848 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - AutoConnectStage(MQTTSubscribeOperation): calling down with Connect operation
+2023-11-21 10:14:36,849 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - ConnectionStateStage(ConnectOperation): State changes DISCONNECTED -> CONNECTING. Sending op down
+2023-11-21 10:14:36,849 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(ConnectOperation): connecting
+2023-11-21 10:14:36,849 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(ConnectOperation): Starting watchdog
+2023-11-21 10:14:36,851 - azure.iot.device.common.mqtt_transport - DEBUG - connecting to mqtt broker
+2023-11-21 10:14:36,851 - azure.iot.device.common.mqtt_transport - INFO - Connect using port 8883 (TCP)
+2023-11-21 10:14:36,854 - paho - DEBUG - Received CONNACK (0, 0)
+2023-11-21 10:14:36,855 - azure.iot.device.common.mqtt_transport - INFO - connected with result code: 0
+2023-11-21 10:14:36,855 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting _on_mqtt_connected in pipeline thread
+2023-11-21 10:14:36,930 - paho - DEBUG - Sending CONNECT (u1, p1, wr0, wq0, wf0, c0, k60) client_id=b'URGripper'
+2023-11-21 10:14:36,930 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.connect returned rc=0
+2023-11-21 10:14:36,931 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - INFO - _on_mqtt_connected called
+2023-11-21 10:14:36,931 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - ConnectionStateStage(ConnectedEvent): State changes CONNECTING -> CONNECTED. Connection established
+2023-11-21 10:14:36,931 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - PipelineRootStage: ConnectedEvent received. Calling on_connected_handler
+2023-11-21 10:14:36,931 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting _on_connected in callback thread
+2023-11-21 10:14:36,931 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage: completing connect op
+2023-11-21 10:14:36,931 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(ConnectOperation): cancelling watchdog
+2023-11-21 10:14:36,931 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - ConnectOperation: completing without error
+2023-11-21 10:14:36,931 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - AutoConnectStage(MQTTSubscribeOperation): connection is complete.  Running op that triggered connection.
+2023-11-21 10:14:36,932 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Creating timer
+2023-11-21 10:14:36,932 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Sending down
+2023-11-21 10:14:36,932 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTSubscribeOperation): subscribing to $dps/registrations/res/#
+2023-11-21 10:14:36,932 - azure.iot.device.common.mqtt_transport - INFO - subscribing to $dps/registrations/res/# with qos 1
+2023-11-21 10:14:36,933 - paho - DEBUG - Sending SUBSCRIBE (d0, m1) [(b'$dps/registrations/res/#', 1)]
+2023-11-21 10:14:36,933 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.subscribe returned rc=0
+2023-11-21 10:14:36,933 - azure.iot.device.common.mqtt_transport - DEBUG - Waiting for response on MID: 1
+2023-11-21 10:14:36,954 - paho - DEBUG - Received SUBACK
+2023-11-21 10:14:36,954 - azure.iot.device.common.mqtt_transport - INFO - suback received for 1
+2023-11-21 10:14:36,954 - azure.iot.device.common.mqtt_transport - DEBUG - Response received for recognized MID: 1 - triggering callback
+2023-11-21 10:14:36,954 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in pipeline thread
+2023-11-21 10:14:36,954 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTSubscribeOperation): SUBACK received. completing op.
+2023-11-21 10:14:36,954 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - MQTTSubscribeOperation: completing without error
+2023-11-21 10:14:36,954 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Cancelling timer
+2023-11-21 10:14:36,955 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: Worker op (MQTTSubscribeOperation) has been completed
+2023-11-21 10:14:36,955 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: completing without error
+2023-11-21 10:14:36,955 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting pipeline_callback in callback thread
+2023-11-21 10:14:36,955 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result None
+2023-11-21 10:14:36,955 - azure.iot.device.provisioning.aio.async_provisioning_device_client - INFO - Successfully subscribed to Device Provisioning Service to receive responses
+2023-11-21 10:14:36,956 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:14:36,956 - azure.iot.device.provisioning.pipeline.pipeline_stages_provisioning - DEBUG - RegistrationStage(RegisterOperation): Creating provisioning timeout timer
+2023-11-21 10:14:36,956 - paho - DEBUG - Received CONNACK (0, 0)
+2023-11-21 10:14:36,956 - azure.iot.device.common.mqtt_transport - INFO - connected with result code: 0
+2023-11-21 10:14:36,956 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting _on_mqtt_connected in pipeline thread
+2023-11-21 10:14:36,957 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - CoordinateRequestAndResponseStage(RequestAndResponseOperation): adding request 858c6eec-fb62-42f5-b793-cbe8e4e6643d to pending list
+2023-11-21 10:14:36,957 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - CoordinateRequestAndResponseStage(RequestAndResponseOperation): Sending register request to PUT resource /
+2023-11-21 10:14:36,957 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - RequestOperation: creating worker op of type MQTTPublishOperation
+2023-11-21 10:14:36,957 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTPublishOperation): publishing on $dps/registrations/PUT/iotdps-register/?$rid=858c6eec-fb62-42f5-b793-cbe8e4e6643d
+2023-11-21 10:14:36,957 - azure.iot.device.common.mqtt_transport - INFO - publishing on $dps/registrations/PUT/iotdps-register/?$rid=858c6eec-fb62-42f5-b793-cbe8e4e6643d
+2023-11-21 10:14:36,957 - paho - DEBUG - Sending PUBLISH (d0, q1, r0, m2), 'b'$dps/registrations/PUT/iotdps-register/?$rid=858c6eec-fb62-42f5-b793-cbe8e4e6643d'', ... (105 bytes)
+2023-11-21 10:14:36,957 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.publish returned rc=0
+2023-11-21 10:14:36,957 - azure.iot.device.common.mqtt_transport - DEBUG - Waiting for response on MID: 2
+2023-11-21 10:14:36,958 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - INFO - _on_mqtt_connected called
+2023-11-21 10:14:36,958 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - ConnectionStateStage(ConnectedEvent): State changes CONNECTING -> CONNECTED. Connection established
+2023-11-21 10:14:36,958 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - PipelineRootStage: ConnectedEvent received. Calling on_connected_handler
+2023-11-21 10:14:36,958 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting _on_connected in callback thread
+2023-11-21 10:14:36,958 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage: completing connect op
+2023-11-21 10:14:36,958 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(ConnectOperation): cancelling watchdog
+2023-11-21 10:14:36,958 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - ConnectOperation: completing without error
+2023-11-21 10:14:36,958 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - AutoConnectStage(MQTTSubscribeOperation): connection is complete.  Running op that triggered connection.
+2023-11-21 10:14:36,959 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Creating timer
+2023-11-21 10:14:36,959 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Sending down
+2023-11-21 10:14:36,959 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTSubscribeOperation): subscribing to $dps/registrations/res/#
+2023-11-21 10:14:36,959 - azure.iot.device.common.mqtt_transport - INFO - subscribing to $dps/registrations/res/# with qos 1
+2023-11-21 10:14:36,959 - paho - DEBUG - Sending SUBSCRIBE (d0, m1) [(b'$dps/registrations/res/#', 1)]
+2023-11-21 10:14:36,959 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.subscribe returned rc=0
+2023-11-21 10:14:36,959 - azure.iot.device.common.mqtt_transport - DEBUG - Waiting for response on MID: 1
+2023-11-21 10:14:36,984 - paho - DEBUG - Received PUBACK (Mid: 2)
+2023-11-21 10:14:36,984 - paho - DEBUG - Received SUBACK
+2023-11-21 10:14:36,984 - azure.iot.device.common.mqtt_transport - INFO - payload published for 2
+2023-11-21 10:14:36,984 - azure.iot.device.common.mqtt_transport - INFO - suback received for 1
+2023-11-21 10:14:36,985 - azure.iot.device.common.mqtt_transport - DEBUG - Response received for recognized MID: 2 - triggering callback
+2023-11-21 10:14:36,985 - azure.iot.device.common.mqtt_transport - DEBUG - Response received for recognized MID: 1 - triggering callback
+2023-11-21 10:14:36,985 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in pipeline thread
+2023-11-21 10:14:36,985 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in pipeline thread
+2023-11-21 10:14:36,985 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTPublishOperation): PUBACK received. completing op.
+2023-11-21 10:14:36,985 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - MQTTPublishOperation: completing without error
+2023-11-21 10:14:36,985 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - RequestOperation: Worker op (MQTTPublishOperation) has been completed
+2023-11-21 10:14:36,986 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - RequestOperation: completing without error
+2023-11-21 10:14:36,986 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - CoordinateRequestAndResponseStage(RequestAndResponseOperation): Finished sending register request to PUT resource /
+2023-11-21 10:14:36,986 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTSubscribeOperation): SUBACK received. completing op.
+2023-11-21 10:14:36,986 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - MQTTSubscribeOperation: completing without error
+2023-11-21 10:14:36,986 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Cancelling timer
+2023-11-21 10:14:36,986 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: Worker op (MQTTSubscribeOperation) has been completed
+2023-11-21 10:14:36,986 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: completing without error
+2023-11-21 10:14:36,986 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting pipeline_callback in callback thread
+2023-11-21 10:14:36,987 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result None
+2023-11-21 10:14:36,987 - azure.iot.device.provisioning.aio.async_provisioning_device_client - INFO - Successfully subscribed to Device Provisioning Service to receive responses
+2023-11-21 10:14:36,987 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:14:36,987 - azure.iot.device.provisioning.pipeline.pipeline_stages_provisioning - DEBUG - RegistrationStage(RegisterOperation): Creating provisioning timeout timer
+2023-11-21 10:14:36,988 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - CoordinateRequestAndResponseStage(RequestAndResponseOperation): adding request 83476029-80c7-464d-9067-48464f2c2705 to pending list
+2023-11-21 10:14:36,988 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - CoordinateRequestAndResponseStage(RequestAndResponseOperation): Sending register request to PUT resource /
+2023-11-21 10:14:36,988 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - RequestOperation: creating worker op of type MQTTPublishOperation
+2023-11-21 10:14:36,988 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTPublishOperation): publishing on $dps/registrations/PUT/iotdps-register/?$rid=83476029-80c7-464d-9067-48464f2c2705
+2023-11-21 10:14:36,988 - azure.iot.device.common.mqtt_transport - INFO - publishing on $dps/registrations/PUT/iotdps-register/?$rid=83476029-80c7-464d-9067-48464f2c2705
+2023-11-21 10:14:36,989 - paho - DEBUG - Sending PUBLISH (d0, q1, r0, m2), 'b'$dps/registrations/PUT/iotdps-register/?$rid=83476029-80c7-464d-9067-48464f2c2705'', ... (109 bytes)
+2023-11-21 10:14:36,989 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.publish returned rc=0
+2023-11-21 10:14:36,989 - azure.iot.device.common.mqtt_transport - DEBUG - Waiting for response on MID: 2
+2023-11-21 10:14:37,012 - paho - DEBUG - Received PUBACK (Mid: 2)
+2023-11-21 10:14:37,012 - azure.iot.device.common.mqtt_transport - INFO - payload published for 2
+2023-11-21 10:14:37,012 - azure.iot.device.common.mqtt_transport - DEBUG - Response received for recognized MID: 2 - triggering callback
+2023-11-21 10:14:37,012 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in pipeline thread
+2023-11-21 10:14:37,012 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTPublishOperation): PUBACK received. completing op.
+2023-11-21 10:14:37,012 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - MQTTPublishOperation: completing without error
+2023-11-21 10:14:37,012 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - RequestOperation: Worker op (MQTTPublishOperation) has been completed
+2023-11-21 10:14:37,013 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - RequestOperation: completing without error
+2023-11-21 10:14:37,013 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - CoordinateRequestAndResponseStage(RequestAndResponseOperation): Finished sending register request to PUT resource /
+2023-11-21 10:14:37,095 - paho - DEBUG - Received PUBLISH (d0, q1, r0, m2), '$dps/registrations/res/202/?$rid=858c6eec-fb62-42f5-b793-cbe8e4e6643d&retry-after=3', ...  (94 bytes)
+2023-11-21 10:14:37,095 - azure.iot.device.common.mqtt_transport - INFO - message received on $dps/registrations/res/202/?$rid=858c6eec-fb62-42f5-b793-cbe8e4e6643d&retry-after=3
+2023-11-21 10:14:37,096 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting _on_mqtt_message_received in pipeline thread
+2023-11-21 10:14:37,096 - paho - DEBUG - Sending PUBACK (Mid: 2)
+2023-11-21 10:14:37,096 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage: message received on topic $dps/registrations/res/202/?$rid=858c6eec-fb62-42f5-b793-cbe8e4e6643d&retry-after=3
+2023-11-21 10:14:37,096 - azure.iot.device.provisioning.pipeline.pipeline_stages_provisioning_mqtt - DEBUG - Received payload:b'{"operationId":"5.2a72d5f4febe3130.ecd44c50-8fe2-41a2-83fd-1ae4faaf7d0b","status":"assigning"}' on topic:$dps/registrations/res/202/?$rid=858c6eec-fb62-42f5-b793-cbe8e4e6643d&retry-after=3
+2023-11-21 10:14:37,096 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - CoordinateRequestAndResponseStage(ResponseEvent): Handling event with request_id 858c6eec-fb62-42f5-b793-cbe8e4e6643d
+2023-11-21 10:14:37,096 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - CoordinateRequestAndResponseStage(RequestAndResponseOperation): Completing register request to PUT resource / with status 202
+2023-11-21 10:14:37,096 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - RequestAndResponseOperation: completing without error
+2023-11-21 10:14:37,097 - azure.iot.device.provisioning.pipeline.pipeline_stages_provisioning - DEBUG - RegistrationStage(RegisterOperation): Cancelling provisioning timeout timer
+2023-11-21 10:14:37,097 - azure.iot.device.provisioning.pipeline.pipeline_stages_provisioning - DEBUG - RegistrationStage(RequestAndResponseOperation): Received response with status code 202 for RegisterOperation
+2023-11-21 10:14:37,097 - azure.iot.device.provisioning.pipeline.pipeline_stages_provisioning - DEBUG - RegistrationStage(RequestAndResponseOperation): Op will transition into polling after interval 2.  Setting timer.
+2023-11-21 10:14:37,097 - azure.iot.device.provisioning.pipeline.pipeline_stages_provisioning - DEBUG - RegistrationStage(RequestAndResponseOperation): Creating polling timer
+2023-11-21 10:14:37,143 - paho - DEBUG - Received PUBLISH (d0, q1, r0, m2), '$dps/registrations/res/202/?$rid=83476029-80c7-464d-9067-48464f2c2705&retry-after=3', ...  (94 bytes)
+2023-11-21 10:14:37,143 - azure.iot.device.common.mqtt_transport - INFO - message received on $dps/registrations/res/202/?$rid=83476029-80c7-464d-9067-48464f2c2705&retry-after=3
+2023-11-21 10:14:37,143 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting _on_mqtt_message_received in pipeline thread
+2023-11-21 10:14:37,143 - paho - DEBUG - Sending PUBACK (Mid: 2)
+2023-11-21 10:14:37,143 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage: message received on topic $dps/registrations/res/202/?$rid=83476029-80c7-464d-9067-48464f2c2705&retry-after=3
+2023-11-21 10:14:37,143 - azure.iot.device.provisioning.pipeline.pipeline_stages_provisioning_mqtt - DEBUG - Received payload:b'{"operationId":"5.9931cd2cb83aa568.12b69d86-5212-4d27-ae55-3f589c2493f6","status":"assigning"}' on topic:$dps/registrations/res/202/?$rid=83476029-80c7-464d-9067-48464f2c2705&retry-after=3
+2023-11-21 10:14:37,143 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - CoordinateRequestAndResponseStage(ResponseEvent): Handling event with request_id 83476029-80c7-464d-9067-48464f2c2705
+2023-11-21 10:14:37,144 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - CoordinateRequestAndResponseStage(RequestAndResponseOperation): Completing register request to PUT resource / with status 202
+2023-11-21 10:14:37,144 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - RequestAndResponseOperation: completing without error
+2023-11-21 10:14:37,144 - azure.iot.device.provisioning.pipeline.pipeline_stages_provisioning - DEBUG - RegistrationStage(RegisterOperation): Cancelling provisioning timeout timer
+2023-11-21 10:14:37,144 - azure.iot.device.provisioning.pipeline.pipeline_stages_provisioning - DEBUG - RegistrationStage(RequestAndResponseOperation): Received response with status code 202 for RegisterOperation
+2023-11-21 10:14:37,144 - azure.iot.device.provisioning.pipeline.pipeline_stages_provisioning - DEBUG - RegistrationStage(RequestAndResponseOperation): Op will transition into polling after interval 2.  Setting timer.
+2023-11-21 10:14:37,144 - azure.iot.device.provisioning.pipeline.pipeline_stages_provisioning - DEBUG - RegistrationStage(RequestAndResponseOperation): Creating polling timer
+2023-11-21 10:14:39,105 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting do_query_after_interval in pipeline thread
+2023-11-21 10:14:39,105 - azure.iot.device.provisioning.pipeline.pipeline_stages_provisioning - INFO - RegistrationStage(RequestAndResponseOperation): polling
+2023-11-21 10:14:39,105 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - RegisterOperation: creating worker op of type PollStatusOperation
+2023-11-21 10:14:39,105 - azure.iot.device.provisioning.pipeline.pipeline_stages_provisioning - DEBUG - PollingStatusStage(PollStatusOperation): Creating provisioning timeout timer
+2023-11-21 10:14:39,106 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - CoordinateRequestAndResponseStage(RequestAndResponseOperation): adding request d6be6eff-4842-41c8-b160-cd4aeb37a89d to pending list
+2023-11-21 10:14:39,106 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - CoordinateRequestAndResponseStage(RequestAndResponseOperation): Sending query request to GET resource /
+2023-11-21 10:14:39,106 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - RequestOperation: creating worker op of type MQTTPublishOperation
+2023-11-21 10:14:39,106 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTPublishOperation): publishing on $dps/registrations/GET/iotdps-get-operationstatus/?$rid=d6be6eff-4842-41c8-b160-cd4aeb37a89d&operationId=5.2a72d5f4febe3130.ecd44c50-8fe2-41a2-83fd-1ae4faaf7d0b
+2023-11-21 10:14:39,106 - azure.iot.device.common.mqtt_transport - INFO - publishing on $dps/registrations/GET/iotdps-get-operationstatus/?$rid=d6be6eff-4842-41c8-b160-cd4aeb37a89d&operationId=5.2a72d5f4febe3130.ecd44c50-8fe2-41a2-83fd-1ae4faaf7d0b
+2023-11-21 10:14:39,106 - paho - DEBUG - Sending PUBLISH (d0, q1, r0, m3), 'b'$dps/registrations/GET/iotdps-get-operationstatus/?$rid=d6be6eff-4842-41c8-b160-cd4aeb37a89d&operationId=5.2a72d5f4febe3130.ecd44c50-8fe2-41a2-83fd-1ae4faaf7d0b'', ... (1 bytes)
+2023-11-21 10:14:39,107 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.publish returned rc=0
+2023-11-21 10:14:39,107 - azure.iot.device.common.mqtt_transport - DEBUG - Waiting for response on MID: 3
+2023-11-21 10:14:39,130 - paho - DEBUG - Received PUBACK (Mid: 3)
+2023-11-21 10:14:39,130 - azure.iot.device.common.mqtt_transport - INFO - payload published for 3
+2023-11-21 10:14:39,130 - azure.iot.device.common.mqtt_transport - DEBUG - Response received for recognized MID: 3 - triggering callback
+2023-11-21 10:14:39,130 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in pipeline thread
+2023-11-21 10:14:39,131 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTPublishOperation): PUBACK received. completing op.
+2023-11-21 10:14:39,131 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - MQTTPublishOperation: completing without error
+2023-11-21 10:14:39,131 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - RequestOperation: Worker op (MQTTPublishOperation) has been completed
+2023-11-21 10:14:39,131 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - RequestOperation: completing without error
+2023-11-21 10:14:39,131 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - CoordinateRequestAndResponseStage(RequestAndResponseOperation): Finished sending query request to GET resource /
+2023-11-21 10:14:39,152 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting do_query_after_interval in pipeline thread
+2023-11-21 10:14:39,152 - azure.iot.device.provisioning.pipeline.pipeline_stages_provisioning - INFO - RegistrationStage(RequestAndResponseOperation): polling
+2023-11-21 10:14:39,153 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - RegisterOperation: creating worker op of type PollStatusOperation
+2023-11-21 10:14:39,153 - azure.iot.device.provisioning.pipeline.pipeline_stages_provisioning - DEBUG - PollingStatusStage(PollStatusOperation): Creating provisioning timeout timer
+2023-11-21 10:14:39,154 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - CoordinateRequestAndResponseStage(RequestAndResponseOperation): adding request ec039384-cc91-4895-b584-deed80c1e4b2 to pending list
+2023-11-21 10:14:39,154 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - CoordinateRequestAndResponseStage(RequestAndResponseOperation): Sending query request to GET resource /
+2023-11-21 10:14:39,154 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - RequestOperation: creating worker op of type MQTTPublishOperation
+2023-11-21 10:14:39,154 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTPublishOperation): publishing on $dps/registrations/GET/iotdps-get-operationstatus/?$rid=ec039384-cc91-4895-b584-deed80c1e4b2&operationId=5.9931cd2cb83aa568.12b69d86-5212-4d27-ae55-3f589c2493f6
+2023-11-21 10:14:39,154 - azure.iot.device.common.mqtt_transport - INFO - publishing on $dps/registrations/GET/iotdps-get-operationstatus/?$rid=ec039384-cc91-4895-b584-deed80c1e4b2&operationId=5.9931cd2cb83aa568.12b69d86-5212-4d27-ae55-3f589c2493f6
+2023-11-21 10:14:39,155 - paho - DEBUG - Sending PUBLISH (d0, q1, r0, m3), 'b'$dps/registrations/GET/iotdps-get-operationstatus/?$rid=ec039384-cc91-4895-b584-deed80c1e4b2&operationId=5.9931cd2cb83aa568.12b69d86-5212-4d27-ae55-3f589c2493f6'', ... (1 bytes)
+2023-11-21 10:14:39,155 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.publish returned rc=0
+2023-11-21 10:14:39,155 - azure.iot.device.common.mqtt_transport - DEBUG - Waiting for response on MID: 3
+2023-11-21 10:14:39,173 - paho - DEBUG - Received PUBLISH (d0, q1, r0, m2), '$dps/registrations/res/200/?$rid=d6be6eff-4842-41c8-b160-cd4aeb37a89d', ...  (433 bytes)
+2023-11-21 10:14:39,174 - azure.iot.device.common.mqtt_transport - INFO - message received on $dps/registrations/res/200/?$rid=d6be6eff-4842-41c8-b160-cd4aeb37a89d
+2023-11-21 10:14:39,174 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting _on_mqtt_message_received in pipeline thread
+2023-11-21 10:14:39,174 - paho - DEBUG - Sending PUBACK (Mid: 2)
+2023-11-21 10:14:39,174 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage: message received on topic $dps/registrations/res/200/?$rid=d6be6eff-4842-41c8-b160-cd4aeb37a89d
+2023-11-21 10:14:39,175 - azure.iot.device.provisioning.pipeline.pipeline_stages_provisioning_mqtt - DEBUG - Received payload:b'{"operationId":"5.2a72d5f4febe3130.ecd44c50-8fe2-41a2-83fd-1ae4faaf7d0b","status":"assigned","registrationState":{"registrationId":"URCobot","createdDateTimeUtc":"2023-11-21T10:14:36.9893573Z","assignedHub":"AddQualIotHub.azure-devices.net","deviceId":"URCobot","status":"assigned","substatus":"initialAssignment","lastUpdatedDateTimeUtc":"2023-11-21T10:14:37.2192711Z","etag":"IjcwMDFiMDY0LTAwMDAtMTEwMC0wMDAwLTY1NWM4MzBkMDAwMCI="}}' on topic:$dps/registrations/res/200/?$rid=d6be6eff-4842-41c8-b160-cd4aeb37a89d
+2023-11-21 10:14:39,175 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - CoordinateRequestAndResponseStage(ResponseEvent): Handling event with request_id d6be6eff-4842-41c8-b160-cd4aeb37a89d
+2023-11-21 10:14:39,175 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - CoordinateRequestAndResponseStage(RequestAndResponseOperation): Completing query request to GET resource / with status 200
+2023-11-21 10:14:39,175 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - RequestAndResponseOperation: completing without error
+2023-11-21 10:14:39,175 - azure.iot.device.provisioning.pipeline.pipeline_stages_provisioning - DEBUG - PollingStatusStage(PollStatusOperation): Cancelling provisioning timeout timer
+2023-11-21 10:14:39,175 - azure.iot.device.provisioning.pipeline.pipeline_stages_provisioning - DEBUG - PollingStatusStage(RequestAndResponseOperation): Received response with status code 200 for PollStatusOperation with operation id 5.2a72d5f4febe3130.ecd44c50-8fe2-41a2-83fd-1ae4faaf7d0b
+2023-11-21 10:14:39,176 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - PollStatusOperation: completing without error
+2023-11-21 10:14:39,176 - azure.iot.device.provisioning.pipeline.pipeline_stages_provisioning - DEBUG - Copying registration result from Query Status Op to Registration Op
+2023-11-21 10:14:39,176 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - RegisterOperation: Worker op (PollStatusOperation) has been completed
+2023-11-21 10:14:39,176 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - RegisterOperation: completing without error
+2023-11-21 10:14:39,176 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in callback thread
+2023-11-21 10:14:39,177 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result URCobot
+AddQualIotHub.azure-devices.net
+initialAssignment
+null
+assigned
+2023-11-21 10:14:39,178 - azure.iot.device.provisioning.abstract_provisioning_device_client - INFO - Successfully registered with Provisioning Service
+2023-11-21 10:14:39,178 - azure.iot.device.provisioning.aio.async_provisioning_device_client - DEBUG - Beginning pipeline shutdown operation
+2023-11-21 10:14:39,178 - paho - DEBUG - Received PUBACK (Mid: 3)
+2023-11-21 10:14:39,179 - azure.iot.device.provisioning.pipeline.mqtt_pipeline - DEBUG - Commencing shutdown of pipeline
+2023-11-21 10:14:39,179 - azure.iot.device.common.mqtt_transport - INFO - payload published for 3
+2023-11-21 10:14:39,179 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:14:39,179 - azure.iot.device.common.mqtt_transport - DEBUG - Response received for recognized MID: 3 - triggering callback
+2023-11-21 10:14:39,180 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in pipeline thread
+2023-11-21 10:14:39,180 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - Cancelling SAS Token update alarm
+2023-11-21 10:14:39,180 - azure.iot.device.common.mqtt_transport - INFO - Forcing paho disconnect to prevent it from automatically reconnecting
+2023-11-21 10:14:39,180 - paho - DEBUG - Sending DISCONNECT
+2023-11-21 10:14:39,181 - azure.iot.device.common.mqtt_transport - DEBUG - Done forcing paho disconnect
+2023-11-21 10:14:39,181 - azure.iot.device.common.mqtt_transport - DEBUG - Cancelling all pending operations
+2023-11-21 10:14:39,182 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - ShutdownPipelineOperation: completing without error
+2023-11-21 10:14:39,182 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in callback thread
+2023-11-21 10:14:39,182 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTPublishOperation): PUBACK received. completing op.
+2023-11-21 10:14:39,182 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - MQTTPublishOperation: completing without error
+2023-11-21 10:14:39,182 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - RequestOperation: Worker op (MQTTPublishOperation) has been completed
+2023-11-21 10:14:39,182 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - RequestOperation: completing without error
+2023-11-21 10:14:39,183 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - CoordinateRequestAndResponseStage(RequestAndResponseOperation): Finished sending query request to GET resource /
+2023-11-21 10:14:39,183 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result None
+2023-11-21 10:14:39,183 - azure.iot.device.provisioning.aio.async_provisioning_device_client - DEBUG - Completed pipeline shutdown operation
+2023-11-21 10:14:39,184 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:14:39,184 - azure.iot.device.common.pipeline.pipeline_stages_http - DEBUG - Gateway Hostname not present. Setting Hostname to: AddQualIotHub.azure-devices.net
+2023-11-21 10:14:39,185 - azure.iot.device.common.pipeline.pipeline_stages_http - DEBUG - HTTPTransportStage(InitializePipelineOperation): got connection args
+2023-11-21 10:14:39,185 - azure.iot.device.common.http_transport - DEBUG - creating a SSL context
+2023-11-21 10:14:39,206 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - InitializePipelineOperation: completing without error
+2023-11-21 10:14:39,206 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting <azure.iot.device.common.evented_callback.EventedCallback object at 0x0000021343217690> in callback thread
+2023-11-21 10:14:39,207 - azure.iot.device.common.evented_callback - DEBUG - Callback completed with result None
+2023-11-21 10:14:39,207 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:14:39,207 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - SasTokenStage: Scheduling automatic SAS Token renewal at epoch time: 1700565159
+2023-11-21 10:14:39,208 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - Gateway Hostname not present. Setting Hostname to: AddQualIotHub.azure-devices.net
+2023-11-21 10:14:39,208 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(InitializePipelineOperation): got connection args
+2023-11-21 10:14:39,208 - azure.iot.device.common.mqtt_transport - DEBUG - creating mqtt client
+2023-11-21 10:14:39,208 - azure.iot.device.common.mqtt_transport - INFO - Creating client for connecting using MQTT over TCP
+2023-11-21 10:14:39,208 - azure.iot.device.common.mqtt_transport - DEBUG - creating a SSL context
+2023-11-21 10:14:39,209 - paho - DEBUG - Received PUBLISH (d0, q1, r0, m2), '$dps/registrations/res/200/?$rid=ec039384-cc91-4895-b584-deed80c1e4b2', ...  (437 bytes)
+2023-11-21 10:14:39,209 - azure.iot.device.common.mqtt_transport - INFO - message received on $dps/registrations/res/200/?$rid=ec039384-cc91-4895-b584-deed80c1e4b2
+2023-11-21 10:14:39,209 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting _on_mqtt_message_received in pipeline thread
+2023-11-21 10:14:39,209 - paho - DEBUG - Sending PUBACK (Mid: 2)
+2023-11-21 10:14:39,209 - azure.iot.device.common.mqtt_transport - DEBUG - configuring SSL context with default certs
+2023-11-21 10:14:39,221 - azure.iot.device.common.mqtt_transport - DEBUG - Created MQTT protocol client, assigned callbacks
+2023-11-21 10:14:39,221 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - InitializePipelineOperation: completing without error
+2023-11-21 10:14:39,222 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting <azure.iot.device.common.evented_callback.EventedCallback object at 0x0000021343CA2710> in callback thread
+2023-11-21 10:14:39,222 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage: message received on topic $dps/registrations/res/200/?$rid=ec039384-cc91-4895-b584-deed80c1e4b2
+2023-11-21 10:14:39,222 - azure.iot.device.provisioning.pipeline.pipeline_stages_provisioning_mqtt - DEBUG - Received payload:b'{"operationId":"5.9931cd2cb83aa568.12b69d86-5212-4d27-ae55-3f589c2493f6","status":"assigned","registrationState":{"registrationId":"URGripper","createdDateTimeUtc":"2023-11-21T10:14:37.0491027Z","assignedHub":"AddQualIotHub.azure-devices.net","deviceId":"URGripper","status":"assigned","substatus":"initialAssignment","lastUpdatedDateTimeUtc":"2023-11-21T10:14:37.3360735Z","etag":"IjZjMGU5OGM5LTAwMDAtMTEwMC0wMDAwLTY1NWM4MzBkMDAwMCI="}}' on topic:$dps/registrations/res/200/?$rid=ec039384-cc91-4895-b584-deed80c1e4b2
+2023-11-21 10:14:39,222 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - CoordinateRequestAndResponseStage(ResponseEvent): Handling event with request_id ec039384-cc91-4895-b584-deed80c1e4b2
+2023-11-21 10:14:39,222 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - CoordinateRequestAndResponseStage(RequestAndResponseOperation): Completing query request to GET resource / with status 200
+2023-11-21 10:14:39,222 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - RequestAndResponseOperation: completing without error
+2023-11-21 10:14:39,222 - azure.iot.device.provisioning.pipeline.pipeline_stages_provisioning - DEBUG - PollingStatusStage(PollStatusOperation): Cancelling provisioning timeout timer
+2023-11-21 10:14:39,222 - azure.iot.device.provisioning.pipeline.pipeline_stages_provisioning - DEBUG - PollingStatusStage(RequestAndResponseOperation): Received response with status code 200 for PollStatusOperation with operation id 5.9931cd2cb83aa568.12b69d86-5212-4d27-ae55-3f589c2493f6
+2023-11-21 10:14:39,222 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - PollStatusOperation: completing without error
+2023-11-21 10:14:39,222 - azure.iot.device.provisioning.pipeline.pipeline_stages_provisioning - DEBUG - Copying registration result from Query Status Op to Registration Op
+2023-11-21 10:14:39,223 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - RegisterOperation: Worker op (PollStatusOperation) has been completed
+2023-11-21 10:14:39,223 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - RegisterOperation: completing without error
+2023-11-21 10:14:39,223 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in callback thread
+2023-11-21 10:14:39,223 - azure.iot.device.common.evented_callback - DEBUG - Callback completed with result None
+2023-11-21 10:14:39,223 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result URGripper
+AddQualIotHub.azure-devices.net
+initialAssignment
+null
+assigned
+2023-11-21 10:14:39,223 - azure.iot.device.iothub.aio.loop_management - DEBUG - Creating new event loop - CLIENT_INTERNAL_LOOP
+2023-11-21 10:14:39,223 - asyncio - DEBUG - Using proactor: IocpProactor
+2023-11-21 10:14:39,226 - azure.iot.device.iothub.aio.async_clients - INFO - Connecting to Hub...
+2023-11-21 10:14:39,226 - azure.iot.device.provisioning.abstract_provisioning_device_client - INFO - Successfully registered with Provisioning Service
+2023-11-21 10:14:39,226 - azure.iot.device.provisioning.aio.async_provisioning_device_client - DEBUG - Beginning pipeline shutdown operation
+2023-11-21 10:14:39,227 - azure.iot.device.iothub.pipeline.mqtt_pipeline - DEBUG - Starting ConnectOperation on the pipeline
+2023-11-21 10:14:39,227 - azure.iot.device.provisioning.pipeline.mqtt_pipeline - DEBUG - Commencing shutdown of pipeline
+2023-11-21 10:14:39,227 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:14:39,227 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:14:39,227 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - ConnectionStateStage(ConnectOperation): State changes DISCONNECTED -> CONNECTING. Sending op down
+2023-11-21 10:14:39,228 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(ConnectOperation): connecting
+2023-11-21 10:14:39,228 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(ConnectOperation): Starting watchdog
+2023-11-21 10:14:39,228 - azure.iot.device.common.mqtt_transport - DEBUG - connecting to mqtt broker
+2023-11-21 10:14:39,228 - azure.iot.device.common.mqtt_transport - INFO - Connect using port 8883 (TCP)
+2023-11-21 10:14:39,312 - paho - DEBUG - Sending CONNECT (u1, p1, wr0, wq0, wf0, c0, k60) client_id=b'URCobot'
+2023-11-21 10:14:39,313 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.connect returned rc=0
+2023-11-21 10:14:39,314 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - Cancelling SAS Token update alarm
+2023-11-21 10:14:39,314 - azure.iot.device.common.mqtt_transport - INFO - Forcing paho disconnect to prevent it from automatically reconnecting
+2023-11-21 10:14:39,314 - paho - DEBUG - Sending DISCONNECT
+2023-11-21 10:14:39,314 - azure.iot.device.common.mqtt_transport - DEBUG - Done forcing paho disconnect
+2023-11-21 10:14:39,315 - azure.iot.device.common.mqtt_transport - DEBUG - Cancelling all pending operations
+2023-11-21 10:14:39,315 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - ShutdownPipelineOperation: completing without error
+2023-11-21 10:14:39,315 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in callback thread
+2023-11-21 10:14:39,315 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result None
+2023-11-21 10:14:39,315 - azure.iot.device.provisioning.aio.async_provisioning_device_client - DEBUG - Completed pipeline shutdown operation
+2023-11-21 10:14:39,315 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:14:39,315 - azure.iot.device.common.pipeline.pipeline_stages_http - DEBUG - Gateway Hostname not present. Setting Hostname to: AddQualIotHub.azure-devices.net
+2023-11-21 10:14:39,316 - azure.iot.device.common.pipeline.pipeline_stages_http - DEBUG - HTTPTransportStage(InitializePipelineOperation): got connection args
+2023-11-21 10:14:39,316 - azure.iot.device.common.http_transport - DEBUG - creating a SSL context
+2023-11-21 10:14:39,325 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - InitializePipelineOperation: completing without error
+2023-11-21 10:14:39,325 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting <azure.iot.device.common.evented_callback.EventedCallback object at 0x0000021343CA30D0> in callback thread
+2023-11-21 10:14:39,325 - azure.iot.device.common.evented_callback - DEBUG - Callback completed with result None
+2023-11-21 10:14:39,325 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:14:39,326 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - SasTokenStage: Scheduling automatic SAS Token renewal at epoch time: 1700565159
+2023-11-21 10:14:39,326 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - Gateway Hostname not present. Setting Hostname to: AddQualIotHub.azure-devices.net
+2023-11-21 10:14:39,326 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(InitializePipelineOperation): got connection args
+2023-11-21 10:14:39,326 - azure.iot.device.common.mqtt_transport - DEBUG - creating mqtt client
+2023-11-21 10:14:39,326 - azure.iot.device.common.mqtt_transport - INFO - Creating client for connecting using MQTT over TCP
+2023-11-21 10:14:39,326 - azure.iot.device.common.mqtt_transport - DEBUG - creating a SSL context
+2023-11-21 10:14:39,327 - azure.iot.device.common.mqtt_transport - DEBUG - configuring SSL context with default certs
+2023-11-21 10:14:39,336 - azure.iot.device.common.mqtt_transport - DEBUG - Created MQTT protocol client, assigned callbacks
+2023-11-21 10:14:39,336 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - InitializePipelineOperation: completing without error
+2023-11-21 10:14:39,336 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting <azure.iot.device.common.evented_callback.EventedCallback object at 0x0000021343CBE810> in callback thread
+2023-11-21 10:14:39,336 - azure.iot.device.common.evented_callback - DEBUG - Callback completed with result None
+2023-11-21 10:14:39,338 - azure.iot.device.iothub.aio.async_clients - INFO - Connecting to Hub...
+2023-11-21 10:14:39,338 - azure.iot.device.iothub.pipeline.mqtt_pipeline - DEBUG - Starting ConnectOperation on the pipeline
+2023-11-21 10:14:39,338 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:14:39,339 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - ConnectionStateStage(ConnectOperation): State changes DISCONNECTED -> CONNECTING. Sending op down
+2023-11-21 10:14:39,339 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(ConnectOperation): connecting
+2023-11-21 10:14:39,339 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(ConnectOperation): Starting watchdog
+2023-11-21 10:14:39,339 - azure.iot.device.common.mqtt_transport - DEBUG - connecting to mqtt broker
+2023-11-21 10:14:39,339 - azure.iot.device.common.mqtt_transport - INFO - Connect using port 8883 (TCP)
+2023-11-21 10:14:39,349 - paho - DEBUG - Received CONNACK (1, 0)
+2023-11-21 10:14:39,349 - azure.iot.device.common.mqtt_transport - INFO - connected with result code: 0
+2023-11-21 10:14:39,349 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting _on_mqtt_connected in pipeline thread
+2023-11-21 10:14:39,399 - paho - DEBUG - Sending CONNECT (u1, p1, wr0, wq0, wf0, c0, k60) client_id=b'URGripper'
+2023-11-21 10:14:39,399 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.connect returned rc=0
+2023-11-21 10:14:39,400 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - INFO - _on_mqtt_connected called
+2023-11-21 10:14:39,401 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - ConnectionStateStage(ConnectedEvent): State changes CONNECTING -> CONNECTED. Connection established
+2023-11-21 10:14:39,401 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - PipelineRootStage: ConnectedEvent received. Calling on_connected_handler
+2023-11-21 10:14:39,401 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting _on_connected in callback thread
+2023-11-21 10:14:39,401 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage: completing connect op
+2023-11-21 10:14:39,401 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(ConnectOperation): cancelling watchdog
+2023-11-21 10:14:39,401 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - ConnectOperation: completing without error
+2023-11-21 10:14:39,401 - azure.iot.device.iothub.abstract_clients - INFO - Connection State - Connected
+2023-11-21 10:14:39,401 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in callback thread
+2023-11-21 10:14:39,402 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result None
+2023-11-21 10:14:39,402 - azure.iot.device.iothub.aio.async_clients - INFO - Successfully connected to Hub
+2023-11-21 10:14:39,402 - azure.iot.device.iothub.aio.async_clients - INFO - Enabling feature:methods...
+2023-11-21 10:14:39,417 - azure.iot.device.iothub.aio.async_clients - INFO - Enabling feature:methods...
+2023-11-21 10:14:39,433 - azure.iot.device.iothub.pipeline.mqtt_pipeline - DEBUG - enable_feature methods called
+2023-11-21 10:14:39,433 - azure.iot.device.iothub.pipeline.mqtt_pipeline - DEBUG - enable_feature methods called
+2023-11-21 10:14:39,464 - azure.iot.device.iothub.aio.async_clients - INFO - Enabling feature:methods...
+2023-11-21 10:14:39,464 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:14:39,495 - paho - DEBUG - Received CONNACK (1, 0)
+2023-11-21 10:14:39,541 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:14:39,605 - azure.iot.device.iothub.pipeline.mqtt_pipeline - DEBUG - enable_feature methods called
+2023-11-21 10:14:39,651 - azure.iot.device.iothub.aio.async_clients - INFO - Enabling feature:methods...
+2023-11-21 10:14:39,713 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: creating worker op of type MQTTSubscribeOperation
+2023-11-21 10:14:39,713 - azure.iot.device.common.mqtt_transport - INFO - connected with result code: 0
+2023-11-21 10:14:39,808 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:14:39,855 - azure.iot.device.iothub.pipeline.mqtt_pipeline - DEBUG - enable_feature methods called
+2023-11-21 10:14:39,886 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Creating timer
+2023-11-21 10:14:39,918 - azure.iot.device.iothub.aio.async_clients - INFO - Enabling feature:methods...
+2023-11-21 10:14:39,934 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting _on_mqtt_connected in pipeline thread
+2023-11-21 10:14:40,028 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:14:40,105 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Sending down
+2023-11-21 10:14:40,120 - azure.iot.device.iothub.pipeline.mqtt_pipeline - DEBUG - enable_feature methods called
+2023-11-21 10:14:40,151 - azure.iot.device.iothub.aio.async_clients - INFO - Enabling feature:methods...
+2023-11-21 10:14:40,245 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTSubscribeOperation): subscribing to $iothub/methods/POST/#
+2023-11-21 10:14:40,293 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:14:40,387 - azure.iot.device.iothub.pipeline.mqtt_pipeline - DEBUG - enable_feature methods called
+2023-11-21 10:14:40,419 - azure.iot.device.common.mqtt_transport - INFO - subscribing to $iothub/methods/POST/# with qos 1
+2023-11-21 10:14:40,419 - azure.iot.device.iothub.aio.async_clients - INFO - Enabling feature:methods...
+2023-11-21 10:14:40,512 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:14:40,730 - paho - DEBUG - Sending SUBSCRIBE (d0, m1) [(b'$iothub/methods/POST/#', 1)]
+2023-11-21 10:14:40,771 - azure.iot.device.iothub.pipeline.mqtt_pipeline - DEBUG - enable_feature methods called
+2023-11-21 10:14:40,984 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:14:40,968 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.subscribe returned rc=0
+2023-11-21 10:14:40,851 - azure.iot.device.iothub.aio.async_clients - INFO - Enabling feature:methods...
+2023-11-21 10:14:41,076 - azure.iot.device.common.mqtt_transport - DEBUG - Waiting for response on MID: 1
+2023-11-21 10:14:41,124 - paho - DEBUG - Received SUBACK
+2023-11-21 10:14:41,140 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: creating worker op of type MQTTSubscribeOperation
+2023-11-21 10:14:41,172 - azure.iot.device.iothub.pipeline.mqtt_pipeline - DEBUG - enable_feature methods called
+2023-11-21 10:14:41,187 - azure.iot.device.common.mqtt_transport - INFO - suback received for 1
+2023-11-21 10:14:41,218 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Creating timer
+2023-11-21 10:14:41,249 - azure.iot.device.iothub.aio.async_clients - INFO - Enabling feature:methods...
+2023-11-21 10:14:41,280 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:14:41,328 - azure.iot.device.common.mqtt_transport - DEBUG - Response received for recognized MID: 1 - triggering callback
+2023-11-21 10:14:41,440 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Sending down
+2023-11-21 10:14:41,440 - azure.iot.device.iothub.aio.async_clients - INFO - Enabling feature:methods...
+2023-11-21 10:14:41,471 - azure.iot.device.iothub.pipeline.mqtt_pipeline - DEBUG - enable_feature methods called
+2023-11-21 10:14:41,532 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in pipeline thread
+2023-11-21 10:14:41,563 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTSubscribeOperation): subscribing to $iothub/methods/POST/#
+2023-11-21 10:14:41,626 - azure.iot.device.iothub.pipeline.mqtt_pipeline - DEBUG - enable_feature methods called
+2023-11-21 10:14:41,657 - azure.iot.device.iothub.aio.async_clients - INFO - Enabling feature:methods...
+2023-11-21 10:14:41,689 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:14:41,752 - azure.iot.device.common.mqtt_transport - INFO - subscribing to $iothub/methods/POST/# with qos 1
+2023-11-21 10:14:41,799 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:14:41,862 - azure.iot.device.iothub.pipeline.mqtt_pipeline - DEBUG - enable_feature methods called
+2023-11-21 10:14:41,894 - root - INFO - [-5.739163153065744, -37.15600691283706, 87.42364740225148, -13.200370555200951, 95.56219291122824, 62.019461889603136]
+2023-11-21 10:14:41,942 - paho - DEBUG - Sending SUBSCRIBE (d0, m2) [(b'$iothub/methods/POST/#', 1)]
+2023-11-21 10:14:42,066 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:14:42,112 - root - INFO - {
+ "target_q": [
+  1.2809855738188116,
+  -1.7977403066773403,
+  -0.5599203828092285,
+  -1.0547552167413539,
+  0.9736718685047532,
+  -1.4177598928536086
+ ],
+ "target_qd": [
+  1.7136847670751656,
+  1.2712233870240428,
+  1.6196438001579934,
+  0.6645423901831167,
+  -0.05085126842954768,
+  -0.41007541655193
+ ],
+ "target_qdd": [
+  1.7219047820273923,
+  -1.6958495579972117,
+  0.9315735617882457,
+  1.5983812959072201,
+  1.758682830251473,
+  0.8085459985105186
+ ],
+ "target_current": [
+  -0.9548306741550139,
+  2.951406607349197,
+  1.1045518819453264,
+  1.7326033856582743,
+  -2.0536935420439097,
+  -0.30016769535304455
+ ],
+ "target_moment": [
+  -1.4688097176745885,
+  -35.51317084490716,
+  61.37806218998492,
+  -17.940661243837084,
+  65.97800206988416,
+  66.22753397603248
+ ],
+ "actual_current": [
+  1.948242227049918,
+  1.7398774932558094,
+  -1.2893724988913788,
+  1.1141983769558141,
+  -1.5643313729388437,
+  0.48611937944342465
+ ],
+ "actual_q": [
+  -0.10016729333013652,
+  -0.6484946575227803,
+  1.5258304912718759,
+  -0.2303899286715685,
+  1.667874906726918,
+  1.0824438102887186
+ ],
+ "actual_qd": [
+  -0.6324378981975749,
+  -0.8783817633236861,
+  0.21905446431982623,
+  -1.7713746488990425,
+  1.4599602820915838,
+  -0.7478364527537935
+ ],
+ "joint_control_output": [
+  1.2457193674447828,
+  2.006087974858285,
+  1.4166713227745857,
+  2.7555452536162672,
+  0.25665224988315216,
+  2.1018761526284493
+ ],
+ "actual_tcp_force": [
+  0.7003336274864416,
+  1.7029347852211065,
+  1.5731727924059675,
+  0.14932112310367887,
+  1.6836881457197026,
+  0.37680376001907656
+ ],
+ "joint_temperatures": [
+  24.84433421069694,
+  24.169098804238843,
+  24.772096179628637,
+  24.515502584055646,
+  24.224785848897913,
+  24.7051125634852
+ ],
+ "joint_mode": [
+  253.45589481231772,
+  253.80558548762681,
+  253.23884412273574,
+  253.66501408018453,
+  254.92267407667532,
+  254.20842693690466
+ ],
+ "actual_tool_accelerometer": [
+  -2.4016905770335484,
+  -9.228584072714815,
+  -0.8045307147975826
+ ],
+ "speed_scaling": 0.23520508755366482,
+ "actual_momentum": 0.15307471971032455,
+ "actual_main_voltage": 48.42977402081997,
+ "actual_robot_voltage": 48.024148032479,
+ "actual_robot_current": 0.3264565983778307,
+ "actual_joint_voltage": [
+  -0.16817303326519972,
+  -0.041235930481832384,
+  -0.08282382558412937,
+  -0.4246791432017748,
+  -0.2779858867370939,
+  0.4698210373350046
+ ],
+ "runtime_state": 0,
+ "robot_mode": 4,
+ "safety_mode": 0,
+ "analog_io_types": 2,
+ "io_current": 0.12193839958334118,
+ "tool_mode": 253,
+ "tool_output_voltage": 1,
+ "tool_output_current": 0.3554993841354571
+}
+2023-11-21 10:14:42,176 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.subscribe returned rc=0
+2023-11-21 10:14:42,240 - paho - DEBUG - Received SUBACK
+2023-11-21 10:14:42,271 - azure.iot.device.iothub.aio.async_clients - INFO - Sending message to Hub...
+2023-11-21 10:14:42,319 - azure.iot.device.common.mqtt_transport - DEBUG - Waiting for response on MID: 2
+2023-11-21 10:14:42,366 - azure.iot.device.common.mqtt_transport - INFO - suback received for 2
+2023-11-21 10:14:42,444 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: creating worker op of type MQTTSubscribeOperation
+2023-11-21 10:14:42,490 - azure.iot.device.iothub.pipeline.mqtt_pipeline - DEBUG - Starting SendD2CMessageOperation on the pipeline
+2023-11-21 10:14:42,490 - azure.iot.device.common.mqtt_transport - DEBUG - Response received for recognized MID: 2 - triggering callback
+2023-11-21 10:14:42,537 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Creating timer
+2023-11-21 10:14:42,568 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:14:42,616 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in pipeline thread
+2023-11-21 10:14:42,710 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Sending down
+2023-11-21 10:14:42,787 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTSubscribeOperation): subscribing to $iothub/methods/POST/#
+2023-11-21 10:14:42,802 - azure.iot.device.common.mqtt_transport - INFO - subscribing to $iothub/methods/POST/# with qos 1
+2023-11-21 10:14:42,802 - paho - DEBUG - Sending SUBSCRIBE (d0, m3) [(b'$iothub/methods/POST/#', 1)]
+2023-11-21 10:14:42,818 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.subscribe returned rc=0
+2023-11-21 10:14:42,834 - azure.iot.device.common.mqtt_transport - DEBUG - Waiting for response on MID: 3
+2023-11-21 10:14:42,866 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - INFO - _on_mqtt_connected called
+2023-11-21 10:14:42,882 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - ConnectionStateStage(ConnectedEvent): State changes CONNECTING -> CONNECTED. Connection established
+2023-11-21 10:14:42,898 - paho - DEBUG - Received SUBACK
+2023-11-21 10:14:42,898 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - PipelineRootStage: ConnectedEvent received. Calling on_connected_handler
+2023-11-21 10:14:42,976 - azure.iot.device.common.mqtt_transport - INFO - suback received for 3
+2023-11-21 10:14:43,022 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting _on_connected in callback thread
+2023-11-21 10:14:43,070 - azure.iot.device.common.mqtt_transport - DEBUG - Response received for recognized MID: 3 - triggering callback
+2023-11-21 10:14:43,118 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage: completing connect op
+2023-11-21 10:14:43,163 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in pipeline thread
+2023-11-21 10:14:43,209 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(ConnectOperation): cancelling watchdog
+2023-11-21 10:14:43,225 - azure.iot.device.iothub.abstract_clients - INFO - Connection State - Connected
+2023-11-21 10:14:43,289 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - ConnectOperation: completing without error
+2023-11-21 10:14:43,416 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in callback thread
+2023-11-21 10:14:43,432 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: creating worker op of type MQTTSubscribeOperation
+2023-11-21 10:14:43,447 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result None
+2023-11-21 10:14:43,447 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Creating timer
+2023-11-21 10:14:43,525 - azure.iot.device.iothub.aio.async_clients - INFO - Successfully connected to Hub
+2023-11-21 10:14:43,541 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Sending down
+2023-11-21 10:14:43,557 - azure.iot.device.iothub.aio.async_clients - INFO - Enabling feature:methods...
+2023-11-21 10:14:43,604 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTSubscribeOperation): subscribing to $iothub/methods/POST/#
+2023-11-21 10:14:43,636 - azure.iot.device.iothub.aio.async_clients - INFO - Enabling feature:methods...
+2023-11-21 10:14:43,698 - azure.iot.device.common.mqtt_transport - INFO - subscribing to $iothub/methods/POST/# with qos 1
+2023-11-21 10:14:43,760 - azure.iot.device.iothub.aio.async_clients - INFO - Enabling feature:methods...
+2023-11-21 10:14:43,839 - paho - DEBUG - Sending SUBSCRIBE (d0, m4) [(b'$iothub/methods/POST/#', 1)]
+2023-11-21 10:14:43,919 - root - INFO - {
+ "act": 1,
+ "gto": 0,
+ "for": 31,
+ "spe": 24,
+ "pos": 218,
+ "sta": 2,
+ "pre": 21,
+ "obj": 3,
+ "flt": 0
+}
+2023-11-21 10:14:44,015 - azure.iot.device.iothub.aio.async_clients - INFO - Sending message to Hub...
+2023-11-21 10:14:44,046 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.subscribe returned rc=0
+2023-11-21 10:14:44,077 - azure.iot.device.common.mqtt_transport - DEBUG - Waiting for response on MID: 4
+2023-11-21 10:14:44,093 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: creating worker op of type MQTTSubscribeOperation
+2023-11-21 10:14:44,124 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Creating timer
+2023-11-21 10:14:44,140 - paho - DEBUG - Received SUBACK
+2023-11-21 10:14:44,140 - azure.iot.device.iothub.pipeline.mqtt_pipeline - DEBUG - enable_feature methods called
+2023-11-21 10:14:44,187 - azure.iot.device.common.mqtt_transport - INFO - suback received for 4
+2023-11-21 10:14:44,314 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:14:44,314 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Sending down
+2023-11-21 10:14:44,375 - azure.iot.device.common.mqtt_transport - DEBUG - Response received for recognized MID: 4 - triggering callback
+2023-11-21 10:14:44,516 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTSubscribeOperation): subscribing to $iothub/methods/POST/#
+2023-11-21 10:14:44,578 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in pipeline thread
+2023-11-21 10:14:44,688 - azure.iot.device.common.mqtt_transport - INFO - subscribing to $iothub/methods/POST/# with qos 1
+2023-11-21 10:14:44,783 - paho - DEBUG - Sending SUBSCRIBE (d0, m5) [(b'$iothub/methods/POST/#', 1)]
+2023-11-21 10:14:44,830 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.subscribe returned rc=0
+2023-11-21 10:14:44,861 - azure.iot.device.common.mqtt_transport - DEBUG - Waiting for response on MID: 5
+2023-11-21 10:14:44,861 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: creating worker op of type MQTTSubscribeOperation
+2023-11-21 10:14:44,861 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Creating timer
+2023-11-21 10:14:44,892 - azure.iot.device.iothub.pipeline.mqtt_pipeline - DEBUG - enable_feature methods called
+2023-11-21 10:14:44,908 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Sending down
+2023-11-21 10:14:44,908 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:14:44,940 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTSubscribeOperation): subscribing to $iothub/methods/POST/#
+2023-11-21 10:14:45,018 - paho - DEBUG - Received SUBACK
+2023-11-21 10:14:45,034 - azure.iot.device.common.mqtt_transport - INFO - subscribing to $iothub/methods/POST/# with qos 1
+2023-11-21 10:14:45,112 - azure.iot.device.common.mqtt_transport - INFO - suback received for 5
+2023-11-21 10:14:45,207 - paho - DEBUG - Sending SUBSCRIBE (d0, m6) [(b'$iothub/methods/POST/#', 1)]
+2023-11-21 10:14:45,334 - azure.iot.device.common.mqtt_transport - DEBUG - Response received for recognized MID: 5 - triggering callback
+2023-11-21 10:14:45,457 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.subscribe returned rc=0
+2023-11-21 10:14:45,519 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in pipeline thread
+2023-11-21 10:14:45,583 - azure.iot.device.common.mqtt_transport - DEBUG - Waiting for response on MID: 6
+2023-11-21 10:14:45,708 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: creating worker op of type MQTTSubscribeOperation
+2023-11-21 10:14:45,771 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Creating timer
+2023-11-21 10:14:45,771 - azure.iot.device.iothub.pipeline.mqtt_pipeline - DEBUG - enable_feature methods called
+2023-11-21 10:14:45,851 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:14:45,899 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Sending down
+2023-11-21 10:14:45,945 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTSubscribeOperation): subscribing to $iothub/methods/POST/#
+2023-11-21 10:14:45,945 - paho - DEBUG - Received SUBACK
+2023-11-21 10:14:45,977 - azure.iot.device.common.mqtt_transport - INFO - subscribing to $iothub/methods/POST/# with qos 1
+2023-11-21 10:14:46,055 - azure.iot.device.common.mqtt_transport - INFO - suback received for 6
+2023-11-21 10:14:46,151 - paho - DEBUG - Sending SUBSCRIBE (d0, m7) [(b'$iothub/methods/POST/#', 1)]
+2023-11-21 10:14:46,214 - azure.iot.device.common.mqtt_transport - DEBUG - Response received for recognized MID: 6 - triggering callback
+2023-11-21 10:14:46,356 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.subscribe returned rc=0
+2023-11-21 10:14:46,467 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in pipeline thread
+2023-11-21 10:14:46,531 - azure.iot.device.common.mqtt_transport - DEBUG - Waiting for response on MID: 7
+2023-11-21 10:14:46,640 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: creating worker op of type MQTTSubscribeOperation
+2023-11-21 10:14:46,656 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Creating timer
+2023-11-21 10:14:46,672 - azure.iot.device.iothub.pipeline.mqtt_pipeline - DEBUG - Starting SendD2CMessageOperation on the pipeline
+2023-11-21 10:14:46,718 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Sending down
+2023-11-21 10:14:46,750 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:14:46,750 - paho - DEBUG - Received SUBACK
+2023-11-21 10:14:46,750 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTSubscribeOperation): subscribing to $iothub/methods/POST/#
+2023-11-21 10:14:46,906 - azure.iot.device.common.mqtt_transport - INFO - suback received for 7
+2023-11-21 10:14:46,969 - azure.iot.device.common.mqtt_transport - INFO - subscribing to $iothub/methods/POST/# with qos 1
+2023-11-21 10:14:47,046 - azure.iot.device.common.mqtt_transport - DEBUG - Response received for recognized MID: 7 - triggering callback
+2023-11-21 10:14:47,077 - paho - DEBUG - Sending SUBSCRIBE (d0, m8) [(b'$iothub/methods/POST/#', 1)]
+2023-11-21 10:14:47,140 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in pipeline thread
+2023-11-21 10:14:47,298 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.subscribe returned rc=0
+2023-11-21 10:14:47,298 - azure.iot.device.common.mqtt_transport - DEBUG - Waiting for response on MID: 8
+2023-11-21 10:14:47,298 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTSubscribeOperation): SUBACK received. completing op.
+2023-11-21 10:14:47,298 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - MQTTSubscribeOperation: completing without error
+2023-11-21 10:14:47,298 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Cancelling timer
+2023-11-21 10:14:47,298 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: Worker op (MQTTSubscribeOperation) has been completed
+2023-11-21 10:14:47,298 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: completing without error
+2023-11-21 10:14:47,298 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in callback thread
+2023-11-21 10:14:47,298 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: creating worker op of type MQTTSubscribeOperation
+2023-11-21 10:14:47,298 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Creating timer
+2023-11-21 10:14:47,361 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result None
+2023-11-21 10:14:47,392 - azure.iot.device.iothub.aio.async_clients - INFO - Successfully enabled feature:methods
+2023-11-21 10:14:47,392 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Sending down
+2023-11-21 10:14:47,470 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTSubscribeOperation): subscribing to $iothub/methods/POST/#
+2023-11-21 10:14:47,518 - azure.iot.device.common.mqtt_transport - INFO - subscribing to $iothub/methods/POST/# with qos 1
+2023-11-21 10:14:47,518 - azure.iot.device.iothub.aio.async_clients - INFO - Waiting for method request...
+2023-11-21 10:14:47,518 - paho - DEBUG - Sending SUBSCRIBE (d0, m9) [(b'$iothub/methods/POST/#', 1)]
+2023-11-21 10:14:47,613 - paho - DEBUG - Received SUBACK
+2023-11-21 10:14:47,613 - azure.iot.device.common.mqtt_transport - INFO - suback received for 8
+2023-11-21 10:14:47,613 - azure.iot.device.common.mqtt_transport - DEBUG - Response received for recognized MID: 8 - triggering callback
+2023-11-21 10:14:47,613 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in pipeline thread
+2023-11-21 10:14:47,613 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.subscribe returned rc=0
+2023-11-21 10:14:47,628 - azure.iot.device.common.mqtt_transport - DEBUG - Waiting for response on MID: 9
+2023-11-21 10:14:47,628 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: creating worker op of type MQTTSubscribeOperation
+2023-11-21 10:14:47,628 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Creating timer
+2023-11-21 10:14:47,675 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Sending down
+2023-11-21 10:14:47,739 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTSubscribeOperation): subscribing to $iothub/methods/POST/#
+2023-11-21 10:14:47,771 - paho - DEBUG - Received SUBACK
+2023-11-21 10:14:47,802 - azure.iot.device.common.mqtt_transport - INFO - subscribing to $iothub/methods/POST/# with qos 1
+2023-11-21 10:14:47,881 - azure.iot.device.common.mqtt_transport - INFO - suback received for 9
+2023-11-21 10:14:47,975 - paho - DEBUG - Sending SUBSCRIBE (d0, m10) [(b'$iothub/methods/POST/#', 1)]
+2023-11-21 10:14:48,022 - azure.iot.device.common.mqtt_transport - DEBUG - Response received for recognized MID: 9 - triggering callback
+2023-11-21 10:14:48,117 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.subscribe returned rc=0
+2023-11-21 10:14:48,179 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in pipeline thread
+2023-11-21 10:14:48,241 - azure.iot.device.common.mqtt_transport - DEBUG - Waiting for response on MID: 10
+2023-11-21 10:14:48,288 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: creating worker op of type MQTTSubscribeOperation
+2023-11-21 10:14:48,288 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Creating timer
+2023-11-21 10:14:48,350 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Sending down
+2023-11-21 10:14:48,350 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTSubscribeOperation): subscribing to $iothub/methods/POST/#
+2023-11-21 10:14:48,350 - azure.iot.device.common.mqtt_transport - INFO - subscribing to $iothub/methods/POST/# with qos 1
+2023-11-21 10:14:48,350 - paho - DEBUG - Received SUBACK
+2023-11-21 10:14:48,351 - paho - DEBUG - Sending SUBSCRIBE (d0, m11) [(b'$iothub/methods/POST/#', 1)]
+2023-11-21 10:14:48,412 - azure.iot.device.common.mqtt_transport - INFO - suback received for 10
+2023-11-21 10:14:48,521 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.subscribe returned rc=0
+2023-11-21 10:14:48,567 - azure.iot.device.common.mqtt_transport - DEBUG - Response received for recognized MID: 10 - triggering callback
+2023-11-21 10:14:48,645 - azure.iot.device.common.mqtt_transport - DEBUG - Waiting for response on MID: 11
+2023-11-21 10:14:48,708 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in pipeline thread
+2023-11-21 10:14:48,740 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendD2CMessageOperation: creating worker op of type MQTTPublishOperation
+2023-11-21 10:14:48,991 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTPublishOperation): publishing on devices/URCobot/messages/events/%24.ct=application%2Fjson&%24.ce=utf-8
+2023-11-21 10:14:49,006 - azure.iot.device.common.mqtt_transport - INFO - publishing on devices/URCobot/messages/events/%24.ct=application%2Fjson&%24.ce=utf-8
+2023-11-21 10:14:49,022 - paho - DEBUG - Sending PUBLISH (d0, q1, r0, m12), 'b'devices/URCobot/messages/events/%24.ct=application%2Fjson&%24.ce=utf-8'', ... (2329 bytes)
+2023-11-21 10:14:49,038 - paho - DEBUG - Received SUBACK
+2023-11-21 10:14:49,133 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.publish returned rc=0
+2023-11-21 10:14:49,181 - azure.iot.device.common.mqtt_transport - INFO - suback received for 11
+2023-11-21 10:14:49,228 - azure.iot.device.common.mqtt_transport - DEBUG - Waiting for response on MID: 12
+2023-11-21 10:14:49,384 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTSubscribeOperation): SUBACK received. completing op.
+2023-11-21 10:14:49,400 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - MQTTSubscribeOperation: completing without error
+2023-11-21 10:14:49,400 - azure.iot.device.common.mqtt_transport - DEBUG - Response received for recognized MID: 11 - triggering callback
+2023-11-21 10:14:49,431 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Cancelling timer
+2023-11-21 10:14:49,605 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in pipeline thread
+2023-11-21 10:14:49,652 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: Worker op (MQTTSubscribeOperation) has been completed
+2023-11-21 10:14:49,793 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: completing without error
+2023-11-21 10:14:49,857 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in callback thread
+2023-11-21 10:14:49,889 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTSubscribeOperation): SUBACK received. completing op.
+2023-11-21 10:14:49,889 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - MQTTSubscribeOperation: completing without error
+2023-11-21 10:14:49,889 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Cancelling timer
+2023-11-21 10:14:49,889 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: Worker op (MQTTSubscribeOperation) has been completed
+2023-11-21 10:14:49,889 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: completing without error
+2023-11-21 10:14:49,889 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in callback thread
+2023-11-21 10:14:49,889 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: creating worker op of type MQTTSubscribeOperation
+2023-11-21 10:14:49,890 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Creating timer
+2023-11-21 10:14:49,905 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result None
+2023-11-21 10:14:49,936 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result None
+2023-11-21 10:14:49,936 - azure.iot.device.iothub.aio.async_clients - INFO - Successfully enabled feature:methods
+2023-11-21 10:14:49,983 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Sending down
+2023-11-21 10:14:50,092 - azure.iot.device.iothub.aio.async_clients - INFO - Waiting for method request...
+2023-11-21 10:14:50,092 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTSubscribeOperation): subscribing to $iothub/methods/POST/#
+2023-11-21 10:14:50,201 - azure.iot.device.common.mqtt_transport - INFO - subscribing to $iothub/methods/POST/# with qos 1
+2023-11-21 10:14:50,201 - azure.iot.device.iothub.aio.async_clients - INFO - Successfully enabled feature:methods
+2023-11-21 10:14:50,201 - paho - DEBUG - Received PUBACK (Mid: 12)
+2023-11-21 10:14:50,233 - paho - DEBUG - Sending SUBSCRIBE (d0, m1) [(b'$iothub/methods/POST/#', 1)]
+2023-11-21 10:14:50,358 - azure.iot.device.common.mqtt_transport - INFO - payload published for 12
+2023-11-21 10:14:50,452 - azure.iot.device.iothub.aio.async_clients - INFO - Waiting for method request...
+2023-11-21 10:14:50,499 - azure.iot.device.common.mqtt_transport - DEBUG - Response received for recognized MID: 12 - triggering callback
+2023-11-21 10:14:50,499 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.subscribe returned rc=0
+2023-11-21 10:14:50,653 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in pipeline thread
+2023-11-21 10:14:50,653 - paho - DEBUG - Received SUBACK
+2023-11-21 10:14:50,716 - azure.iot.device.common.mqtt_transport - DEBUG - Waiting for response on MID: 1
+2023-11-21 10:14:50,874 - azure.iot.device.common.mqtt_transport - INFO - suback received for 1
+2023-11-21 10:14:50,922 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTSubscribeOperation): SUBACK received. completing op.
+2023-11-21 10:14:51,018 - azure.iot.device.common.mqtt_transport - DEBUG - Response received for recognized MID: 1 - triggering callback
+2023-11-21 10:14:51,113 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - MQTTSubscribeOperation: completing without error
+2023-11-21 10:14:51,207 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in pipeline thread
+2023-11-21 10:14:51,255 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Cancelling timer
+2023-11-21 10:14:51,428 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: Worker op (MQTTSubscribeOperation) has been completed
+2023-11-21 10:14:51,428 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: completing without error
+2023-11-21 10:14:51,428 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in callback thread
+2023-11-21 10:14:51,428 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: creating worker op of type MQTTSubscribeOperation
+2023-11-21 10:14:51,428 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Creating timer
+2023-11-21 10:14:51,429 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result None
+2023-11-21 10:14:51,475 - azure.iot.device.iothub.aio.async_clients - INFO - Successfully enabled feature:methods
+2023-11-21 10:14:51,506 - azure.iot.device.iothub.aio.async_clients - INFO - Waiting for method request...
+2023-11-21 10:14:51,506 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Sending down
+2023-11-21 10:14:51,585 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTSubscribeOperation): subscribing to $iothub/methods/POST/#
+2023-11-21 10:14:51,633 - azure.iot.device.common.mqtt_transport - INFO - subscribing to $iothub/methods/POST/# with qos 1
+2023-11-21 10:14:51,681 - paho - DEBUG - Sending SUBSCRIBE (d0, m2) [(b'$iothub/methods/POST/#', 1)]
+2023-11-21 10:14:51,729 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.subscribe returned rc=0
+2023-11-21 10:14:51,729 - azure.iot.device.common.mqtt_transport - DEBUG - Waiting for response on MID: 2
+2023-11-21 10:14:51,729 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTSubscribeOperation): SUBACK received. completing op.
+2023-11-21 10:14:51,729 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - MQTTSubscribeOperation: completing without error
+2023-11-21 10:14:51,729 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Cancelling timer
+2023-11-21 10:14:51,729 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: Worker op (MQTTSubscribeOperation) has been completed
+2023-11-21 10:14:51,729 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: completing without error
+2023-11-21 10:14:51,729 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in callback thread
+2023-11-21 10:14:51,730 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: creating worker op of type MQTTSubscribeOperation
+2023-11-21 10:14:51,730 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Creating timer
+2023-11-21 10:14:51,793 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result None
+2023-11-21 10:14:51,840 - paho - DEBUG - Received SUBACK
+2023-11-21 10:14:51,840 - azure.iot.device.iothub.aio.async_clients - INFO - Successfully enabled feature:methods
+2023-11-21 10:14:51,840 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Sending down
+2023-11-21 10:14:51,887 - azure.iot.device.common.mqtt_transport - INFO - suback received for 2
+2023-11-21 10:14:52,028 - azure.iot.device.iothub.aio.async_clients - INFO - Waiting for method request...
+2023-11-21 10:14:52,075 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTSubscribeOperation): subscribing to $iothub/methods/POST/#
+2023-11-21 10:14:52,153 - azure.iot.device.common.mqtt_transport - DEBUG - Response received for recognized MID: 2 - triggering callback
+2023-11-21 10:14:52,277 - azure.iot.device.common.mqtt_transport - INFO - subscribing to $iothub/methods/POST/# with qos 1
+2023-11-21 10:14:52,357 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in pipeline thread
+2023-11-21 10:14:52,389 - paho - DEBUG - Sending SUBSCRIBE (d0, m3) [(b'$iothub/methods/POST/#', 1)]
+2023-11-21 10:14:52,545 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.subscribe returned rc=0
+2023-11-21 10:14:52,577 - azure.iot.device.common.mqtt_transport - DEBUG - Waiting for response on MID: 3
+2023-11-21 10:14:52,625 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTSubscribeOperation): SUBACK received. completing op.
+2023-11-21 10:14:52,625 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - MQTTSubscribeOperation: completing without error
+2023-11-21 10:14:52,625 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Cancelling timer
+2023-11-21 10:14:52,625 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: Worker op (MQTTSubscribeOperation) has been completed
+2023-11-21 10:14:52,625 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: completing without error
+2023-11-21 10:14:52,625 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in callback thread
+2023-11-21 10:14:52,625 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendD2CMessageOperation: creating worker op of type MQTTPublishOperation
+2023-11-21 10:14:52,626 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTPublishOperation): publishing on devices/URGripper/messages/events/%24.ct=application%2Fjson&%24.ce=utf-8
+2023-11-21 10:14:52,626 - azure.iot.device.common.mqtt_transport - INFO - publishing on devices/URGripper/messages/events/%24.ct=application%2Fjson&%24.ce=utf-8
+2023-11-21 10:14:52,626 - paho - DEBUG - Sending PUBLISH (d0, q1, r0, m4), 'b'devices/URGripper/messages/events/%24.ct=application%2Fjson&%24.ce=utf-8'', ... (95 bytes)
+2023-11-21 10:14:52,641 - paho - DEBUG - Received SUBACK
+2023-11-21 10:14:52,641 - azure.iot.device.common.mqtt_transport - INFO - suback received for 3
+2023-11-21 10:14:52,641 - azure.iot.device.common.mqtt_transport - DEBUG - Response received for recognized MID: 3 - triggering callback
+2023-11-21 10:14:52,641 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in pipeline thread
+2023-11-21 10:14:52,657 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.publish returned rc=0
+2023-11-21 10:14:52,657 - azure.iot.device.common.mqtt_transport - DEBUG - Waiting for response on MID: 4
+2023-11-21 10:14:52,657 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTSubscribeOperation): SUBACK received. completing op.
+2023-11-21 10:14:52,657 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - MQTTSubscribeOperation: completing without error
+2023-11-21 10:14:52,657 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Cancelling timer
+2023-11-21 10:14:52,657 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: Worker op (MQTTSubscribeOperation) has been completed
+2023-11-21 10:14:52,657 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: completing without error
+2023-11-21 10:14:52,657 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in callback thread
+2023-11-21 10:14:52,657 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTSubscribeOperation): SUBACK received. completing op.
+2023-11-21 10:14:52,657 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - MQTTSubscribeOperation: completing without error
+2023-11-21 10:14:52,657 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Cancelling timer
+2023-11-21 10:14:52,657 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: Worker op (MQTTSubscribeOperation) has been completed
+2023-11-21 10:14:52,658 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: completing without error
+2023-11-21 10:14:52,658 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in callback thread
+2023-11-21 10:14:52,658 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTSubscribeOperation): SUBACK received. completing op.
+2023-11-21 10:14:52,658 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - MQTTSubscribeOperation: completing without error
+2023-11-21 10:14:52,658 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Cancelling timer
+2023-11-21 10:14:52,658 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: Worker op (MQTTSubscribeOperation) has been completed
+2023-11-21 10:14:52,658 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: completing without error
+2023-11-21 10:14:52,658 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in callback thread
+2023-11-21 10:14:52,658 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTSubscribeOperation): SUBACK received. completing op.
+2023-11-21 10:14:52,658 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - MQTTSubscribeOperation: completing without error
+2023-11-21 10:14:52,658 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Cancelling timer
+2023-11-21 10:14:52,658 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: Worker op (MQTTSubscribeOperation) has been completed
+2023-11-21 10:14:52,673 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result None
+2023-11-21 10:14:52,767 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: completing without error
+2023-11-21 10:14:52,830 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result None
+2023-11-21 10:14:52,831 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in callback thread
+2023-11-21 10:14:52,862 - azure.iot.device.iothub.aio.async_clients - INFO - Successfully enabled feature:methods
+2023-11-21 10:14:52,940 - paho - DEBUG - Received PUBACK (Mid: 4)
+2023-11-21 10:14:52,940 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result None
+2023-11-21 10:14:52,986 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTSubscribeOperation): SUBACK received. completing op.
+2023-11-21 10:14:53,114 - azure.iot.device.iothub.aio.async_clients - INFO - Waiting for method request...
+2023-11-21 10:14:53,176 - azure.iot.device.common.mqtt_transport - INFO - payload published for 4
+2023-11-21 10:14:53,288 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result None
+2023-11-21 10:14:53,304 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - MQTTSubscribeOperation: completing without error
+2023-11-21 10:14:53,383 - azure.iot.device.common.mqtt_transport - DEBUG - Response received for recognized MID: 4 - triggering callback
+2023-11-21 10:14:53,431 - azure.iot.device.iothub.aio.async_clients - INFO - Successfully enabled feature:methods
+2023-11-21 10:14:53,431 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Cancelling timer
+2023-11-21 10:14:53,461 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result None
+2023-11-21 10:14:53,540 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in pipeline thread
+2023-11-21 10:14:53,681 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: Worker op (MQTTSubscribeOperation) has been completed
+2023-11-21 10:14:53,681 - azure.iot.device.iothub.aio.async_clients - INFO - Waiting for method request...
+2023-11-21 10:14:53,854 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: completing without error
+2023-11-21 10:14:53,994 - azure.iot.device.iothub.aio.async_clients - INFO - Successfully enabled feature:methods
+2023-11-21 10:14:54,074 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in callback thread
+2023-11-21 10:14:54,184 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTPublishOperation): PUBACK received. completing op.
+2023-11-21 10:14:54,199 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result None
+2023-11-21 10:14:54,199 - azure.iot.device.iothub.aio.async_clients - INFO - Waiting for method request...
+2023-11-21 10:14:54,199 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - MQTTPublishOperation: completing without error
+2023-11-21 10:14:54,372 - azure.iot.device.iothub.aio.async_clients - INFO - Successfully enabled feature:methods
+2023-11-21 10:14:54,387 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendD2CMessageOperation: Worker op (MQTTPublishOperation) has been completed
+2023-11-21 10:14:54,499 - azure.iot.device.iothub.aio.async_clients - INFO - Waiting for method request...
+2023-11-21 10:14:54,562 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendD2CMessageOperation: completing without error
+2023-11-21 10:14:54,672 - azure.iot.device.iothub.aio.async_clients - INFO - Successfully enabled feature:methods
+2023-11-21 10:14:54,718 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in callback thread
+2023-11-21 10:14:54,811 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTSubscribeOperation): SUBACK received. completing op.
+2023-11-21 10:14:54,811 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - MQTTSubscribeOperation: completing without error
+2023-11-21 10:14:54,811 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Cancelling timer
+2023-11-21 10:14:54,811 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: Worker op (MQTTSubscribeOperation) has been completed
+2023-11-21 10:14:54,811 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: completing without error
+2023-11-21 10:14:54,811 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in callback thread
+2023-11-21 10:14:54,811 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTSubscribeOperation): SUBACK received. completing op.
+2023-11-21 10:14:54,811 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - MQTTSubscribeOperation: completing without error
+2023-11-21 10:14:54,811 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Cancelling timer
+2023-11-21 10:14:54,811 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: Worker op (MQTTSubscribeOperation) has been completed
+2023-11-21 10:14:54,812 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: completing without error
+2023-11-21 10:14:54,812 - azure.iot.device.iothub.aio.async_clients - INFO - Waiting for method request...
+2023-11-21 10:14:54,812 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result None
+2023-11-21 10:14:54,857 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in callback thread
+2023-11-21 10:14:54,966 - azure.iot.device.iothub.aio.async_clients - INFO - Successfully enabled feature:methods
+2023-11-21 10:14:55,124 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result None
+2023-11-21 10:14:55,156 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTSubscribeOperation): SUBACK received. completing op.
+2023-11-21 10:14:55,342 - azure.iot.device.iothub.aio.async_clients - INFO - Waiting for method request...
+2023-11-21 10:14:55,374 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result None
+2023-11-21 10:14:55,374 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - MQTTSubscribeOperation: completing without error
+2023-11-21 10:14:55,548 - azure.iot.device.iothub.aio.async_clients - INFO - Successfully sent message to Hub
+2023-11-21 10:14:55,548 - azure.iot.device.common.pipeline.pipeline_stages_base - DEBUG - OpTimeoutStage(MQTTSubscribeOperation): Cancelling timer
+2023-11-21 10:14:55,578 - azure.iot.device.iothub.aio.async_clients - INFO - Successfully enabled feature:methods
+2023-11-21 10:14:55,656 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: Worker op (MQTTSubscribeOperation) has been completed
+2023-11-21 10:14:55,735 - azure.iot.device.iothub.aio.async_clients - INFO - Waiting for method request...
+2023-11-21 10:14:55,735 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - EnableFeatureOperation: completing without error
+2023-11-21 10:14:55,829 - azure.iot.device.iothub.aio.async_clients - INFO - Successfully enabled feature:methods
+2023-11-21 10:14:55,954 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in callback thread
+2023-11-21 10:14:56,141 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTPublishOperation): PUBACK received. completing op.
+2023-11-21 10:14:56,141 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - MQTTPublishOperation: completing without error
+2023-11-21 10:14:56,141 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendD2CMessageOperation: Worker op (MQTTPublishOperation) has been completed
+2023-11-21 10:14:56,141 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendD2CMessageOperation: completing without error
+2023-11-21 10:14:56,141 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in callback thread
+2023-11-21 10:14:56,157 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result None
+2023-11-21 10:14:56,157 - azure.iot.device.iothub.aio.async_clients - INFO - Waiting for method request...
+2023-11-21 10:14:56,284 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result None
+2023-11-21 10:14:56,408 - azure.iot.device.iothub.aio.async_clients - INFO - Successfully enabled feature:methods
+2023-11-21 10:14:56,502 - azure.iot.device.iothub.aio.async_clients - INFO - Waiting for method request...
+2023-11-21 10:14:56,534 - azure.iot.device.iothub.aio.async_clients - INFO - Successfully sent message to Hub
+2023-11-21 10:15:00,592 - root - INFO - [100.69370529836664, -1.7518923613764608, 43.36478753552211, -5.436619675957531, -94.0863211478505, -45.33643305463949]
+2023-11-21 10:15:00,607 - root - INFO - {
+ "target_q": [
+  -0.9081720788292975,
+  1.7395278766060314,
+  -1.2890301207986594,
+  -1.4876215880884947,
+  -1.6633573202978416,
+  -1.5601614786986506
+ ],
+ "target_qd": [
+  1.6735816480772205,
+  -0.15276950662420452,
+  0.7442179409931449,
+  0.5629913821078365,
+  -1.4084987370462991,
+  0.034308741664917264
+ ],
+ "target_qdd": [
+  0.3968199000997419,
+  0.8302404105162611,
+  0.43104840141023204,
+  1.731739915619462,
+  -1.5754050876772665,
+  -0.6829007982003132
+ ],
+ "target_current": [
+  0.4560673268319917,
+  -0.8707361245105378,
+  -0.11950232813292327,
+  -1.5793034976902627,
+  1.332884517357865,
+  -2.5177527061513114
+ ],
+ "target_moment": [
+  87.60225948330725,
+  3.2456363539891413,
+  -27.1678690067749,
+  0.4293960353033839,
+  0.23353059523657294,
+  -68.18132508578245
+ ],
+ "actual_current": [
+  2.2286658459674618,
+  2.6468451015712047,
+  2.6849883601590134,
+  -2.643264004650054,
+  -0.33714088804594144,
+  2.9334829915102905
+ ],
+ "actual_q": [
+  1.757436693489357,
+  -0.03057628984655758,
+  0.7568583219226583,
+  -0.09488691352416612,
+  -1.6421160851187617,
+  -0.7912700279134495
+ ],
+ "actual_qd": [
+  -0.29177200512098667,
+  0.36940030942602253,
+  0.42713292507093414,
+  0.8221315530681925,
+  -1.1188151056483484,
+  1.1476582088451972
+ ],
+ "joint_control_output": [
+  2.9635435959665966,
+  0.5498979116638044,
+  2.162511978081448,
+  2.6200935590383954,
+  0.5197891014254785,
+  2.5422691055907114
+ ],
+ "actual_tcp_force": [
+  0.21310516991459022,
+  1.2025931036062323,
+  1.1889180783368758,
+  1.4042389050619983,
+  0.2497218722622839,
+  1.515138861846218
+ ],
+ "joint_temperatures": [
+  25.091412129717057,
+  24.60617178221994,
+  24.63767233313983,
+  24.21564926122712,
+  24.29805840993597,
+  24.5802788337666
+ ],
+ "joint_mode": [
+  254.14656063830978,
+  254.73755806335544,
+  254.28550783024778,
+  253.61574398878162,
+  253.24362793538424,
+  254.8251747377919
+ ],
+ "actual_tool_accelerometer": [
+  0.49165482942767014,
+  -8.178588942540877,
+  -2.480637359323558
+ ],
+ "speed_scaling": 0.40854188979629624,
+ "actual_momentum": 0.023683186205088136,
+ "actual_main_voltage": 48.111564343233574,
+ "actual_robot_voltage": 48.00908582978465,
+ "actual_robot_current": 0.297145846138482,
+ "actual_joint_voltage": [
+  0.16320993877092294,
+  -0.17189552262412588,
+  -0.004007039470701246,
+  0.15180651717056315,
+  0.22979777138057322,
+  0.045268664230948774
+ ],
+ "runtime_state": 1,
+ "robot_mode": 6,
+ "safety_mode": 0,
+ "analog_io_types": 1,
+ "io_current": 0.08826821974671556,
+ "tool_mode": 253,
+ "tool_output_voltage": 0,
+ "tool_output_current": 0.03020548433425657
+}
+2023-11-21 10:15:00,623 - azure.iot.device.iothub.aio.async_clients - INFO - Sending message to Hub...
+2023-11-21 10:15:00,702 - azure.iot.device.iothub.pipeline.mqtt_pipeline - DEBUG - Starting SendD2CMessageOperation on the pipeline
+2023-11-21 10:15:00,733 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:15:00,781 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendD2CMessageOperation: creating worker op of type MQTTPublishOperation
+2023-11-21 10:15:00,797 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTPublishOperation): publishing on devices/URCobot/messages/events/%24.ct=application%2Fjson&%24.ce=utf-8
+2023-11-21 10:15:00,812 - azure.iot.device.common.mqtt_transport - INFO - publishing on devices/URCobot/messages/events/%24.ct=application%2Fjson&%24.ce=utf-8
+2023-11-21 10:15:00,843 - paho - DEBUG - Sending PUBLISH (d0, q1, r0, m13), 'b'devices/URCobot/messages/events/%24.ct=application%2Fjson&%24.ce=utf-8'', ... (2336 bytes)
+2023-11-21 10:15:00,905 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.publish returned rc=0
+2023-11-21 10:15:00,969 - azure.iot.device.common.mqtt_transport - DEBUG - Waiting for response on MID: 13
+2023-11-21 10:15:01,017 - paho - DEBUG - Received PUBACK (Mid: 13)
+2023-11-21 10:15:01,097 - azure.iot.device.common.mqtt_transport - INFO - payload published for 13
+2023-11-21 10:15:01,158 - azure.iot.device.common.mqtt_transport - DEBUG - Response received for recognized MID: 13 - triggering callback
+2023-11-21 10:15:01,221 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in pipeline thread
+2023-11-21 10:15:01,300 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTPublishOperation): PUBACK received. completing op.
+2023-11-21 10:15:01,331 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - MQTTPublishOperation: completing without error
+2023-11-21 10:15:01,362 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendD2CMessageOperation: Worker op (MQTTPublishOperation) has been completed
+2023-11-21 10:15:01,378 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendD2CMessageOperation: completing without error
+2023-11-21 10:15:01,474 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in callback thread
+2023-11-21 10:15:01,553 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result None
+2023-11-21 10:15:01,553 - root - INFO - {
+ "act": 0,
+ "gto": 0,
+ "for": 44,
+ "spe": 82,
+ "pos": 59,
+ "sta": 1,
+ "pre": 123,
+ "obj": 3,
+ "flt": 5
+}
+2023-11-21 10:15:01,678 - azure.iot.device.iothub.aio.async_clients - INFO - Sending message to Hub...
+2023-11-21 10:15:01,693 - azure.iot.device.iothub.aio.async_clients - INFO - Successfully sent message to Hub
+2023-11-21 10:15:01,709 - azure.iot.device.iothub.pipeline.mqtt_pipeline - DEBUG - Starting SendD2CMessageOperation on the pipeline
+2023-11-21 10:15:01,770 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:15:01,818 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendD2CMessageOperation: creating worker op of type MQTTPublishOperation
+2023-11-21 10:15:01,834 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTPublishOperation): publishing on devices/URGripper/messages/events/%24.ct=application%2Fjson&%24.ce=utf-8
+2023-11-21 10:15:01,866 - azure.iot.device.common.mqtt_transport - INFO - publishing on devices/URGripper/messages/events/%24.ct=application%2Fjson&%24.ce=utf-8
+2023-11-21 10:15:01,882 - paho - DEBUG - Sending PUBLISH (d0, q1, r0, m5), 'b'devices/URGripper/messages/events/%24.ct=application%2Fjson&%24.ce=utf-8'', ... (95 bytes)
+2023-11-21 10:15:01,975 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.publish returned rc=0
+2023-11-21 10:15:01,991 - azure.iot.device.common.mqtt_transport - DEBUG - Waiting for response on MID: 5
+2023-11-21 10:15:02,116 - paho - DEBUG - Received PUBACK (Mid: 5)
+2023-11-21 10:15:02,148 - azure.iot.device.common.mqtt_transport - INFO - payload published for 5
+2023-11-21 10:15:02,210 - azure.iot.device.common.mqtt_transport - DEBUG - Response received for recognized MID: 5 - triggering callback
+2023-11-21 10:15:02,242 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in pipeline thread
+2023-11-21 10:15:02,320 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTPublishOperation): PUBACK received. completing op.
+2023-11-21 10:15:02,368 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - MQTTPublishOperation: completing without error
+2023-11-21 10:15:02,400 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendD2CMessageOperation: Worker op (MQTTPublishOperation) has been completed
+2023-11-21 10:15:02,432 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendD2CMessageOperation: completing without error
+2023-11-21 10:15:02,448 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in callback thread
+2023-11-21 10:15:02,510 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result None
+2023-11-21 10:15:02,622 - azure.iot.device.iothub.aio.async_clients - INFO - Successfully sent message to Hub
+2023-11-21 10:15:05,560 - paho - DEBUG - Received PUBLISH (d0, q0, r0, m0), '$iothub/methods/POST/MoveJCommand/?$rid=1', ...  (430 bytes)
+2023-11-21 10:15:05,576 - azure.iot.device.common.mqtt_transport - INFO - message received on $iothub/methods/POST/MoveJCommand/?$rid=1
+2023-11-21 10:15:05,608 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting _on_mqtt_message_received in pipeline thread
+2023-11-21 10:15:05,639 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage: message received on topic $iothub/methods/POST/MoveJCommand/?$rid=1
+2023-11-21 10:15:05,639 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting _on_pipeline_event in callback thread
+2023-11-21 10:15:05,857 - azure.iot.device.iothub.aio.async_clients - INFO - Received method request
+2023-11-21 10:15:05,930 - azure.iot.device.iothub.aio.async_clients - INFO - Sending method response to Hub...
+2023-11-21 10:15:06,032 - azure.iot.device.iothub.pipeline.mqtt_pipeline - DEBUG - Starting SendMethodResponseOperation on the pipeline
+2023-11-21 10:15:06,126 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:15:06,158 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendMethodResponseOperation: creating worker op of type MQTTPublishOperation
+2023-11-21 10:15:06,190 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTPublishOperation): publishing on $iothub/methods/res/200/?$rid=1
+2023-11-21 10:15:06,236 - azure.iot.device.common.mqtt_transport - INFO - publishing on $iothub/methods/res/200/?$rid=1
+2023-11-21 10:15:06,268 - paho - DEBUG - Sending PUBLISH (d0, q1, r0, m14), 'b'$iothub/methods/res/200/?$rid=1'', ... (216 bytes)
+2023-11-21 10:15:06,316 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.publish returned rc=0
+2023-11-21 10:15:06,316 - azure.iot.device.common.mqtt_transport - DEBUG - Waiting for response on MID: 14
+2023-11-21 10:15:06,502 - paho - DEBUG - Received PUBLISH (d0, q0, r0, m0), '$iothub/methods/POST/OpenGripperCommand/?$rid=1', ...  (2 bytes)
+2023-11-21 10:15:06,502 - azure.iot.device.common.mqtt_transport - INFO - message received on $iothub/methods/POST/OpenGripperCommand/?$rid=1
+2023-11-21 10:15:06,502 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting _on_mqtt_message_received in pipeline thread
+2023-11-21 10:15:06,518 - paho - DEBUG - Received PUBACK (Mid: 14)
+2023-11-21 10:15:06,518 - azure.iot.device.common.mqtt_transport - INFO - payload published for 14
+2023-11-21 10:15:06,518 - azure.iot.device.common.mqtt_transport - DEBUG - Response received for recognized MID: 14 - triggering callback
+2023-11-21 10:15:06,518 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in pipeline thread
+2023-11-21 10:15:06,534 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage: message received on topic $iothub/methods/POST/OpenGripperCommand/?$rid=1
+2023-11-21 10:15:06,566 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting _on_pipeline_event in callback thread
+2023-11-21 10:15:06,566 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTPublishOperation): PUBACK received. completing op.
+2023-11-21 10:15:06,566 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - MQTTPublishOperation: completing without error
+2023-11-21 10:15:06,566 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendMethodResponseOperation: Worker op (MQTTPublishOperation) has been completed
+2023-11-21 10:15:06,566 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendMethodResponseOperation: completing without error
+2023-11-21 10:15:06,566 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in callback thread
+2023-11-21 10:15:06,597 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result None
+2023-11-21 10:15:06,628 - azure.iot.device.iothub.aio.async_clients - INFO - Successfully sent method response to Hub
+2023-11-21 10:15:06,628 - azure.iot.device.iothub.aio.async_clients - INFO - Waiting for method request...
+2023-11-21 10:15:06,847 - azure.iot.device.iothub.aio.async_clients - INFO - Received method request
+2023-11-21 10:15:07,864 - azure.iot.device.iothub.aio.async_clients - INFO - Sending method response to Hub...
+2023-11-21 10:15:07,880 - root - INFO - [100.20005171122109, 68.63258191345884, -2.6280327618176846, -0.7100518448713421, -64.00942462804193, -42.515947463435865]
+2023-11-21 10:15:07,880 - root - INFO - {
+ "target_q": [
+  -0.5913621064322978,
+  1.3452266034882536,
+  1.0826002772865857,
+  -0.6834921743580304,
+  -0.7598523991401545,
+  -1.255336991474962
+ ],
+ "target_qd": [
+  1.7819921338372098,
+  -0.6850094996721385,
+  1.390029400256157,
+  0.4569156325105388,
+  -1.1234137777720674,
+  0.591730468487943
+ ],
+ "target_qdd": [
+  -0.287439533915016,
+  0.8634002602869775,
+  0.0468982290373221,
+  -1.5900257721523783,
+  1.3071436166293948,
+  -0.3099489136945841
+ ],
+ "target_current": [
+  1.0040943942184546,
+  -1.129545856490826,
+  -0.4170338338159931,
+  2.0595293230347362,
+  -2.5517819705867355,
+  -1.0156165951724017
+ ],
+ "target_moment": [
+  69.75800016599399,
+  -5.705747369085856,
+  87.98246835026879,
+  -48.636295779292155,
+  -17.742983031218827,
+  -61.155284862500025
+ ],
+ "actual_current": [
+  1.1263561958425656,
+  2.4248386633477974,
+  -1.993737752927531,
+  1.4110535814854286,
+  -0.06162495408198598,
+  -2.4204302002973357
+ ],
+ "actual_q": [
+  1.7488208130293865,
+  1.1978645285345666,
+  -0.045867824543998514,
+  -0.012392742552864933,
+  -1.1171752120664782,
+  -0.7420432678418873
+ ],
+ "actual_qd": [
+  -1.4974944662715333,
+  -1.0736905594879165,
+  0.9181884000554719,
+  -1.7452528010169563,
+  1.0171320601353535,
+  -1.710759580904135
+ ],
+ "joint_control_output": [
+  1.0973911061395563,
+  0.8179794343174629,
+  2.713423557966595,
+  2.657456653830346,
+  2.063857114853849,
+  0.04993872414967471
+ ],
+ "actual_tcp_force": [
+  1.2821873474685737,
+  0.6110177937214075,
+  1.2915407460787587,
+  0.7234334124724024,
+  0.5877223579423612,
+  1.4009721951469702
+ ],
+ "joint_temperatures": [
+  24.764183955101267,
+  24.50536995650771,
+  24.738236887970963,
+  24.505273488354625,
+  25.372384970447392,
+  25.40568552785478
+ ],
+ "joint_mode": [
+  254.55155267262555,
+  254.98069071444976,
+  253.40445121957856,
+  253.7117890806581,
+  254.5867994114824,
+  254.24983956788134
+ ],
+ "actual_tool_accelerometer": [
+  0.43914917698276845,
+  -2.7630939485745216,
+  -4.305668384969922
+ ],
+ "speed_scaling": 0.40036179108377973,
+ "actual_momentum": 0.22764148980695958,
+ "actual_main_voltage": 48.32482264777767,
+ "actual_robot_voltage": 48.256531167204564,
+ "actual_robot_current": 0.3123879094470447,
+ "actual_joint_voltage": [
+  0.11319708665202377,
+  0.2429458000227691,
+  0.4997076832570947,
+  0.25481172555595133,
+  0.2993992867954194,
+  0.22526624027615205
+ ],
+ "runtime_state": 1,
+ "robot_mode": 4,
+ "safety_mode": 1,
+ "analog_io_types": 3,
+ "io_current": 0.17109273697215654,
+ "tool_mode": 253,
+ "tool_output_voltage": 1,
+ "tool_output_current": 0.45329155403562893
+}
+2023-11-21 10:15:07,880 - azure.iot.device.iothub.aio.async_clients - INFO - Sending message to Hub...
+2023-11-21 10:15:07,881 - root - INFO - {
+ "act": 1,
+ "gto": 0,
+ "for": 61,
+ "spe": 77,
+ "pos": 24,
+ "sta": 2,
+ "pre": 118,
+ "obj": 2,
+ "flt": 1
+}
+2023-11-21 10:15:07,881 - azure.iot.device.iothub.aio.async_clients - INFO - Sending message to Hub...
+2023-11-21 10:15:07,881 - azure.iot.device.iothub.pipeline.mqtt_pipeline - DEBUG - Starting SendMethodResponseOperation on the pipeline
+2023-11-21 10:15:07,881 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:15:07,881 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendMethodResponseOperation: creating worker op of type MQTTPublishOperation
+2023-11-21 10:15:07,941 - azure.iot.device.iothub.pipeline.mqtt_pipeline - DEBUG - Starting SendD2CMessageOperation on the pipeline
+2023-11-21 10:15:07,941 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTPublishOperation): publishing on $iothub/methods/res/200/?$rid=1
+2023-11-21 10:15:07,989 - azure.iot.device.iothub.pipeline.mqtt_pipeline - DEBUG - Starting SendD2CMessageOperation on the pipeline
+2023-11-21 10:15:07,989 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:15:08,020 - azure.iot.device.common.mqtt_transport - INFO - publishing on $iothub/methods/res/200/?$rid=1
+2023-11-21 10:15:08,082 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:15:08,192 - paho - DEBUG - Sending PUBLISH (d0, q1, r0, m6), 'b'$iothub/methods/res/200/?$rid=1'', ... (210 bytes)
+2023-11-21 10:15:08,454 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.publish returned rc=0
+2023-11-21 10:15:08,470 - azure.iot.device.common.mqtt_transport - DEBUG - Waiting for response on MID: 6
+2023-11-21 10:15:08,517 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendD2CMessageOperation: creating worker op of type MQTTPublishOperation
+2023-11-21 10:15:08,578 - paho - DEBUG - Received PUBACK (Mid: 6)
+2023-11-21 10:15:08,719 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTPublishOperation): publishing on devices/URCobot/messages/events/%24.ct=application%2Fjson&%24.ce=utf-8
+2023-11-21 10:15:08,843 - azure.iot.device.common.mqtt_transport - INFO - payload published for 6
+2023-11-21 10:15:08,890 - azure.iot.device.common.mqtt_transport - INFO - publishing on devices/URCobot/messages/events/%24.ct=application%2Fjson&%24.ce=utf-8
+2023-11-21 10:15:08,921 - azure.iot.device.common.mqtt_transport - DEBUG - Response received for recognized MID: 6 - triggering callback
+2023-11-21 10:15:08,969 - paho - DEBUG - Sending PUBLISH (d0, q1, r0, m15), 'b'devices/URCobot/messages/events/%24.ct=application%2Fjson&%24.ce=utf-8'', ... (2328 bytes)
+2023-11-21 10:15:09,032 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in pipeline thread
+2023-11-21 10:15:09,125 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.publish returned rc=0
+2023-11-21 10:15:09,125 - azure.iot.device.common.mqtt_transport - DEBUG - Waiting for response on MID: 15
+2023-11-21 10:15:09,141 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendD2CMessageOperation: creating worker op of type MQTTPublishOperation
+2023-11-21 10:15:09,141 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTPublishOperation): publishing on devices/URGripper/messages/events/%24.ct=application%2Fjson&%24.ce=utf-8
+2023-11-21 10:15:09,141 - azure.iot.device.common.mqtt_transport - INFO - publishing on devices/URGripper/messages/events/%24.ct=application%2Fjson&%24.ce=utf-8
+2023-11-21 10:15:09,141 - paho - DEBUG - Sending PUBLISH (d0, q1, r0, m7), 'b'devices/URGripper/messages/events/%24.ct=application%2Fjson&%24.ce=utf-8'', ... (95 bytes)
+2023-11-21 10:15:09,156 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.publish returned rc=0
+2023-11-21 10:15:09,172 - azure.iot.device.common.mqtt_transport - DEBUG - Waiting for response on MID: 7
+2023-11-21 10:15:09,187 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTPublishOperation): PUBACK received. completing op.
+2023-11-21 10:15:09,203 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - MQTTPublishOperation: completing without error
+2023-11-21 10:15:09,203 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendMethodResponseOperation: Worker op (MQTTPublishOperation) has been completed
+2023-11-21 10:15:09,203 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendMethodResponseOperation: completing without error
+2023-11-21 10:15:09,203 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in callback thread
+2023-11-21 10:15:09,312 - paho - DEBUG - Received PUBACK (Mid: 15)
+2023-11-21 10:15:09,328 - azure.iot.device.common.mqtt_transport - INFO - payload published for 15
+2023-11-21 10:15:09,344 - azure.iot.device.common.mqtt_transport - DEBUG - Response received for recognized MID: 15 - triggering callback
+2023-11-21 10:15:09,344 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result None
+2023-11-21 10:15:09,392 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in pipeline thread
+2023-11-21 10:15:09,454 - paho - DEBUG - Received PUBACK (Mid: 7)
+2023-11-21 10:15:09,708 - azure.iot.device.common.mqtt_transport - INFO - payload published for 7
+2023-11-21 10:15:09,709 - azure.iot.device.common.mqtt_transport - DEBUG - Response received for recognized MID: 7 - triggering callback
+2023-11-21 10:15:09,709 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in pipeline thread
+2023-11-21 10:15:09,531 - azure.iot.device.iothub.aio.async_clients - INFO - Successfully sent method response to Hub
+2023-11-21 10:15:09,947 - azure.iot.device.iothub.aio.async_clients - INFO - Waiting for method request...
+2023-11-21 10:15:09,594 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTPublishOperation): PUBACK received. completing op.
+2023-11-21 10:15:09,960 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - MQTTPublishOperation: completing without error
+2023-11-21 10:15:09,960 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendD2CMessageOperation: Worker op (MQTTPublishOperation) has been completed
+2023-11-21 10:15:09,960 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendD2CMessageOperation: completing without error
+2023-11-21 10:15:09,960 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in callback thread
+2023-11-21 10:15:09,961 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTPublishOperation): PUBACK received. completing op.
+2023-11-21 10:15:09,961 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - MQTTPublishOperation: completing without error
+2023-11-21 10:15:09,961 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendD2CMessageOperation: Worker op (MQTTPublishOperation) has been completed
+2023-11-21 10:15:09,961 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendD2CMessageOperation: completing without error
+2023-11-21 10:15:09,961 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in callback thread
+2023-11-21 10:15:10,043 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result None
+2023-11-21 10:15:10,043 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result None
+2023-11-21 10:15:10,044 - azure.iot.device.iothub.aio.async_clients - INFO - Successfully sent message to Hub
+2023-11-21 10:15:10,044 - azure.iot.device.iothub.aio.async_clients - INFO - Successfully sent message to Hub
+2023-11-21 10:15:15,106 - root - INFO - [51.08515146371116, 76.71275835400866, 43.42427068641423, -32.92965953741216, -8.604654330490552, 18.45894436013859]
+2023-11-21 10:15:15,201 - root - INFO - {
+ "target_q": [
+  0.07553128218690697,
+  1.3369537947295866,
+  0.46091989594828875,
+  1.5655744175370125,
+  -1.6844068125091434,
+  -0.7439021591883914
+ ],
+ "target_qd": [
+  -1.2396764313923225,
+  -0.40137167252612205,
+  -1.1943528904877834,
+  1.078226569607282,
+  1.4063475560896948,
+  -0.13750981782139782
+ ],
+ "target_qdd": [
+  0.6643868074467096,
+  1.767782930898732,
+  1.2645636877587212,
+  -1.5063296481262876,
+  1.1763350259700072,
+  1.5508523047854343
+ ],
+ "target_current": [
+  0.3304101566625919,
+  -2.7375130251920394,
+  -0.0777514081712587,
+  1.5978032435677623,
+  -0.5656901198559883,
+  2.9545428118406596
+ ],
+ "target_moment": [
+  -11.354811975323386,
+  -85.68872661826137,
+  21.664568139335955,
+  -32.19178080479872,
+  65.3087926422547,
+  83.46443150726529
+ ],
+ "actual_current": [
+  -2.3031067684901636,
+  -2.249882826236033,
+  -0.9681776112375964,
+  -0.5436913130977903,
+  -1.9730189786018073,
+  2.0579258287082833
+ ],
+ "actual_q": [
+  0.8916040919217603,
+  1.3388902115642367,
+  0.7578964987551864,
+  -0.574730980488595,
+  -0.15017954906304842,
+  0.3221693555268563
+ ],
+ "actual_qd": [
+  0.93878141886656,
+  -1.1928028343887358,
+  -1.2677485507635455,
+  0.16366879153370717,
+  0.795632500517607,
+  -1.0086724401518583
+ ],
+ "joint_control_output": [
+  1.8561244364408767,
+  0.5142757745627334,
+  1.8478219609948368,
+  2.409606026920691,
+  0.4503149886820629,
+  0.7207447086449051
+ ],
+ "actual_tcp_force": [
+  1.1915084781265448,
+  1.3057491296843808,
+  0.9988473300760022,
+  0.10409696759400902,
+  0.020576202226369158,
+  0.059585102260951574
+ ],
+ "joint_temperatures": [
+  25.240507409884792,
+  25.35934584825014,
+  24.988680764610603,
+  24.907465148358,
+  25.23935106789905,
+  24.449077345075597
+ ],
+ "joint_mode": [
+  254.38752300159769,
+  254.72302990546078,
+  253.2116126346753,
+  254.037385430935,
+  254.29933823871096,
+  253.963523553684
+ ],
+ "actual_tool_accelerometer": [
+  -9.212815930271395,
+  0.8152506134470023,
+  -8.190968842104054
+ ],
+ "speed_scaling": 0.41223897761531747,
+ "actual_momentum": 0.47280148593607907,
+ "actual_main_voltage": 48.467742158943,
+ "actual_robot_voltage": 48.48426119852898,
+ "actual_robot_current": 0.41868530002526816,
+ "actual_joint_voltage": [
+  -0.4283957444102534,
+  -0.026236715750980633,
+  -0.4989346973319939,
+  0.025728048434952466,
+  -0.28936992890403845,
+  0.18566381495876472
+ ],
+ "runtime_state": 1,
+ "robot_mode": 4,
+ "safety_mode": 1,
+ "analog_io_types": 1,
+ "io_current": 0.17719792297163656,
+ "tool_mode": 254,
+ "tool_output_voltage": 0,
+ "tool_output_current": 0.3015802094987055
+}
+2023-11-21 10:15:15,231 - azure.iot.device.iothub.aio.async_clients - INFO - Sending message to Hub...
+2023-11-21 10:15:15,278 - root - INFO - {
+ "act": 1,
+ "gto": 1,
+ "for": 64,
+ "spe": 93,
+ "pos": 115,
+ "sta": 0,
+ "pre": 149,
+ "obj": 2,
+ "flt": 15
+}
+2023-11-21 10:15:15,293 - azure.iot.device.iothub.aio.async_clients - INFO - Sending message to Hub...
+2023-11-21 10:15:15,293 - azure.iot.device.iothub.pipeline.mqtt_pipeline - DEBUG - Starting SendD2CMessageOperation on the pipeline
+2023-11-21 10:15:15,387 - azure.iot.device.iothub.pipeline.mqtt_pipeline - DEBUG - Starting SendD2CMessageOperation on the pipeline
+2023-11-21 10:15:15,434 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:15:15,514 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:15:15,561 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendD2CMessageOperation: creating worker op of type MQTTPublishOperation
+2023-11-21 10:15:15,672 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTPublishOperation): publishing on devices/URCobot/messages/events/%24.ct=application%2Fjson&%24.ce=utf-8
+2023-11-21 10:15:15,687 - azure.iot.device.common.mqtt_transport - INFO - publishing on devices/URCobot/messages/events/%24.ct=application%2Fjson&%24.ce=utf-8
+2023-11-21 10:15:15,718 - paho - DEBUG - Sending PUBLISH (d0, q1, r0, m16), 'b'devices/URCobot/messages/events/%24.ct=application%2Fjson&%24.ce=utf-8'', ... (2324 bytes)
+2023-11-21 10:15:15,750 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.publish returned rc=0
+2023-11-21 10:15:15,781 - azure.iot.device.common.mqtt_transport - DEBUG - Waiting for response on MID: 16
+2023-11-21 10:15:15,797 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendD2CMessageOperation: creating worker op of type MQTTPublishOperation
+2023-11-21 10:15:15,827 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTPublishOperation): publishing on devices/URGripper/messages/events/%24.ct=application%2Fjson&%24.ce=utf-8
+2023-11-21 10:15:15,827 - azure.iot.device.common.mqtt_transport - INFO - publishing on devices/URGripper/messages/events/%24.ct=application%2Fjson&%24.ce=utf-8
+2023-11-21 10:15:15,827 - paho - DEBUG - Sending PUBLISH (d0, q1, r0, m8), 'b'devices/URGripper/messages/events/%24.ct=application%2Fjson&%24.ce=utf-8'', ... (97 bytes)
+2023-11-21 10:15:15,858 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.publish returned rc=0
+2023-11-21 10:15:15,874 - azure.iot.device.common.mqtt_transport - DEBUG - Waiting for response on MID: 8
+2023-11-21 10:15:15,906 - paho - DEBUG - Received PUBACK (Mid: 8)
+2023-11-21 10:15:15,906 - azure.iot.device.common.mqtt_transport - INFO - payload published for 8
+2023-11-21 10:15:15,906 - azure.iot.device.common.mqtt_transport - DEBUG - Response received for recognized MID: 8 - triggering callback
+2023-11-21 10:15:15,906 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in pipeline thread
+2023-11-21 10:15:15,906 - paho - DEBUG - Received PUBACK (Mid: 16)
+2023-11-21 10:15:15,906 - azure.iot.device.common.mqtt_transport - INFO - payload published for 16
+2023-11-21 10:15:15,906 - azure.iot.device.common.mqtt_transport - DEBUG - Response received for recognized MID: 16 - triggering callback
+2023-11-21 10:15:15,906 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in pipeline thread
+2023-11-21 10:15:15,922 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTPublishOperation): PUBACK received. completing op.
+2023-11-21 10:15:15,969 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - MQTTPublishOperation: completing without error
+2023-11-21 10:15:15,999 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendD2CMessageOperation: Worker op (MQTTPublishOperation) has been completed
+2023-11-21 10:15:15,999 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendD2CMessageOperation: completing without error
+2023-11-21 10:15:15,999 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in callback thread
+2023-11-21 10:15:15,999 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTPublishOperation): PUBACK received. completing op.
+2023-11-21 10:15:15,999 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - MQTTPublishOperation: completing without error
+2023-11-21 10:15:15,999 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendD2CMessageOperation: Worker op (MQTTPublishOperation) has been completed
+2023-11-21 10:15:15,999 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendD2CMessageOperation: completing without error
+2023-11-21 10:15:15,999 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in callback thread
+2023-11-21 10:15:15,999 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result None
+2023-11-21 10:15:16,047 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result None
+2023-11-21 10:15:16,047 - azure.iot.device.iothub.aio.async_clients - INFO - Successfully sent message to Hub
+2023-11-21 10:15:16,047 - azure.iot.device.iothub.aio.async_clients - INFO - Successfully sent message to Hub
+2023-11-21 10:15:21,059 - root - INFO - {
+ "act": 0,
+ "gto": 0,
+ "for": 75,
+ "spe": 28,
+ "pos": 34,
+ "sta": 1,
+ "pre": 168,
+ "obj": 3,
+ "flt": 7
+}
+2023-11-21 10:15:21,106 - azure.iot.device.iothub.aio.async_clients - INFO - Sending message to Hub...
+2023-11-21 10:15:21,138 - root - INFO - [-15.02607038765593, -11.9614472091115, -60.995197034543736, -77.29297833021478, 17.95867104470214, 48.169289600618676]
+2023-11-21 10:15:21,138 - root - INFO - {
+ "target_q": [
+  0.46926878723289556,
+  -1.2319819317254934,
+  1.7506315581252825,
+  0.1152418093806773,
+  -1.2746267976703112,
+  0.7827260531639386
+ ],
+ "target_qd": [
+  0.0335595707883769,
+  1.5690960518304704,
+  0.09444032675040548,
+  -0.4367470342865416,
+  1.2573375693692606,
+  -1.1883248586945752
+ ],
+ "target_qdd": [
+  0.19655446146366007,
+  0.5396893918999164,
+  0.27719773196628084,
+  1.0249158175833692,
+  -1.0809457006368248,
+  0.846113780652179
+ ],
+ "target_current": [
+  1.7703528094526915,
+  2.105300066010898,
+  -0.42352712856355623,
+  2.996139444013129,
+  1.9866216012802225,
+  1.5079301727307035
+ ],
+ "target_moment": [
+  56.55402526637664,
+  37.34947297034587,
+  28.011069296440752,
+  -74.19628358212633,
+  8.87124276413742,
+  56.93378147206482
+ ],
+ "actual_current": [
+  -2.1589943854769187,
+  -1.2474258849640973,
+  -0.8268037619082467,
+  -1.1201624920913316,
+  -2.952992963195179,
+  0.39094808099625267
+ ],
+ "actual_q": [
+  -0.2622544019010167,
+  -0.20876663710248233,
+  -1.0645670161554697,
+  -1.3490169605348767,
+  0.31343793901262207,
+  0.8407127018774603
+ ],
+ "actual_qd": [
+  -0.7158526238634095,
+  1.5806010079256947,
+  -1.6576881805592134,
+  -1.6077086237223825,
+  -1.5863865869573281,
+  0.9700227786750493
+ ],
+ "joint_control_output": [
+  2.345197441070307,
+  0.4917689366681647,
+  0.34883291436526753,
+  1.902451551548898,
+  1.9154860910403069,
+  2.8150730833074427
+ ],
+ "actual_tcp_force": [
+  1.5470341907839986,
+  1.7044274861078839,
+  0.10716751681310015,
+  1.5119719049998752,
+  1.1976729760412002,
+  0.3184297211338532
+ ],
+ "joint_temperatures": [
+  24.095423342427274,
+  24.052016599004308,
+  25.31735115683692,
+  24.970322717418057,
+  25.492853303174513,
+  24.55487044907591
+ ],
+ "joint_mode": [
+  254.6189210158627,
+  253.93284534697793,
+  254.27435814268338,
+  254.92247334903905,
+  254.11901144984253,
+  253.07846811689592
+ ],
+ "actual_tool_accelerometer": [
+  -5.149852650229168,
+  -2.0282474108769204,
+  1.924363225561743
+ ],
+ "speed_scaling": 0.16621141055893213,
+ "actual_momentum": 0.1374177784347187,
+ "actual_main_voltage": 48.469459097595184,
+ "actual_robot_voltage": 48.13111739103879,
+ "actual_robot_current": 0.003391321484684795,
+ "actual_joint_voltage": [
+  -0.32425348745924765,
+  0.19160195209880815,
+  -0.34203908329720734,
+  0.4447677496609065,
+  -0.3680745165322572,
+  -0.49004812640566686
+ ],
+ "runtime_state": 1,
+ "robot_mode": 2,
+ "safety_mode": 1,
+ "analog_io_types": 1,
+ "io_current": 0.3673253787689818,
+ "tool_mode": 253,
+ "tool_output_voltage": 0,
+ "tool_output_current": 0.13235777052056208
+}
+2023-11-21 10:15:21,138 - azure.iot.device.iothub.aio.async_clients - INFO - Sending message to Hub...
+2023-11-21 10:15:21,170 - azure.iot.device.iothub.pipeline.mqtt_pipeline - DEBUG - Starting SendD2CMessageOperation on the pipeline
+2023-11-21 10:15:21,186 - azure.iot.device.iothub.pipeline.mqtt_pipeline - DEBUG - Starting SendD2CMessageOperation on the pipeline
+2023-11-21 10:15:21,186 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:15:21,445 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting run_op in pipeline thread
+2023-11-21 10:15:21,656 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendD2CMessageOperation: creating worker op of type MQTTPublishOperation
+2023-11-21 10:15:21,672 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTPublishOperation): publishing on devices/URGripper/messages/events/%24.ct=application%2Fjson&%24.ce=utf-8
+2023-11-21 10:15:21,687 - azure.iot.device.common.mqtt_transport - INFO - publishing on devices/URGripper/messages/events/%24.ct=application%2Fjson&%24.ce=utf-8
+2023-11-21 10:15:21,702 - paho - DEBUG - Sending PUBLISH (d0, q1, r0, m9), 'b'devices/URGripper/messages/events/%24.ct=application%2Fjson&%24.ce=utf-8'', ... (95 bytes)
+2023-11-21 10:15:21,734 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.publish returned rc=0
+2023-11-21 10:15:21,766 - azure.iot.device.common.mqtt_transport - DEBUG - Waiting for response on MID: 9
+2023-11-21 10:15:21,766 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendD2CMessageOperation: creating worker op of type MQTTPublishOperation
+2023-11-21 10:15:21,766 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTPublishOperation): publishing on devices/URCobot/messages/events/%24.ct=application%2Fjson&%24.ce=utf-8
+2023-11-21 10:15:21,766 - azure.iot.device.common.mqtt_transport - INFO - publishing on devices/URCobot/messages/events/%24.ct=application%2Fjson&%24.ce=utf-8
+2023-11-21 10:15:21,782 - paho - DEBUG - Sending PUBLISH (d0, q1, r0, m17), 'b'devices/URCobot/messages/events/%24.ct=application%2Fjson&%24.ce=utf-8'', ... (2329 bytes)
+2023-11-21 10:15:21,828 - azure.iot.device.common.mqtt_transport - DEBUG - _mqtt_client.publish returned rc=0
+2023-11-21 10:15:21,844 - azure.iot.device.common.mqtt_transport - DEBUG - Waiting for response on MID: 17
+2023-11-21 10:15:21,968 - paho - DEBUG - Received PUBACK (Mid: 9)
+2023-11-21 10:15:21,983 - azure.iot.device.common.mqtt_transport - INFO - payload published for 9
+2023-11-21 10:15:21,999 - azure.iot.device.common.mqtt_transport - DEBUG - Response received for recognized MID: 9 - triggering callback
+2023-11-21 10:15:21,999 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in pipeline thread
+2023-11-21 10:15:22,047 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTPublishOperation): PUBACK received. completing op.
+2023-11-21 10:15:22,062 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - MQTTPublishOperation: completing without error
+2023-11-21 10:15:22,062 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendD2CMessageOperation: Worker op (MQTTPublishOperation) has been completed
+2023-11-21 10:15:22,062 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendD2CMessageOperation: completing without error
+2023-11-21 10:15:22,062 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in callback thread
+2023-11-21 10:15:22,062 - paho - DEBUG - Received PUBACK (Mid: 17)
+2023-11-21 10:15:22,078 - azure.iot.device.common.mqtt_transport - INFO - payload published for 17
+2023-11-21 10:15:22,110 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result None
+2023-11-21 10:15:22,141 - azure.iot.device.common.mqtt_transport - DEBUG - Response received for recognized MID: 17 - triggering callback
+2023-11-21 10:15:22,237 - azure.iot.device.iothub.aio.async_clients - INFO - Successfully sent message to Hub
+2023-11-21 10:15:22,253 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in pipeline thread
+2023-11-21 10:15:22,412 - azure.iot.device.common.pipeline.pipeline_stages_mqtt - DEBUG - MQTTTransportStage(MQTTPublishOperation): PUBACK received. completing op.
+2023-11-21 10:15:22,428 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - MQTTPublishOperation: completing without error
+2023-11-21 10:15:22,491 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendD2CMessageOperation: Worker op (MQTTPublishOperation) has been completed
+2023-11-21 10:15:22,506 - azure.iot.device.common.pipeline.pipeline_ops_base - DEBUG - SendD2CMessageOperation: completing without error
+2023-11-21 10:15:22,506 - azure.iot.device.common.pipeline.pipeline_thread - DEBUG - Starting on_complete in callback thread
+2023-11-21 10:15:22,537 - azure.iot.device.common.async_adapter - DEBUG - Callback completed with result None
+2023-11-21 10:15:22,633 - azure.iot.device.iothub.aio.async_clients - INFO - Successfully sent message to Hub
+2023-11-21 10:15:25,089 - root - ERROR - The execution of the thread was manually stopped due to a KeyboardInterrupt signal.
+2023-11-21 10:15:26,251 - asyncio - ERROR - _GatheringFuture exception was never retrieved
+future: <_GatheringFuture finished exception=CancelledError()>
+Traceback (most recent call last):
+  File "C:\Users\admin\Desktop\addqual\addqual-cobot-iot-app\AddQual\Device.py", line 49, in execute_command_listener
+    command_request = await self.iot_hub_device_client.receive_method_request(command_name)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Desktop\addqual\addqual-cobot-iot-app\venv\Lib\site-packages\azure\iot\device\iothub\aio\async_clients.py", line 383, in receive_method_request
+    method_request = await method_inbox.get()
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Desktop\addqual\addqual-cobot-iot-app\venv\Lib\site-packages\azure\iot\device\iothub\aio\async_inbox.py", line 64, in get
+    return await asyncio.wrap_future(fut)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+asyncio.exceptions.CancelledError
+2023-11-21 10:15:27,015 - asyncio - ERROR - _GatheringFuture exception was never retrieved
+future: <_GatheringFuture finished exception=CancelledError()>
+Traceback (most recent call last):
+  File "C:\Users\admin\Desktop\addqual\addqual-cobot-iot-app\AddQual\Device.py", line 49, in execute_command_listener
+    command_request = await self.iot_hub_device_client.receive_method_request(command_name)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Desktop\addqual\addqual-cobot-iot-app\venv\Lib\site-packages\azure\iot\device\iothub\aio\async_clients.py", line 383, in receive_method_request
+    method_request = await method_inbox.get()
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Desktop\addqual\addqual-cobot-iot-app\venv\Lib\site-packages\azure\iot\device\iothub\aio\async_inbox.py", line 64, in get
+    return await asyncio.wrap_future(fut)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+asyncio.exceptions.CancelledError

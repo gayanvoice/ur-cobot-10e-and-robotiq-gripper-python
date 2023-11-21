@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <iot_configuration>
     <shared>
-        <telemetry_delay>2</telemetry_delay>
+        <telemetry_delay>5</telemetry_delay>
     </shared>
     <ur_cobot>
         <model_id>dtmi:com:AddQual:Factory:ScanBox:Cobot:URCobot;1</model_id>

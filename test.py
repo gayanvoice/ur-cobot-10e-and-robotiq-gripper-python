@@ -3,15 +3,12 @@ import time
 from azure.iot.hub import IoTHubRegistryManager
 from azure.iot.hub.models import CloudToDeviceMethod
 
-import urx
-from urx.robotiq_two_finger_gripper import Robotiq_Two_Finger_Gripper
 
 # from URGripper.ur_gripper import UrGripper
 # from azure_iot.URGripper import URGripper
 # from URGripper.cmodel_urcap import RobotiqCModelURCap
 from model.joint_position_model import JointPositionModel
 from model.move_j_command_model import MoveJCommandModel
-from model.gripper_command_model import GripperCommandModel
 from model.test.PayloadResponseModel import PayloadResponseModel
 
 home_joint_position_model = JointPositionModel.get_joint_position_model_using_arguments(
@@ -216,10 +213,10 @@ def pause_command():
 
 
 if __name__ == '__main__':
-    # joint_position_model_array = [home_joint_position_model, retract_ct_01_joint_position_model]
-    # move_j(joint_position_model_array=joint_position_model_array)
-    # open_gripper()
-    pause_command()
+    joint_position_model_array = [home_joint_position_model, retract_ct_01_joint_position_model]
+    move_j(joint_position_model_array=joint_position_model_array)
+    open_gripper()
+    # pause_command()
     # ur_gripper = URGripper("127.0.0.1")
     # ur_gripper.open_gripper()
     # ur_gripper.close_gripper()

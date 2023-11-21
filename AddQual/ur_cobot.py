@@ -2,6 +2,7 @@ import asyncio
 import json
 import math
 import random
+import time
 
 import URBasic
 import logging
@@ -64,70 +65,72 @@ class URCobot:
 
         await self.connect_ur_cobot_iot_device(
             ur_cobot_iot_configuration_model=ur_cobot_iot_configuration_model)
+
+        if addqual_global.is_dev_mode is False:
+            await self.connect_ur_cobot_physical_device(
+                ur_cobot_iot_configuration_model=ur_cobot_iot_configuration_model)
+
+        command_listeners = asyncio.gather(
+            self.device.execute_command_listener(
+                method_name="MoveJCommand",
+                request_handler=self.move_j_command_request_handler,
+                response_handler=self.command_response_handler,
+            ),
+            self.device.execute_command_listener(
+                method_name="PauseCommand",
+                request_handler=self.pause_command_request_handler,
+                response_handler=self.command_response_handler,
+            ),
+            self.device.execute_command_listener(
+                method_name="PlayCommand",
+                request_handler=self.play_command_request_handler,
+                response_handler=self.command_response_handler,
+            ),
+            self.device.execute_command_listener(
+                method_name="CloseSafetyPopupCommand",
+                request_handler=self.close_safety_popup_command_request_handler,
+                response_handler=self.command_response_handler,
+            ),
+            self.device.execute_command_listener(
+                method_name="UnlockProtectiveStopCommand",
+                request_handler=self.unlock_protective_stop_command_request_handler,
+                response_handler=self.command_response_handler,
+            ),
+            self.device.execute_command_listener(
+                method_name="OpenPopupCommand",
+                request_handler=self.open_popup_command_request_handler,
+                response_handler=self.command_response_handler,
+            ),
+            self.device.execute_command_listener(
+                method_name="ClosePopupCommand",
+                request_handler=self.close_popup_command_request_handler,
+                response_handler=self.command_response_handler,
+            ),
+            self.device.execute_command_listener(
+                method_name="PowerOnCommand",
+                request_handler=self.power_on_command_request_handler,
+                response_handler=self.command_response_handler,
+            ),
+            self.device.execute_command_listener(
+                method_name="PowerOffCommand",
+                request_handler=self.power_off_command_request_handler,
+                response_handler=self.command_response_handler,
+            ),
+            self.device.execute_command_listener(
+                method_name="StartFreeDriveModeCommand",
+                request_handler=self.enable_free_drive_mode_command_request_handler,
+                response_handler=self.command_response_handler,
+            ),
+            self.device.execute_command_listener(
+                method_name="StopFreeDriveModeCommand",
+                request_handler=self.disable_free_drive_mode_command_request_handler,
+                response_handler=self.command_response_handler,
+            )
+        )
         if addqual_global.is_dev_mode:
             send_telemetry_task = asyncio.ensure_future(self.send_telemetry_development_task(
                 shared_iot_configuration_model=shared_iot_configuration_model))
         else:
-            await self.connect_ur_cobot_physical_device(
-                ur_cobot_iot_configuration_model=ur_cobot_iot_configuration_model)
-
-            command_listeners = asyncio.gather(
-                self.device.execute_command_listener(
-                    method_name="MoveJCommand",
-                    request_handler=self.move_j_command_request_handler,
-                    response_handler=self.command_response_handler,
-                ),
-                self.device.execute_command_listener(
-                    method_name="PauseCommand",
-                    request_handler=self.pause_command_request_handler,
-                    response_handler=self.command_response_handler,
-                ),
-                self.device.execute_command_listener(
-                    method_name="PlayCommand",
-                    request_handler=self.play_command_request_handler,
-                    response_handler=self.command_response_handler,
-                ),
-                self.device.execute_command_listener(
-                    method_name="CloseSafetyPopupCommand",
-                    request_handler=self.close_safety_popup_command_request_handler,
-                    response_handler=self.command_response_handler,
-                ),
-                self.device.execute_command_listener(
-                    method_name="UnlockProtectiveStopCommand",
-                    request_handler=self.unlock_protective_stop_command_request_handler,
-                    response_handler=self.command_response_handler,
-                ),
-                self.device.execute_command_listener(
-                    method_name="OpenPopupCommand",
-                    request_handler=self.open_popup_command_request_handler,
-                    response_handler=self.command_response_handler,
-                ),
-                self.device.execute_command_listener(
-                    method_name="ClosePopupCommand",
-                    request_handler=self.close_popup_command_request_handler,
-                    response_handler=self.command_response_handler,
-                ),
-                self.device.execute_command_listener(
-                    method_name="PowerOnCommand",
-                    request_handler=self.power_on_command_request_handler,
-                    response_handler=self.command_response_handler,
-                ),
-                self.device.execute_command_listener(
-                    method_name="PowerOffCommand",
-                    request_handler=self.power_off_command_request_handler,
-                    response_handler=self.command_response_handler,
-                ),
-                self.device.execute_command_listener(
-                    method_name="StartFreeDriveModeCommand",
-                    request_handler=self.enable_free_drive_mode_command_request_handler,
-                    response_handler=self.command_response_handler,
-                ),
-                self.device.execute_command_listener(
-                    method_name="StopFreeDriveModeCommand",
-                    request_handler=self.disable_free_drive_mode_command_request_handler,
-                    response_handler=self.command_response_handler,
-                )
-            )
             send_telemetry_task = asyncio.ensure_future(self.send_telemetry_production_task(
                 shared_iot_configuration_model=shared_iot_configuration_model))
 
@@ -135,12 +138,12 @@ class URCobot:
         user_finished = loop.run_in_executor(None, self.stdin_listener)
         await user_finished
 
+        if not command_listeners.done():
+            result = {'Status': 'Done'}
+            command_listeners.set_result(list(result.values()))
         if addqual_global.is_dev_mode is False:
-            if not command_listeners.done():
-                result = {'Status': 'Done'}
-                command_listeners.set_result(list(result.values()))
             self.ur_script_ext.close()
-            command_listeners.cancel()
+        command_listeners.cancel()
 
         send_telemetry_task.cancel()
 
@@ -172,7 +175,10 @@ class URCobot:
     async def pause_command_request_handler(self, request_payload):
         command_response_model = PauseCommandResponseModel()
         try:
-            self.ur_script_ext.pause()
+            if addqual_global.is_dev_mode:
+                time.sleep(1)
+            else:
+                self.ur_script_ext.pause()
             return command_response_model.get_successfully_executed()
         except Exception as ex:
             return command_response_model.get_exception(str(ex))
@@ -180,7 +186,10 @@ class URCobot:
     async def play_command_request_handler(self, request_payload):
         command_response_model = PlayCommandResponseModel()
         try:
-            self.ur_script_ext.play()
+            if addqual_global.is_dev_mode:
+                time.sleep(1)
+            else:
+                self.ur_script_ext.play()
             return command_response_model.get_successfully_executed()
         except Exception as ex:
             return command_response_model.get_exception(str(ex))
@@ -188,7 +197,10 @@ class URCobot:
     async def close_safety_popup_command_request_handler(self, request_payload):
         command_response_model = CloseSafetyPopupCommandResponseModel()
         try:
-            self.ur_script_ext.close_safety_popup()
+            if addqual_global.is_dev_mode:
+                time.sleep(1)
+            else:
+                self.ur_script_ext.close_safety_popup()
             return command_response_model.get_successfully_executed()
         except Exception as ex:
             return command_response_model.get_exception(str(ex))
@@ -196,7 +208,10 @@ class URCobot:
     async def unlock_protective_stop_command_request_handler(self, request_payload):
         command_response_model = UnlockProtectiveStopCommandResponseModel()
         try:
-            self.ur_script_ext.unlock_protective_stop()
+            if addqual_global.is_dev_mode:
+                time.sleep(1)
+            else:
+                self.ur_script_ext.unlock_protective_stop()
             return command_response_model.get_successfully_executed()
         except Exception as ex:
             return command_response_model.get_exception(str(ex))
@@ -204,7 +219,10 @@ class URCobot:
     async def open_popup_command_request_handler(self, request_payload):
         command_response_model = OpenPopupCommandResponseModel()
         try:
-            self.ur_script_ext.open_popup(popup_text=request_payload['popup_text'])
+            if addqual_global.is_dev_mode:
+                time.sleep(1)
+            else:
+                self.ur_script_ext.open_popup(popup_text=request_payload['popup_text'])
             return command_response_model.get_successfully_executed()
         except Exception as ex:
             return command_response_model.get_exception(str(ex))
@@ -212,7 +230,10 @@ class URCobot:
     async def close_popup_command_request_handler(self, request_payload):
         command_response_model = ClosePopupCommandResponseModel()
         try:
-            self.ur_script_ext.close_popup()
+            if addqual_global.is_dev_mode:
+                time.sleep(1)
+            else:
+                self.ur_script_ext.close_popup()
             return command_response_model.get_successfully_executed()
         except Exception as ex:
             return command_response_model.get_exception(str(ex))
@@ -220,7 +241,10 @@ class URCobot:
     async def power_on_command_request_handler(self, request_payload):
         command_response_model = PowerOnCommandResponseModel()
         try:
-            self.ur_script_ext.power_on()
+            if addqual_global.is_dev_mode:
+                time.sleep(1)
+            else:
+                self.ur_script_ext.power_on()
             return command_response_model.get_successfully_executed()
         except Exception as ex:
             return command_response_model.get_exception(str(ex))
@@ -228,7 +252,10 @@ class URCobot:
     async def power_off_command_request_handler(self, request_payload):
         command_response_model = PowerOffCommandResponseModel()
         try:
-            self.ur_script_ext.power_off()
+            if addqual_global.is_dev_mode:
+                time.sleep(1)
+            else:
+                self.ur_script_ext.power_off()
             return command_response_model.get_successfully_executed()
         except Exception as ex:
             return command_response_model.get_exception(str(ex))
@@ -236,7 +263,10 @@ class URCobot:
     async def enable_free_drive_mode_command_request_handler(self, request_payload):
         command_response_model = EnableFreeDriveModeCommandResponseModel()
         try:
-            self.ur_script_ext.enable_free_drive_mode()
+            if addqual_global.is_dev_mode:
+                time.sleep(1)
+            else:
+                self.ur_script_ext.enable_free_drive_mode()
             return command_response_model.get_successfully_executed()
         except Exception as ex:
             return command_response_model.get_exception(str(ex))
@@ -244,7 +274,10 @@ class URCobot:
     async def disable_free_drive_mode_command_request_handler(self, request_payload):
         command_response_model = DisableFreeDriveModeCommandResponseModel()
         try:
-            self.ur_script_ext.disable_free_drive_mode()
+            if addqual_global.is_dev_mode:
+                time.sleep(1)
+            else:
+                self.ur_script_ext.disable_free_drive_mode()
             return command_response_model.get_successfully_executed()
         except Exception as ex:
             return command_response_model.get_exception(str(ex))
@@ -252,7 +285,10 @@ class URCobot:
     async def enable_teach_mode_command_request_handler(self, request_payload):
         command_response_model = EnableTeachModeCommandResponseModel()
         try:
-            self.ur_script_ext.enable_teach_mode()
+            if addqual_global.is_dev_mode:
+                time.sleep(1)
+            else:
+                self.ur_script_ext.enable_teach_mode()
             return command_response_model.get_successfully_executed()
         except Exception as ex:
             return command_response_model.get_exception(str(ex))
@@ -260,7 +296,10 @@ class URCobot:
     async def disable_teach_mode_command_request_handler(self, request_payload):
         command_response_model = DisableTeachModeCommandResponseModel()
         try:
-            self.ur_script_ext.disable_teach_mode()
+            if addqual_global.is_dev_mode:
+                time.sleep(1)
+            else:
+                self.ur_script_ext.disable_teach_mode()
             return command_response_model.get_successfully_executed()
         except Exception as ex:
             return command_response_model.get_exception(str(ex))
