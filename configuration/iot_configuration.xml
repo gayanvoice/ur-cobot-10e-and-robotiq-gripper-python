@@ -17,11 +17,11 @@
         <rtde_port>30004</rtde_port>
     </ur_cobot>
     <robotiq_cobot>
-        <model_id>dtmi:com:AddQual:Factory:ScanBox:Cobot:URGripper;1</model_id>
+        <model_id>dtmi:com:AddQual:Factory:ScanBox:Cobot:RobotiqGripper;1</model_id>
         <provisioning_host>global.azure-devices-provisioning.net</provisioning_host>
         <id_scope>0ne00AF4286</id_scope>
-        <registration_id>URGripper</registration_id>
-        <symmetric_key>Rj/9JcrAsnH6e8R5Px3YdzdW+QtAt9fKAdsN0YcLh6KgIJrIm6zHPlwBgarETVy1HclBVK72VK1PKxAeK/tzeg==</symmetric_key>
+        <registration_id>RobotiqGripper</registration_id>
+        <symmetric_key>gDZve9zqJOTCedVmHKPrYLq7Ri5ttYKQiaiytbkqtkuQQhpihIo9ftOY+19OjE+0GpN0DPD9OOoGOxv91caTQw==</symmetric_key>
         <host>10.2.12.109</host>
         <port>63352</port>
         <socket_timeout>2.0</socket_timeout>
