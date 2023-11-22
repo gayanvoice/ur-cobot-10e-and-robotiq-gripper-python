@@ -1,3 +1,5 @@
+import logging
+
 import numpy
 from azure.iot.device import Message, MethodResponse
 from azure.iot.device.aio import IoTHubDeviceClient
@@ -71,6 +73,7 @@ class Device:
 
     async def send_telemetry(self, telemetry):
         telemetry_json = json.dumps(telemetry, cls=NumpyArrayEncoder)
+        logging.info(telemetry_json)
         message = Message(telemetry_json)
         message.content_encoding = "utf-8"
         message.content_type = "application/json"

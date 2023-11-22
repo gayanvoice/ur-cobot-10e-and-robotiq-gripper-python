@@ -1,4 +1,6 @@
 import asyncio
+
+from AddQual.addqual_global import is_ur_cobot_dev_mode, is_robotiq_gripper_dev_mode
 from AddQual.ur_cobot import URCobot
 from AddQual.robotiq_gripper import RobotiqGripper
 from AddQual.addqual_queue import AddQualQueue
@@ -12,10 +14,14 @@ logging.basicConfig(filename='cobot.log', filemode='w',
 
 
 async def main():
-    if addqual_global.is_dev_mode:
+    if addqual_global.is_ur_cobot_dev_mode or addqual_global.is_robotiq_gripper_dev_mode:
         title = pyfiglet.figlet_format("AddQual Cobot IOT App", width=200)
         mode = pyfiglet.figlet_format("Development Mode", width=200)
         logging.info("\n{title}\n{mode}".format(title=title, mode=mode))
+        logging.info("\nis_ur_cobot_dev_mode:{is_ur_cobot_dev_mode}"
+                     "\nis_robotiq_gripper_dev_mode:{is_robotiq_gripper_dev_mode}"
+                     .format(is_ur_cobot_dev_mode=is_ur_cobot_dev_mode,
+                             is_robotiq_gripper_dev_mode=is_robotiq_gripper_dev_mode))
     else:
         title = pyfiglet.figlet_format("AddQual Cobot IOT App", width=200)
         mode = pyfiglet.figlet_format("Production Mode", width=200)

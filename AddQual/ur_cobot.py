@@ -4,6 +4,8 @@ import math
 import random
 import time
 
+import numpy as np
+
 import URBasic
 import logging
 from AddQual import addqual_global
@@ -66,7 +68,7 @@ class URCobot:
         await self.connect_ur_cobot_iot_device(
             ur_cobot_iot_configuration_model=ur_cobot_iot_configuration_model)
 
-        if addqual_global.is_dev_mode is False:
+        if addqual_global.is_ur_cobot_dev_mode is False:
             await self.connect_ur_cobot_physical_device(
                 ur_cobot_iot_configuration_model=ur_cobot_iot_configuration_model)
 
@@ -127,7 +129,7 @@ class URCobot:
                 response_handler=self.command_response_handler,
             )
         )
-        if addqual_global.is_dev_mode:
+        if addqual_global.is_ur_cobot_dev_mode:
             send_telemetry_task = asyncio.ensure_future(self.send_telemetry_development_task(
                 shared_iot_configuration_model=shared_iot_configuration_model))
         else:
@@ -141,7 +143,7 @@ class URCobot:
         if not command_listeners.done():
             result = {'Status': 'Done'}
             command_listeners.set_result(list(result.values()))
-        if addqual_global.is_dev_mode is False:
+        if addqual_global.is_ur_cobot_dev_mode is False:
             self.ur_script_ext.close()
         command_listeners.cancel()
 
@@ -175,7 +177,7 @@ class URCobot:
     async def pause_command_request_handler(self, request_payload):
         command_response_model = PauseCommandResponseModel()
         try:
-            if addqual_global.is_dev_mode:
+            if addqual_global.is_ur_cobot_dev_mode:
                 time.sleep(1)
             else:
                 self.ur_script_ext.pause()
@@ -186,7 +188,7 @@ class URCobot:
     async def play_command_request_handler(self, request_payload):
         command_response_model = PlayCommandResponseModel()
         try:
-            if addqual_global.is_dev_mode:
+            if addqual_global.is_ur_cobot_dev_mode:
                 time.sleep(1)
             else:
                 self.ur_script_ext.play()
@@ -197,7 +199,7 @@ class URCobot:
     async def close_safety_popup_command_request_handler(self, request_payload):
         command_response_model = CloseSafetyPopupCommandResponseModel()
         try:
-            if addqual_global.is_dev_mode:
+            if addqual_global.is_ur_cobot_dev_mode:
                 time.sleep(1)
             else:
                 self.ur_script_ext.close_safety_popup()
@@ -208,7 +210,7 @@ class URCobot:
     async def unlock_protective_stop_command_request_handler(self, request_payload):
         command_response_model = UnlockProtectiveStopCommandResponseModel()
         try:
-            if addqual_global.is_dev_mode:
+            if addqual_global.is_ur_cobot_dev_mode:
                 time.sleep(1)
             else:
                 self.ur_script_ext.unlock_protective_stop()
@@ -219,7 +221,7 @@ class URCobot:
     async def open_popup_command_request_handler(self, request_payload):
         command_response_model = OpenPopupCommandResponseModel()
         try:
-            if addqual_global.is_dev_mode:
+            if addqual_global.is_ur_cobot_dev_mode:
                 time.sleep(1)
             else:
                 self.ur_script_ext.open_popup(popup_text=request_payload['popup_text'])
@@ -230,7 +232,7 @@ class URCobot:
     async def close_popup_command_request_handler(self, request_payload):
         command_response_model = ClosePopupCommandResponseModel()
         try:
-            if addqual_global.is_dev_mode:
+            if addqual_global.is_ur_cobot_dev_mode:
                 time.sleep(1)
             else:
                 self.ur_script_ext.close_popup()
@@ -241,7 +243,7 @@ class URCobot:
     async def power_on_command_request_handler(self, request_payload):
         command_response_model = PowerOnCommandResponseModel()
         try:
-            if addqual_global.is_dev_mode:
+            if addqual_global.is_ur_cobot_dev_mode:
                 time.sleep(1)
             else:
                 self.ur_script_ext.power_on()
@@ -252,7 +254,7 @@ class URCobot:
     async def power_off_command_request_handler(self, request_payload):
         command_response_model = PowerOffCommandResponseModel()
         try:
-            if addqual_global.is_dev_mode:
+            if addqual_global.is_ur_cobot_dev_mode:
                 time.sleep(1)
             else:
                 self.ur_script_ext.power_off()
@@ -263,7 +265,7 @@ class URCobot:
     async def enable_free_drive_mode_command_request_handler(self, request_payload):
         command_response_model = EnableFreeDriveModeCommandResponseModel()
         try:
-            if addqual_global.is_dev_mode:
+            if addqual_global.is_ur_cobot_dev_mode:
                 time.sleep(1)
             else:
                 self.ur_script_ext.enable_free_drive_mode()
@@ -274,7 +276,7 @@ class URCobot:
     async def disable_free_drive_mode_command_request_handler(self, request_payload):
         command_response_model = DisableFreeDriveModeCommandResponseModel()
         try:
-            if addqual_global.is_dev_mode:
+            if addqual_global.is_ur_cobot_dev_mode:
                 time.sleep(1)
             else:
                 self.ur_script_ext.disable_free_drive_mode()
@@ -285,7 +287,7 @@ class URCobot:
     async def enable_teach_mode_command_request_handler(self, request_payload):
         command_response_model = EnableTeachModeCommandResponseModel()
         try:
-            if addqual_global.is_dev_mode:
+            if addqual_global.is_ur_cobot_dev_mode:
                 time.sleep(1)
             else:
                 self.ur_script_ext.enable_teach_mode()
@@ -296,7 +298,7 @@ class URCobot:
     async def disable_teach_mode_command_request_handler(self, request_payload):
         command_response_model = DisableTeachModeCommandResponseModel()
         try:
-            if addqual_global.is_dev_mode:
+            if addqual_global.is_ur_cobot_dev_mode:
                 time.sleep(1)
             else:
                 self.ur_script_ext.disable_teach_mode()
@@ -317,7 +319,7 @@ class URCobot:
                     "actual_q": self.ur_script_ext.get_actual_q(),
                     "actual_qd": self.ur_script_ext.get_actual_qd(),
                     "joint_control_output": self.ur_script_ext.get_joint_control_output(),
-                    "actual_TCP_force": self.ur_script_ext.get_actual_tcp_force(),
+                    "actual_tcp_force": self.ur_script_ext.get_actual_tcp_force(),
                     "joint_temperatures": self.ur_script_ext.get_joint_temperatures(),
                     "joint_mode": self.ur_script_ext.get_joint_mode(),
                     "actual_tool_accelerometer": self.ur_script_ext.get_actual_tool_accelerometer(),
@@ -334,7 +336,7 @@ class URCobot:
                     "io_current": self.ur_script_ext.get_io_current(),
                     "tool_mode": self.ur_script_ext.get_tool_mode(),
                     "tool_output_voltage": self.ur_script_ext.get_tool_output_voltage(),
-                    "tool_output_current": self.ur_script_ext.get_tool_output_current(),
+                    "tool_output_current": self.ur_script_ext.get_tool_output_current()
                 }
                 logging.info([math.degrees(value) for value in self.ur_script_ext.get_actual_q()])
                 await self.device.send_telemetry(telemetry=telemetry)
@@ -402,8 +404,14 @@ class URCobot:
                     "tool_output_current": tool_output_current
                 }
                 logging.info([math.degrees(value) for value in actual_q])
-                logging.info(json.dumps(telemetry, default=lambda o: o.__dict__, indent=1))
                 await self.device.send_telemetry(telemetry=telemetry)
             except Exception as ex:
                 logging.error(ex)
             await asyncio.sleep(shared_iot_configuration_model.telemetry_delay)
+
+
+class NumpyEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.generic):
+            return obj.item()
+        return json.JSONEncoder.default(self, obj)

@@ -54,7 +54,7 @@ class RobotiqGripper:
         await self.connect_ur_gripper_iot_device(
             robotiq_gripper_iot_configuration_model=robotiq_gripper_iot_configuration_model)
 
-        if addqual_global.is_dev_mode is False:
+        if addqual_global.is_robotiq_gripper_dev_mode is False:
             await self.connect_ur_gripper_physical_device(
                 robotiq_gripper_iot_configuration_model=robotiq_gripper_iot_configuration_model)
 
@@ -76,7 +76,7 @@ class RobotiqGripper:
             ),
         )
 
-        if addqual_global.is_dev_mode:
+        if addqual_global.is_robotiq_gripper_dev_mode:
             send_telemetry_task = asyncio.ensure_future(self.send_telemetry_development_task(
                 shared_iot_configuration_model=shared_iot_configuration_model))
         else:
@@ -91,7 +91,7 @@ class RobotiqGripper:
             result = {'Status': 'Done'}
             command_listeners.set_result(list(result.values()))
 
-        if addqual_global.is_dev_mode is False:
+        if addqual_global.is_robotiq_gripper_dev_mode is False:
             self.robotiq_gripper_controller.disconnect()
         command_listeners.cancel()
 
@@ -107,7 +107,7 @@ class RobotiqGripper:
     async def activate_gripper_command_request_handler(self):
         activate_gripper_command_response_model = ActivateGripperCommandResponseModel()
         try:
-            if addqual_global.is_dev_mode:
+            if addqual_global.is_robotiq_gripper_dev_mode:
                 time.sleep(1)
             else:
                 self.robotiq_gripper_controller.activate()
@@ -118,7 +118,7 @@ class RobotiqGripper:
     async def open_gripper_command_request_handler(self):
         open_gripper_command_response_model = OpenGripperCommandResponseModel()
         try:
-            if addqual_global.is_dev_mode:
+            if addqual_global.is_robotiq_gripper_dev_mode:
                 time.sleep(1)
             else:
                 self.robotiq_gripper_controller.open_gripper()
@@ -129,7 +129,7 @@ class RobotiqGripper:
     async def close_gripper_command_request_handler(self):
         close_gripper_command_response_model = CloseGripperCommandResponseModel()
         try:
-            if addqual_global.is_dev_mode:
+            if addqual_global.is_robotiq_gripper_dev_mode:
                 time.sleep(1)
             else:
                 self.robotiq_gripper_controller.close_gripper()
