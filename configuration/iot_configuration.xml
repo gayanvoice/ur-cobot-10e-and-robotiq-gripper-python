@@ -6,9 +6,9 @@
     <ur_cobot>
         <model_id>dtmi:com:AddQual:Factory:ScanBox:Cobot:URCobot;1</model_id>
         <provisioning_host>global.azure-devices-provisioning.net</provisioning_host>
-        <id_scope>0ne00AF4286</id_scope>
+        <id_scope>0ne00B884B8</id_scope>
         <registration_id>URCobot</registration_id>
-        <symmetric_key>MHzgrfqgoEB5yNTAHWe/BGVmVlw3ayYCBUNE57THVQ8iN9iQRB/E5pbJvJDojsZpmmV78cqKh/JKrn6zTdN2eg==</symmetric_key>
+        <symmetric_key>2cnAIHW9SYjD64KnVcvHnsLCSTra+RIpO26JwOxGK7LQOI9pIcoV3WztTgMbKJ8IkZDAG31/3uwb9n9E4NWi7Q==</symmetric_key>
         <host>127.0.0.1</host>
         <dashboard_server_port>29999</dashboard_server_port>
         <primary_port>30001</primary_port>
@@ -19,9 +19,9 @@
     <robotiq_cobot>
         <model_id>dtmi:com:AddQual:Factory:ScanBox:Cobot:RobotiqGripper;1</model_id>
         <provisioning_host>global.azure-devices-provisioning.net</provisioning_host>
-        <id_scope>0ne00AF4286</id_scope>
+        <id_scope>0ne00B884B8</id_scope>
         <registration_id>RobotiqGripper</registration_id>
-        <symmetric_key>gDZve9zqJOTCedVmHKPrYLq7Ri5ttYKQiaiytbkqtkuQQhpihIo9ftOY+19OjE+0GpN0DPD9OOoGOxv91caTQw==</symmetric_key>
+        <symmetric_key>c53s/g/8bu05BqF3Ax86X6PR6hQNF/abCoue+LxOUyYp9X0N9mT2Hy9rL8Id4mENflWb1AR276Gw1Gv5hn9+tA==</symmetric_key>
         <host>10.2.12.109</host>
         <port>63352</port>
         <socket_timeout>2.0</socket_timeout>
