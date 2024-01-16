@@ -455,7 +455,7 @@ class RTDE(threading.Thread): #, metaclass=Singleton
                 elif(packet_command == 0):
                     byte_buffer = bytes()
             else:
-                print("skipping package - unexpected packet_size - length: " + str(len(byte_buffer)))
+                self._logger.warning("skipping package - unexpected packet_size - length: " + str(len(byte_buffer)))
                 byte_buffer = bytes()
 
         if len(byte_buffer) != 0:

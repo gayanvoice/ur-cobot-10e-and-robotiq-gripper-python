@@ -117,6 +117,10 @@ end
         programString = prg.format(**locals())
 
         self.robotConnector.RealTimeClient.SendProgram(programString)
+
+        logging.info("request in movej")
+        logging.info(q)
+
         if (wait):
             self.waitRobotIdleOrStopFlag()
 

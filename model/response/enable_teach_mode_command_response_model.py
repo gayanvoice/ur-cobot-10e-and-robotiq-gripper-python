@@ -9,7 +9,7 @@ class EnableTeachModeCommandResponseModel(ResponseModel):
 
     def get_enable_teach_mode_command_response_model(self, status):
         response_model = super().get(status=status)
-        self._status = response_model.statuss
+        self._status = response_model.status
         return self
 
     def get_successfully_executed(self):

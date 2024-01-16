@@ -79,8 +79,8 @@ class MoveJCommandModel:
         move_j_command_model.time_s = json_request_payload["_time_s"]
         move_j_command_model.blend_radius = json_request_payload["_blend_radius"]
         for joint_position_model_object in json_request_payload["_joint_position_model_array"]:
-            joint_position_model = JointPositionModel.get_joint_position_model_from_joint_position_model_object(
-                joint_position_model_object)
+            joint_position_model = JointPositionModel\
+                .get_joint_position_model_from_joint_position_model_object(joint_position_model_object)
             move_j_command_model.joint_position_model_array = joint_position_model
         return move_j_command_model
 

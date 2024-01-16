@@ -25,8 +25,7 @@ retract_bottom_position_model = JointPositionModel.get_joint_position_model_usin
 target_bottom_position_model = JointPositionModel.get_joint_position_model_using_arguments(
     base=150.09, shoulder=-107.03, elbow=110.14, wrist1=-2.62, wrist2=59.79, wrist3=179.77)
 
-connection_string = ("HostName=AddQualIotHub.azure-devices.net;SharedAccessKeyName=service;"
-                     "SharedAccessKey=X2vIeJ5i5kBJXNUaRLE0O7Btl0WZkaBFkAIoTGfyk7Y=")
+connection_string = ("HostName=cobot-iot-hub.azure-devices.net;SharedAccessKeyName=service;SharedAccessKey=PAhVCG2kzRH+pQDKinnpwcO1M5T/YOp9RAIoTMjZuzw=")
 
 ur_cobot = "URCobot"
 ur_gripper = "URGripper"
@@ -89,6 +88,15 @@ def pause_command():
     json_response = json.loads(response.payload, object_hook=lambda d: PayloadResponseModel(**d))
     print(json_response)
     return json_response
+
+
+def start_free_drive_gripper():
+    print(connection_string)
+    device_method = CloudToDeviceMethod(method_name="StartFreeDriveModeCommand")
+    registry_manager = IoTHubRegistryManager(connection_string)
+    response = registry_manager.invoke_device_method(ur_cobot, device_method)
+    json_response = json.loads(response.payload, object_hook=lambda d: PayloadResponseModel(**d))
+    print(json_response)
 
 
 #
@@ -213,9 +221,10 @@ def pause_command():
 
 
 if __name__ == '__main__':
-    joint_position_model_array = [home_joint_position_model, retract_ct_01_joint_position_model]
-    move_j(joint_position_model_array=joint_position_model_array)
-    open_gripper()
+    start_free_drive_gripper()
+    # joint_position_model_array = [home_joint_position_model, retract_ct_01_joint_position_model]
+    # move_j(joint_position_model_array=joint_position_model_array)
+    # open_gripper()
     # pause_command()
     # ur_gripper = URGripper("127.0.0.1")
     # ur_gripper.open_gripper()

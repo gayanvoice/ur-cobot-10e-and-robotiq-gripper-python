@@ -161,11 +161,14 @@ class URCobot:
                 joint_position_array = JointPositionModel.get_position_array_from_joint_position_model(
                     joint_position_model=joint_position_model
                 )
-                self.ur_script_ext.movej(q=joint_position_array,
-                                         a=move_j_command_model.acceleration,
-                                         v=move_j_command_model.velocity,
-                                         t=move_j_command_model.time_s,
-                                         r=move_j_command_model.blend_radius)
+                if addqual_global.is_ur_cobot_dev_mode:
+                    time.sleep(1)
+                else:
+                    self.ur_script_ext.movej(q=joint_position_array,
+                                             a=move_j_command_model.acceleration,
+                                             v=move_j_command_model.velocity,
+                                             t=move_j_command_model.time_s,
+                                             r=move_j_command_model.blend_radius)
             return command_response_model.get_successfully_executed()
         except Exception as ex:
             return command_response_model.get_exception(str(ex))

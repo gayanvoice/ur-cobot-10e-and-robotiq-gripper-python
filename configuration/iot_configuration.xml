@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <iot_configuration>
     <shared>
-        <telemetry_delay>5</telemetry_delay>
+        <telemetry_delay>10</telemetry_delay>
     </shared>
     <ur_cobot>
-        <model_id>dtmi:com:AddQual:Factory:ScanBox:Cobot:URCobot;1</model_id>
+        <model_id>dtmi:com:AddQual:Factory:ScanBox:Cobot:URCobot:URCobot;1</model_id>
         <provisioning_host>global.azure-devices-provisioning.net</provisioning_host>
         <id_scope>0ne00B884B8</id_scope>
         <registration_id>URCobot</registration_id>
@@ -17,7 +17,7 @@
         <rtde_port>30004</rtde_port>
     </ur_cobot>
     <robotiq_cobot>
-        <model_id>dtmi:com:AddQual:Factory:ScanBox:Cobot:RobotiqGripper;1</model_id>
+        <model_id>dtmi:com:AddQual:Factory:ScanBox:Cobot:RobotiqGripper:RobotiqGripper;1</model_id>
         <provisioning_host>global.azure-devices-provisioning.net</provisioning_host>
         <id_scope>0ne00B884B8</id_scope>
         <registration_id>RobotiqGripper</registration_id>
