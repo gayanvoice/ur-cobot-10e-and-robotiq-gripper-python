@@ -6,10 +6,11 @@ class AddQualQueue:
     @staticmethod
     def stdin_listener():
         while True:
-            selection = input("Press Q to quit AddQual Cobot IoT App\n")
-            if selection == "Q" or selection == "q":
-                addqual_global.is_queue_running = False
-                break
+            addqual_global.is_queue_running = True
+            # selection = input("Press Q to quit AddQual Cobot IoT App\n")
+            # if selection == "Q" or selection == "q":
+            #     addqual_global.is_queue_running = False
+            #     break
 
     async def listen(self, queue):
         loop = asyncio.get_running_loop()
